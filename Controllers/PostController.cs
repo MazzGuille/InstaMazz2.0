@@ -78,6 +78,8 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Listar", cn);
+                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
