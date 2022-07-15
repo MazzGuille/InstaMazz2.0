@@ -45,11 +45,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-
-
-
                 cn.Open();
-
 
                 oUsuario.IdUsuario = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 var result = oUsuario.IdUsuario;

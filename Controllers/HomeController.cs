@@ -13,7 +13,7 @@ namespace InstaMazz2._0.Controllers
     [ValidarSesion]
     public class HomeController : Controller
     {
-        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+        //static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
         public ActionResult Index()
         {
 
