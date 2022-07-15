@@ -16,11 +16,12 @@ namespace InstaMazz2._0.Controllers
         //AccesoController nom = new AccesoController();
         public ActionResult Index()
         {
-            ViewData["Nombre"] = nom.Name();
-
+            //ViewData["Nombre"] = nom.Name();
+            //ViewData["Mail"] = mail;
             var mail = Session["usuario"];
-            ViewData["Mail"] = mail;
-
+            ViewBag.email = mail;
+            ViewBag.name = "Nombre";
+            ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
 
 
             return View();
