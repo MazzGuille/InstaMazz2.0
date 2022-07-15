@@ -12,6 +12,7 @@ namespace InstaMazz2._0.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.Message = "lucaspaz89.llp@gmail.com";
             return View();
         }
 
