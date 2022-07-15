@@ -17,16 +17,18 @@ namespace InstaMazz2._0.Controllers
         public ActionResult Index()
         {
 
-            var mail = Session["usuario"];
-            ViewBag.email = mail;
-            ViewBag.name = "Nombre";
-            ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
+            //var mail = Session["usuario"];
+            //ViewBag.email = mail;
+            //ViewBag.name = "Nombre";
+            //ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
 
-            /* using (SqlConnection cn = new SqlConnection(cadena))
+            using (SqlConnection cn = new SqlConnection(cadena))
              {
                  var cmd = new SqlCommand("sp_Get_DataUser", cn);
-                 cmd.Parameters.AddWithValue("email", Session["usuario"]);
-                 cmd.CommandType = CommandType.Text;
+                 cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                 cmd.CommandType = CommandType.StoredProcedure;
+
+                 //cmd.CommandType = CommandType.Text;
                  cn.Open();
 
                  using (SqlDataReader dr = cmd.ExecuteReader())
@@ -38,7 +40,7 @@ namespace InstaMazz2._0.Controllers
                          ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
                      }
                  }
-             }*/
+             }
 
             return View();
         }

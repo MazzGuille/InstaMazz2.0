@@ -47,7 +47,6 @@ namespace InstaMazz2._0.Controllers
 
                 cn.Open();
 
-
                 oUsuario.IdUsuario = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 var result = oUsuario.IdUsuario;
             }
