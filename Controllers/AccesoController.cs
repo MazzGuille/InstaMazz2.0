@@ -58,7 +58,7 @@ namespace InstaMazz2._0.Controllers
 
             if (oUsuario.IdUsuario != 0)
             {
-                var usu = Registrar(oUsuario);
+                var usu = oUsuario.email;
                 Session["usuario"] = usu;
 
 

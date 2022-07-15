@@ -5,24 +5,40 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using InstaMazz2._0.Models;
-
+using System.Data.SqlClient;
+using System.Data;
 
 namespace InstaMazz2._0.Controllers
 {
     [ValidarSesion]
     public class HomeController : Controller
     {
-        UsuarioModel nom = new UsuarioModel();
-        //AccesoController nom = new AccesoController();
+        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
         public ActionResult Index()
         {
-            //ViewData["Nombre"] = nom.Name();
-            //ViewData["Mail"] = mail;
+
             var mail = Session["usuario"];
             ViewBag.email = mail;
             ViewBag.name = "Nombre";
             ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
 
+            /* using (SqlConnection cn = new SqlConnection(cadena))
+             {
+                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
+                 cmd.Parameters.AddWithValue("email", Session["usuario"]);
+                 cmd.CommandType = CommandType.Text;
+                 cn.Open();
+
+                 using (SqlDataReader dr = cmd.ExecuteReader())
+                 {
+                     while (dr.Read())
+                     {
+                         ViewBag.name = dr["Nombre"].ToString();
+                         ViewBag.email = dr["email"].ToString();
+                         ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
+                     }
+                 }
+             }*/
 
             return View();
         }
@@ -46,5 +62,7 @@ namespace InstaMazz2._0.Controllers
             Session["usuario"] = null;
             return RedirectToAction("Login", "Acceso");
         }
+
+
     }
 }
