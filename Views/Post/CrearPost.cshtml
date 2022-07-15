@@ -8,7 +8,7 @@
 
 <form action="@Url.Action("CrearPost", "Post")" method="post">
     <div class="form-group">
-        <input name="IdUsuario" type="number" class="form-control" placeholder="Id Usuario">
+        <input name="IdUsuario" type="number" class="form-control" placeholder=@ViewBag.IdUsuario>
     </div>
     <div class="form-group">
         <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">

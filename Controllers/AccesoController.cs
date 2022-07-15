@@ -45,9 +45,6 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-
-
-
                 cn.Open();
 
 
@@ -60,6 +57,9 @@ namespace InstaMazz2._0.Controllers
             {
                 var usu = oUsuario.email;
                 Session["usuario"] = usu;
+
+                var IdUsu = oUsuario.IdUsuario;
+                Session["IdUsuario"] = IdUsu;
 
 
                 return RedirectToAction("Index", "Home");

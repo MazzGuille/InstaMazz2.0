@@ -17,6 +17,8 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult CrearPost()
         {
+            var IdUsuario = (int)Session["IdUsuario"];
+            ViewBag.IdUsuario = IdUsuario;
             return View();
         }
 
