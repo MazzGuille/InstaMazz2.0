@@ -4,15 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using InstaMazz2._0.Models;
+
 
 namespace InstaMazz2._0.Controllers
 {
     [ValidarSesion]
     public class HomeController : Controller
     {
+        UsuarioModel nom = new UsuarioModel();
+        //AccesoController nom = new AccesoController();
         public ActionResult Index()
         {
-            ViewBag.Message = "lucaspaz89.llp@gmail.com";
+            ViewData["Nombre"] = nom.Name();
+
+            var mail = Session["usuario"];
+            ViewData["Mail"] = mail;
+
+
+
             return View();
         }
 

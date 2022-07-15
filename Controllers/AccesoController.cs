@@ -18,6 +18,8 @@ namespace InstaMazz2._0.Controllers
 
         static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
 
+
+
         // GET: Acceso
         public ActionResult Login()
         {
@@ -43,6 +45,9 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+
+
+
                 cn.Open();
 
 
@@ -53,8 +58,10 @@ namespace InstaMazz2._0.Controllers
 
             if (oUsuario.IdUsuario != 0)
             {
-                var usu = oUsuario.email;
+                var usu = Registrar(oUsuario);
                 Session["usuario"] = usu;
+
+
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -141,8 +148,6 @@ namespace InstaMazz2._0.Controllers
 
             }
         }
-
-
 
         public static string ConvertirSHA256(string text)
         {
