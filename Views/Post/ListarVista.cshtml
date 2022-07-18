@@ -21,7 +21,7 @@
                     <td>@item.UrlImg</td>
                     <td>@item.Descripcion</td>
                     <td>
-                        <a href="@Url.Action("EliminarPost","Post")" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
+                        <a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
                     </td>
                 </tr>
 

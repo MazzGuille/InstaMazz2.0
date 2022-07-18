@@ -49,10 +49,12 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult EliminarPost()
+        
+        public ActionResult EliminarPost(int? id)
         {
             /* var IdPost = Session["IdPost"];
              ViewBag.IdPost = IdPost;*/
+            ViewBag.IdPost = id;
             return View();
         }
         [HttpPost/*("[Controller]/{IdPost}")*/]
