@@ -120,6 +120,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
                 cmd.Parameters.AddWithValue("email", oUsuario.email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
+                cmd.Parameters.AddWithValue("ImagenPerfil", oUsuario.ImagenPerfil);
                 cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
                 cmd.CommandType = CommandType.StoredProcedure;

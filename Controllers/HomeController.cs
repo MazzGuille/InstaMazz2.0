@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using InstaMazz2._0.Models;
 using System.Data.SqlClient;
 using System.Data;
+using System.IO;
 
 namespace InstaMazz2._0.Controllers
 {
@@ -23,38 +24,25 @@ namespace InstaMazz2._0.Controllers
             //ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
 
             using (SqlConnection cn = new SqlConnection(cadena))
-             {
-                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
-                 cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
-                 cmd.CommandType = CommandType.StoredProcedure;
+            {
+                var cmd = new SqlCommand("sp_Get_DataUser", cn);
+                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                 //cmd.CommandType = CommandType.Text;
-                 cn.Open();
+                //cmd.CommandType = CommandType.Text;
+                cn.Open();
 
-                 using (SqlDataReader dr = cmd.ExecuteReader())
-                 {
-                     while (dr.Read())
-                     {
-                         ViewBag.name = dr["Nombre"].ToString();
-                         ViewBag.email = dr["email"].ToString();
-                         ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
-                     }
-                 }
-             }
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        ViewBag.name = dr["Nombre"].ToString();
+                        ViewBag.email = dr["email"].ToString();
+                        ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
+                        //ViewBag.Img = dr["ImagenPerfil"];
+                    }
+                }
+            }
 
             return View();
         }
