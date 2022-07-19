@@ -18,7 +18,7 @@ namespace InstaMazz2._0.Models
 
         public string email { get; set; }
 
-        public byte[] ImagenPerfil { get; set; }
+        public byte ImagenPerfil { get; set; }
 
 
 
