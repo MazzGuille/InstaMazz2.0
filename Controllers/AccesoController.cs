@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -26,13 +27,6 @@ namespace InstaMazz2._0.Controllers
         {
             return View();
         }
-
-
-        public ActionResult Registrar()
-        {
-            return View();
-        }
-
 
         [HttpPost]
         public ActionResult Login(UsuarioModel oUsuario)
@@ -83,12 +77,13 @@ namespace InstaMazz2._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar(UsuarioModel oUsuario)
+        public ActionResult Registrar(HttpPostedFileBase FileText, UsuarioModel oUsuario)
         {
-            //HttpPostedFileBase FileText
-            //var img = oUsuario.UserName + Path.GetFileName(FileText.FileName);
-            //var path = Path.Combine(Server.MapPath("~/Views/Upload"), img);
-            //FileText.SaveAs(path);
+            var img = oUsuario.UserName + Path.GetFileName(FileText.FileName);
+            var path = Path.Combine(Server.MapPath("~/Views/Upload"), img);
+            FileText.SaveAs(path);
+
+            return View();
 
             //bool registrado;
             //string mensaje;
@@ -115,9 +110,19 @@ namespace InstaMazz2._0.Controllers
             //{
             //    ViewData["NombreUsuario"] = "El nombre de usuario debe tener entre 3 y 10 caracteres";
 
-
             //    return View();
             //}
+
+            //if (registrado)
+            //{
+
+            //    return RedirectToAction("Login", "Acceso");
+            //}
+            //else
+            //{
+            //    return View();
+
+            //}            
 
             //if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
             //{
@@ -130,7 +135,7 @@ namespace InstaMazz2._0.Controllers
             //}
 
 
-            ////byte[] imagen = oUsuario.ImagenPerfil;
+            ////byte[] imagen = 
 
             //using (SqlConnection cn = new SqlConnection(cadena))
             //{
@@ -154,8 +159,6 @@ namespace InstaMazz2._0.Controllers
 
             //ViewData["Mensaje"] = mensaje;
 
-
-
             //if (registrado)
             //{
 
@@ -166,7 +169,6 @@ namespace InstaMazz2._0.Controllers
             //    return View();
 
             //}
-            return View();
         }
 
         public static string ConvertirSHA256(string text)
