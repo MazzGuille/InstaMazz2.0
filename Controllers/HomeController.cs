@@ -34,8 +34,8 @@ namespace InstaMazz2._0.Controllers
                         ViewBag.name = dr["Nombre"].ToString();
                         ViewBag.email = dr["email"].ToString();
                         ViewBag.userName = dr["UserName"].ToString();
-                        //ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
-                        ViewBag.Img = dr["ImagenPerfil"];
+                        ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
+                        //ViewBag.Img = dr["ImagenPerfil"];
                     }
                 }
             }
