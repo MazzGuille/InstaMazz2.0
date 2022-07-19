@@ -113,6 +113,8 @@ namespace InstaMazz2._0.Controllers
             }
 
 
+            //byte[] imagen = 
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_RegistrarUsuario", cn);

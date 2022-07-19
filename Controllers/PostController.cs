@@ -52,8 +52,10 @@ namespace InstaMazz2._0.Controllers
         
         public ActionResult EliminarPost(int? id)
         {
-            /* var IdPost = Session["IdPost"];
-             ViewBag.IdPost = IdPost;*/
+            if(id==null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.IdPost = id;
             return View();
         }
