@@ -26,8 +26,6 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult CrearPost(PublicacionesModel oPublicacion)
         {
-
-
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -61,7 +59,7 @@ namespace InstaMazz2._0.Controllers
         }
 
 
-        [HttpPost/*("[Controller]/{IdPost}")*/]
+        [HttpPost]
         public ActionResult Delete(PublicacionesModel oPublicacion)
         {
             using (SqlConnection cn = new SqlConnection(cadena))
