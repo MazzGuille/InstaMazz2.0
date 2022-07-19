@@ -5,15 +5,10 @@
 
 <h1>Eliminar Publicacion</h1>
 
-<form action="@Url.Action("EliminarPost", "Post")" method="post">
-<<<<<<< HEAD
-    <input name="IdPost" type="number" class="form-control">
-   
-=======
->>>>>>> cecc3b462b3dfe9f2f567e732bdd8d6ce1b8ebf5
+<form action="@Url.Action("Delete", "Post")" method="post">
 
     @*<input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost">*@
-    <input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost" disabled>
+    <input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost" disabled style="display: none">
 
     <div class="alert alert-danger" role="alert" style="Width:280px">
         ¿Deseas eliminar la publicacion?

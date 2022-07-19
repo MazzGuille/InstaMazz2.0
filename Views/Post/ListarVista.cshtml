@@ -22,12 +22,12 @@
                     <td>@item.Descripcion</td>
                     <td>@item.IdPost</td>
                     <td>
-<<<<<<< HEAD
-                        <a href="@Url.Action("EliminarPost","Post")" class="btn btn-danger btn-sm" asp-route-IdPost="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
-=======
+
+                        @*<a href="@Url.Action("EliminarPost","Post")" class="btn btn-danger btn-sm" asp-route-IdPost="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
+
                         @*<a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
                         <a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
->>>>>>> cecc3b462b3dfe9f2f567e732bdd8d6ce1b8ebf5
+
                     </td>
                 </tr>
 
