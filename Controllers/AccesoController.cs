@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -82,84 +83,89 @@ namespace InstaMazz2._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registrar(UsuarioModel oUsuario)
+        public ActionResult Registrar(HttpPostedFileBase FileText, UsuarioModel oUsuario)
         {
-            bool registrado;
-            string mensaje;
-            bool email;
+            var img = oUsuario.UserName + Path.GetFileName(FileText.FileName);
+            var path = Path.Combine(Server.MapPath("~/Views/Upload"), img);
+            FileText.SaveAs(path);
 
-            email = oUsuario.email.Contains('.');
-
-            if (email == false)
-            {
-                ViewData["email"] = "Formato de E-Mail invalido";
-
-                return View();
-            }
-
-            if (oUsuario.Nombre.Length < 3 || oUsuario.Nombre.Length > 30)
-            {
-                ViewData["Nombre"] = "El nombre debe tener entre 3 y 20 caracteres";
+            return View();
 
 
-                return View();
-            }
+            //bool registrado;
+            //string mensaje;
+            //bool email;
 
-            if (oUsuario.UserName.Length < 3 || oUsuario.UserName.Length > 10)
-            {
-                ViewData["NombreUsuario"] = "El nombre de usuario debe tener entre 3 y 10 caracteres";
+            //email = oUsuario.email.Contains('.');
 
+            //if (email == false)
+            //{
+            //    ViewData["email"] = "Formato de E-Mail invalido";
 
-                return View();
-            }
+            //    return View();
+            //}
 
-            if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
-            {
-                oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
-            }
-            else
-            {
-                ViewData["Mensaje"] = "Las contraseñas no coinciden";
-                return View();
-            }
+            //if (oUsuario.Nombre.Length < 3 || oUsuario.Nombre.Length > 30)
+            //{
+            //    ViewData["Nombre"] = "El nombre debe tener entre 3 y 20 caracteres";
 
 
-            //byte[] imagen = 
+            //    return View();
+            //}
 
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
-                cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
-                cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
-                cmd.Parameters.AddWithValue("email", oUsuario.email);
-                cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
-                cmd.Parameters.AddWithValue("ImagenPerfil", oUsuario.ImagenPerfil);
-                cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cn.Open();
-
-                cmd.ExecuteNonQuery();
-
-                registrado = (bool)cmd.Parameters["Registrado"].Value;
-                mensaje = (string)cmd.Parameters["Mensaje"].Value;
-            }
-
-            ViewData["Mensaje"] = mensaje;
+            //if (oUsuario.UserName.Length < 3 || oUsuario.UserName.Length > 10)
+            //{
+            //    ViewData["NombreUsuario"] = "El nombre de usuario debe tener entre 3 y 10 caracteres";
 
 
+            //    return View();
+            //}
 
-            if (registrado)
-            {
+            //if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
+            //{
+            //    oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
+            //}
+            //else
+            //{
+            //    ViewData["Mensaje"] = "Las contraseñas no coinciden";
+            //    return View();
+            //}
 
-                return RedirectToAction("Login", "Acceso");
-            }
-            else
-            {
-                return View();
 
-            }
+            ////byte[] imagen = 
+
+            //using (SqlConnection cn = new SqlConnection(cadena))
+            //{
+            //    var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
+            //    cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
+            //    cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
+            //    cmd.Parameters.AddWithValue("email", oUsuario.email);
+            //    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
+            //    cmd.Parameters.AddWithValue("ImagenPerfil", oUsuario.ImagenPerfil);
+            //    cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+            //    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            //    cmd.CommandType = CommandType.StoredProcedure;
+
+            //    cn.Open();
+
+            //    cmd.ExecuteNonQuery();
+
+            //    registrado = (bool)cmd.Parameters["Registrado"].Value;
+            //    mensaje = (string)cmd.Parameters["Mensaje"].Value;
+            //}
+
+            //ViewData["Mensaje"] = mensaje;
+
+            //if (registrado)
+            //{
+
+            //    return RedirectToAction("Login", "Acceso");
+            //}
+            //else
+            //{
+            //    return View();
+
+            //}
         }
 
         public static string ConvertirSHA256(string text)
