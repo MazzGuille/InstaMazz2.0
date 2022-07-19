@@ -1,11 +1,16 @@
 ﻿@{
-    ViewBag.Title = "EliminarPost";
+    ViewBag.Title = "Eliminar Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Eliminar Publicacion</h1>
 
 <form action="@Url.Action("EliminarPost", "Post")" method="post">
+<<<<<<< HEAD
+    <input name="IdPost" type="number" class="form-control">
+   
+=======
+>>>>>>> cecc3b462b3dfe9f2f567e732bdd8d6ce1b8ebf5
 
     @*<input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost">*@
     <input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost" disabled>

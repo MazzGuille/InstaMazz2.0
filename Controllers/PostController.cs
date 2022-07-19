@@ -37,18 +37,17 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("Descripcion", oPublicacion.Descripcion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
-
-
-
-                var IdPost = oPublicacion.IdPost;
-
-                Session["IdPost"] = IdPost;
-
             }
 
             return RedirectToAction("Index", "Home");
         }
 
+<<<<<<< HEAD
+        public ActionResult EliminarPost(int IdPost)
+        {
+            //ViewBag.IdInput = id;           
+            return View(IdPost);
+=======
         
         public ActionResult EliminarPost(int? id)
         {
@@ -58,7 +57,10 @@ namespace InstaMazz2._0.Controllers
             }
             ViewBag.IdPost = id;
             return View();
+>>>>>>> cecc3b462b3dfe9f2f567e732bdd8d6ce1b8ebf5
         }
+
+
         [HttpPost/*("[Controller]/{IdPost}")*/]
         public ActionResult EliminarPost(PublicacionesModel oPublicacion)
         {
