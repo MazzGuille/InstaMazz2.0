@@ -42,27 +42,27 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-<<<<<<< HEAD
-        public ActionResult EliminarPost(int IdPost)
-        {
-            //ViewBag.IdInput = id;           
-            return View(IdPost);
-=======
-        
+
+        //public ActionResult EliminarPost(int IdPost)
+        //{
+        //    //ViewBag.IdInput = id;           
+        //    return View(IdPost);
+
+
         public ActionResult EliminarPost(int? id)
         {
-            if(id==null)
+            if (id == null)
             {
                 return RedirectToAction("Index", "Home");
             }
             ViewBag.IdPost = id;
             return View();
->>>>>>> cecc3b462b3dfe9f2f567e732bdd8d6ce1b8ebf5
+
         }
 
 
         [HttpPost/*("[Controller]/{IdPost}")*/]
-        public ActionResult EliminarPost(PublicacionesModel oPublicacion)
+        public ActionResult Delete(PublicacionesModel oPublicacion)
         {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
