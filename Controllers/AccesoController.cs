@@ -27,13 +27,6 @@ namespace InstaMazz2._0.Controllers
             return View();
         }
 
-
-        public ActionResult Registrar()
-        {
-            return View();
-        }
-
-
         [HttpPost]
         public ActionResult Login(UsuarioModel oUsuario)
         {
@@ -81,6 +74,12 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
         }
+
+        public ActionResult Registrar()
+        {
+            return View();
+        }
+
 
         [HttpPost]
         public ActionResult Registrar(HttpPostedFileBase FileText, UsuarioModel oUsuario)
