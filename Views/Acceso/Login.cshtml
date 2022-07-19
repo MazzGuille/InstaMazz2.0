@@ -36,7 +36,7 @@
                             </div>
                             <input type="email" name="email" class="form-control input_user" value="" placeholder="E-Mail">
                         </div>
-                        
+
                         <div class="input-group mb-2">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="fas fa-key"></i></span>
@@ -51,6 +51,19 @@
                             </div>
                         }
 
+                        @if (ViewBag.missingMail != null)
+                        {
+                            <div>
+                                @ViewBag.missingMail
+                            </div>
+                        }
+
+                        @if (ViewBag.missingPassword != null)
+                        {
+                            <div>
+                                @ViewBag.missingPassword
+                            </div>
+                        }
 
                         <div class="d-flex justify-content-center mt-3 login_container">
                             <button type="submit" name="button" class="btn login_btn">Login</button>

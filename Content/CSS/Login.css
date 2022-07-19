@@ -15,7 +15,7 @@ html {
 
 .user_card {
     min-height: 400px;
-    width: 350px;
+    min-width: 350px;
     margin-top: auto;
     margin-bottom: auto;
     background: #45B7B7;

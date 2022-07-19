@@ -36,6 +36,17 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Login(UsuarioModel oUsuario)
         {
+            if (oUsuario.email == "")
+            {
+                ViewBag.missingMail = "El campo E-Mail no puede estar vacio";
+            }
+
+            if (oUsuario.Contraseña == null)
+            {
+                ViewBag.missingPassword = "El campo Contraseña no puede estar vacio";
+            }
+
+
             oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
 
             using (SqlConnection cn = new SqlConnection(cadena))
