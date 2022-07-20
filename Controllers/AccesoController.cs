@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 
 using InstaMazz2._0.Models;
 using System.IO;
+using System.Web.Helpers;
 
 namespace InstaMazz2._0.Controllers
 {
@@ -19,8 +20,6 @@ namespace InstaMazz2._0.Controllers
     {
 
         static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
-
-        //private readonly IWebHostEnvironment _enviroment;
 
         // GET: Acceso
         public ActionResult Login()
@@ -76,12 +75,36 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult Registrar(HttpPostedFileBase FileText, UsuarioModel oUsuario)
+        public ActionResult Registrar()
         {
-            var img = oUsuario.UserName + Path.GetFileName(FileText.FileName);
-            var path = Path.Combine(Server.MapPath("~/Views/Upload"), img);
-            FileText.SaveAs(path);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registrar(UsuarioModel oUsuario)
+        {
+            HttpPostedFileBase ImgPerfil = Request.Files[0];
+
+            WebImage image = new WebImage(ImgPerfil.InputStream);
+
+            oUsuario.ImagenPerfil = image.GetBytes();
+
+            var resul = oUsuario.ImagenPerfil;
+
+            //if (ImagenPerfil.ContentLength > 0)
+            //{
+            //    var img = oUsuario.UserName + Path.GetFileName(ImagenPerfil.FileName);
+            //    var path = Path.Combine(Server.MapPath("~/Views/Upload"), img);
+            //    ImagenPerfil.SaveAs(path);
+            //}
+
+            //var fileName = System.IO.Path.Combine(Server.MapPath("~/Views/"), "Upload", ImagenPerfil.FileName);
+            //oUsuario.ImagenPerfil.CopyTo(new System.IO.FileStream(fileName, System.IO.FileMode.Create));
+
+            //ImagenPerfil.SaveAs(fileName);
+            //ImagenPerfil.SaveAs(Server.MapPath("~/Views/Upload") + ImagenPerfil.FileName);
+
+
 
             return View();
 
