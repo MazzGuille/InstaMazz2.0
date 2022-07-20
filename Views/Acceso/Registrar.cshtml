@@ -17,7 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 </head>
 <body>
-
+    @*@using (Html.BeginForm("Registrar","Acceso", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {*@
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="user_card">
@@ -27,7 +28,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center form_container">
-                    <form action="@Url.Action("Registrar", "Acceso", new {enctype="multipart/form-data"})" method="post">
+                    <form action="@Url.Action("Registrar", "Acceso")" method="post" enctype="multipart/form-data">
                     @*<form action="@Url.Action("Registrar", "Acceso")" method="post" enctype="multipart/form-data">*@
                         <div class="input-group mb-3">
                             <div class="input-group-append">
@@ -109,12 +110,13 @@
 
                 <div class="mt-4">
                     <div class="d-flex justify-content-center links">
-                        ¿Ya tienes una cuenta? <a href="@Url.Action("Login","Acceso")" class="ml-2">¡Ingresa aqui!</a>
+                        ¿Ya tienes una cuenta? <a href="@Url.Action("Login", "Acceso")" class="ml-2">¡Ingresa aqui!</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
