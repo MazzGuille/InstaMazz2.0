@@ -21,7 +21,7 @@ namespace InstaMazz2._0.Controllers
     {
 
         static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
-
+        //COMENTARIO DE PRUEBA 2
 
         private static byte[] Convertir_Img_Bytes(Image img)
         {
