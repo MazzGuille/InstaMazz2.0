@@ -91,7 +91,6 @@ namespace InstaMazz2._0.Controllers
         }
 
 
-
         public ActionResult Registrar()
         {
             return View();
@@ -107,6 +106,11 @@ namespace InstaMazz2._0.Controllers
             //copiamos la imagen seleccionada...
             ImgPerfil.InputStream.CopyToAsync(new System.IO.FileStream(str, System.IO.FileMode.Create));
 
+            byte[] _imagen = System.IO.File.ReadAllBytes(str);
+
+            var resul = _imagen;
+           
+            return View();
 
             //Convertir_Img_Bytes(ImgPerfil);
 
@@ -126,33 +130,76 @@ namespace InstaMazz2._0.Controllers
 
 
 
-            bool registrado;
-            string mensaje;
-            bool email;
+            //bool registrado;
+            //string mensaje;
+            //bool email;
 
-            email = oUsuario.email.Contains('.');
+            //email = oUsuario.email.Contains('.');
 
-            if (email == false)
-            {
-                ViewData["email"] = "Formato de E-Mail invalido";
+            //if (email == false)
+            //{
+            //    ViewData["email"] = "Formato de E-Mail invalido";
 
-                return View();
-            }
+            //    return View();
+            //}
 
-            if (oUsuario.Nombre.Length < 3 || oUsuario.Nombre.Length > 30)
-            {
-                ViewData["Nombre"] = "El nombre debe tener entre 3 y 20 caracteres";
+            //if (oUsuario.Nombre.Length < 3 || oUsuario.Nombre.Length > 30)
+            //{
+            //    ViewData["Nombre"] = "El nombre debe tener entre 3 y 20 caracteres";
 
 
-                return View();
-            }
+            //    return View();
+            //}
 
-            if (oUsuario.UserName.Length < 3 || oUsuario.UserName.Length > 10)
-            {
-                ViewData["NombreUsuario"] = "El nombre de usuario debe tener entre 3 y 10 caracteres";
+            //if (oUsuario.UserName.Length < 3 || oUsuario.UserName.Length > 10)
+            //{
+            //    ViewData["NombreUsuario"] = "El nombre de usuario debe tener entre 3 y 10 caracteres";
 
-                return View();
-            }
+            //    return View();
+            //}
+
+            ////if (registrado)
+            ////{
+
+            ////    return RedirectToAction("Login", "Acceso");
+            ////}
+            ////else
+            ////{
+            ////    return View();
+
+            ////}
+
+            //if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
+            //{
+            //    oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
+            //}
+            //else
+            //{
+            //    ViewData["Mensaje"] = "Las contraseñas no coinciden";
+            //    return View();
+            //}
+
+            //using (SqlConnection cn = new SqlConnection(cadena))
+            //{
+            //    var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
+            //    cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
+            //    cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
+            //    cmd.Parameters.AddWithValue("email", oUsuario.email);
+            //    cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
+            //    //cmd.Parameters.AddWithValue("ImagenPerfil", bytes);
+            //    cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+            //    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
+            //    cmd.CommandType = CommandType.StoredProcedure;
+
+            //    cn.Open();
+
+            //    cmd.ExecuteNonQuery();
+
+            //    registrado = (bool)cmd.Parameters["Registrado"].Value;
+            //    mensaje = (string)cmd.Parameters["Mensaje"].Value;
+            //}
+
+            //ViewData["Mensaje"] = mensaje;
 
             //if (registrado)
             //{
@@ -164,52 +211,6 @@ namespace InstaMazz2._0.Controllers
             //    return View();
 
             //}
-
-            if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
-            {
-                oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
-            }
-            else
-            {
-                ViewData["Mensaje"] = "Las contraseñas no coinciden";
-                return View();
-            }
-
-
-            //byte[] imagen = 
-
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
-                cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
-                cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
-                cmd.Parameters.AddWithValue("email", oUsuario.email);
-                cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
-                //cmd.Parameters.AddWithValue("ImagenPerfil", bytes);
-                cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cn.Open();
-
-                cmd.ExecuteNonQuery();
-
-                registrado = (bool)cmd.Parameters["Registrado"].Value;
-                mensaje = (string)cmd.Parameters["Mensaje"].Value;
-            }
-
-            ViewData["Mensaje"] = mensaje;
-
-            if (registrado)
-            {
-
-                return RedirectToAction("Login", "Acceso");
-            }
-            else
-            {
-                return View();
-
-            }
         }
 
 
