@@ -23,20 +23,6 @@ namespace InstaMazz2._0.Controllers
         static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
         //COMENTARIO DE PRUEBA 2
 
-        private static byte[] Convertir_Img_Bytes(Image img)
-        {
-            string sTemp = Path.GetTempFileName();
-            FileStream fs = new FileStream(sTemp, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            img.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-            fs.Position = 0;
-
-            int imgLength = Convert.ToInt32(fs.Length);
-            byte[] bytes = new byte[imgLength];
-            fs.Read(bytes, 0, imgLength);
-            fs.Close();
-            return bytes;
-        }
-
         // GET: Acceso
         public ActionResult Login()
         {
@@ -117,25 +103,6 @@ namespace InstaMazz2._0.Controllers
 
             ////obtene el result de los bytes...
             ////var rest = _byteString;
-
-
-            //Convertir_Img_Bytes(ImgPerfil);
-
-            ////Convertimos la imagen a bytes
-            //var bytes = new byte[ImgPerfil.ContentLength];
-
-
-            //WebImage image = new WebImage(ImgPerfil.InputStream);
-
-            //oUsuario.ImagenPerfil = image.GetBytes();
-            //byte[] imagen = image.GetBytes();
-
-            //var resul = imagen;
-
-            //return View();
-
-
-
 
             bool registrado;
             string mensaje;
