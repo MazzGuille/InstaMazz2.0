@@ -97,8 +97,7 @@ namespace InstaMazz2._0.Controllers
             //oUsuario.ImagenPerfil = image.GetBytes();
             //byte[] imagen = image.GetBytes();
 
-            var resul = ;
-
+            
             return View();
 
             //bool registrado;
