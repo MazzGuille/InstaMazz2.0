@@ -89,13 +89,15 @@ namespace InstaMazz2._0.Controllers
             var str = System.IO.Path.Combine(Server.MapPath("~/Views/Upload"), ImgPerfil.FileName);
             //copiamos la imagen seleccionada...
             ImgPerfil.InputStream.CopyToAsync(new System.IO.FileStream(str, System.IO.FileMode.Create));
+            var ms = new MemoryStream();
+
 
             //WebImage image = new WebImage(ImgPerfil.InputStream);
 
             //oUsuario.ImagenPerfil = image.GetBytes();
             //byte[] imagen = image.GetBytes();
 
-            //var resul = imagen;
+            var resul = ;
 
             return View();
 
