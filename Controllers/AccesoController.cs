@@ -217,10 +217,10 @@ namespace InstaMazz2._0.Controllers
 
                 cmd.ExecuteNonQuery();
 
-                ViewBag.Succes = "Perfil editado correctamente";
+
             }
 
-            return RedirectToAction("Index", "Home");
+            return View();
         }
 
         public static string ConvertirSHA256(string text)
