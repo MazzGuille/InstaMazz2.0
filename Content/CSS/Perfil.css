@@ -69,6 +69,16 @@ a {
 }
 
 
-.hidden{
+.hidden {
     display: none;
+}
+
+.LinkPerfil {
+    text-decoration: none;
+    color: white;
+}
+
+
+navbarNav {
+    background-color: darkblue;
 }

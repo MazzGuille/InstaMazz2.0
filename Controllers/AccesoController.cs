@@ -216,7 +216,10 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult EditarPerfil()
         {
+            var IdUsuario = (int)Session["IdUsuario"];
+            ViewBag.IdUsuario = IdUsuario;
             return View();
+
         }
 
         [HttpPost]
