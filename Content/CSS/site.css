@@ -18,13 +18,22 @@ body {
 }
 
 
-.header {    
+.header {
     height: 5vh;
-    
 }
 
 footer {
     background-color: #fff;
     height: 5vh;
     padding-left: 15px;
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+navbarNav {
+    background-color: darkblue;
 }
