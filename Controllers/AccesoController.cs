@@ -27,7 +27,7 @@ namespace InstaMazz2._0.Controllers
         {
             string sTemp = Path.GetTempFileName();
             FileStream fs = new FileStream(sTemp, FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            img.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+            img.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
             fs.Position = 0;
 
             int imgLength = Convert.ToInt32(fs.Length);
@@ -101,15 +101,23 @@ namespace InstaMazz2._0.Controllers
         {
             //obtenemos la imagen seleccionada...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
+
+            //Colocar el nombre de la Img + email.
+            //var _newNameImg = oUsuario.email + '_' + System.IO.Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
+
             //mandamos la imagen obtenida al siguiente carpeta...
-            var str = System.IO.Path.Combine(Server.MapPath("~/Views/Upload"), ImgPerfil.FileName);
+            var str = System.IO.Path.Combine(Server.MapPath("~/Views/Upload"), oUsuario.email + '_' + System.IO.Path.GetFileName(ImgPerfil.FileName)); //ImgPerfil.FileName
+
             //copiamos la imagen seleccionada...
             ImgPerfil.InputStream.CopyToAsync(new System.IO.FileStream(str, System.IO.FileMode.Create));
 
-            byte[] _imagen = System.IO.File.ReadAllBytes(str);
+            //string imgName = ImgPerfil.FileName;
+            //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
+            byte[] _byteString = System.Text.Encoding.ASCII.GetBytes(ImgPerfil.FileName);
 
-            var resul = _imagen;
-           
+            //obtene el result de los bytes...
+            var rest = _byteString;
+
             return View();
 
             //Convertir_Img_Bytes(ImgPerfil);
