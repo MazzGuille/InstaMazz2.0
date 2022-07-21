@@ -174,7 +174,7 @@ namespace InstaMazz2._0.Controllers
                 ViewData["Mensaje"] = "Las contraseñas no coinciden";
                 return View();
             }
-
+            //PRUEBA
 
             //byte[] imagen = 
 
