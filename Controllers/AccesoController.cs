@@ -221,6 +221,8 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
+            oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Editar", cn);
