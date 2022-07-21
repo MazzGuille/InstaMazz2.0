@@ -73,8 +73,7 @@ namespace InstaMazz2._0.Controllers
                 ViewData["Mensaje"] = "Usuario o contraseña incorrectos";
                 return View();
             }
-        }
-
+        }       
 
         public ActionResult Registrar()
         {

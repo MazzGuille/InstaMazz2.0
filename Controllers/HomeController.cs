@@ -8,6 +8,7 @@ using InstaMazz2._0.Models;
 using System.Data.SqlClient;
 using System.Data;
 using System.IO;
+using System.Drawing;
 
 namespace InstaMazz2._0.Controllers
 {
@@ -34,19 +35,28 @@ namespace InstaMazz2._0.Controllers
                         ViewBag.name = dr["Nombre"].ToString();
                         ViewBag.email = dr["email"].ToString();
                         ViewBag.userName = dr["UserName"].ToString();
-                        //ViewBag.Img = "http://www.w3bai.com/w3css/img_avatar3.png";
 
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
                         var _stringTobyte = _byteString;
-                        ViewBag.Img = Server.MapPath("~/Views/Upload/") + _stringTobyte;
+                        //ViewBag.Img = byteArrayToImage(_byteImg);
 
+                        ViewBag.Img = Server.MapPath("~/Views/Upload/") + _stringTobyte;
 
                     }
                 }
             }
 
             return View();
+        }
+
+        public Image byteArrayToImage(byte[] bytesArr)
+        {
+            using (MemoryStream memstr = new MemoryStream(bytesArr))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
         }
 
         public ActionResult CerrarSesion()
