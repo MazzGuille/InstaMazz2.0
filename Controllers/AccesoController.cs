@@ -73,7 +73,7 @@ namespace InstaMazz2._0.Controllers
                 ViewData["Mensaje"] = "Usuario o contraseña incorrectos";
                 return View();
             }
-        }       
+        }
 
         public ActionResult Registrar()
         {
@@ -87,17 +87,17 @@ namespace InstaMazz2._0.Controllers
             HttpPostedFileBase ImgPerfil = Request.Files[0];
 
             //Colocar el nombre de la Img + email.
-            //var _newNameImg = oUsuario.email + '_' + System.IO.Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
+            var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
 
             //mandamos la imagen obtenida al siguiente carpeta...
-            var str = System.IO.Path.Combine(Server.MapPath("~/Views/Upload"), oUsuario.email + '_' + System.IO.Path.GetFileName(ImgPerfil.FileName)); //ImgPerfil.FileName
+            var str = Path.Combine(Server.MapPath("~/Views/Upload"), _newNameImg); //ImgPerfil.FileName
 
             //copiamos la imagen seleccionada...
-            ImgPerfil.InputStream.CopyToAsync(new System.IO.FileStream(str, System.IO.FileMode.Create));
+            ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
 
             //string imgName = ImgPerfil.FileName;
             //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
-            byte[] _byteString = System.Text.Encoding.ASCII.GetBytes(ImgPerfil.FileName);
+            byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
 
             ////obtene el result de los bytes...
             ////var rest = _byteString;
