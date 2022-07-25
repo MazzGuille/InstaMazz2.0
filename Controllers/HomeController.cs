@@ -21,6 +21,8 @@ namespace InstaMazz2._0.Controllers
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
+                var usu = Session["usuario"];
+
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
                 cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
                 cmd.CommandType = CommandType.StoredProcedure;
