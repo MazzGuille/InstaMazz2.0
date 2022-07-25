@@ -83,6 +83,7 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Registrar(UsuarioModel oUsuario)
         {
+            //comentario de prueba
             //obtenemos la imagen seleccionada...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
 
