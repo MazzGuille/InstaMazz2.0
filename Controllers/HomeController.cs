@@ -43,8 +43,8 @@ namespace InstaMazz2._0.Controllers
                         var _stringTobyte = _byteString;
                         //ViewBag.Img = byteArrayToImage(_byteImg);
 
-                        ViewBag.Img = Server.MapPath("~/Views/Upload/") + _stringTobyte;
-
+                        ViewBag.Img = "../..//Views/Upload/" + _byteString;
+                        //ViewBag.Img = "C:/Users/hp/Documents/GitHub/InstaMazz2.0/Views/Upload/" + _byteString;
                     }
                 }
             }
