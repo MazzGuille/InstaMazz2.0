@@ -91,7 +91,7 @@ namespace InstaMazz2._0.Controllers
             var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
 
             //mandamos la imagen obtenida al siguiente carpeta...
-            var str = Path.Combine(Server.MapPath("~/Views/Upload"), _newNameImg); //ImgPerfil.FileName
+            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg); //ImgPerfil.FileName
 
             //copiamos la imagen seleccionada...
             ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
@@ -99,9 +99,6 @@ namespace InstaMazz2._0.Controllers
             //string imgName = ImgPerfil.FileName;
             //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
             byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
-
-            ////obtene el result de los bytes...
-            ////var rest = _byteString;
 
             bool registrado;
             string mensaje;
@@ -159,7 +156,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
                 cmd.Parameters.AddWithValue("email", oUsuario.email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
-                cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);
+                cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);//_byteString
                 cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
                 cmd.CommandType = CommandType.StoredProcedure;

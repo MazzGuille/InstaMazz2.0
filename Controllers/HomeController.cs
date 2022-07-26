@@ -15,51 +15,58 @@ namespace InstaMazz2._0.Controllers
     [ValidarSesion]
     public class HomeController : Controller
     {
-        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+        static string cadena = "Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+                
         public ActionResult Index()
         {
+            UsuarioModel model = new UsuarioModel();
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
-                var usu = Session["usuario"];
-
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
                 cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                //cmd.CommandType = CommandType.Text;
                 cn.Open();
 
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    while (dr.Read())
+                    if (dr.Read())
                     {
-                        ViewBag.name = dr["Nombre"].ToString();
-                        ViewBag.email = dr["email"].ToString();
-                        ViewBag.userName = dr["UserName"].ToString();
-
+                        //tratando de mostrar imagen en la vista, desde bytes a img.
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-                        var _stringTobyte = _byteString;
-                        //ViewBag.Img = byteArrayToImage(_byteImg);
 
-                        ViewBag.Img = Server.MapPath("~/Views/Upload/") + _stringTobyte;
+                        model.Nombre = dr["Nombre"].ToString();
+                        model.email = dr["email"].ToString();
+                        model.UserName = dr["UserName"].ToString();
+                        model.imagenPerf = _byteString;
 
                     }
                 }
             }
 
-            return View();
+            return View(model);
         }
 
-        public Image byteArrayToImage(byte[] bytesArr)
-        {
-            using (MemoryStream memstr = new MemoryStream(bytesArr))
-            {
-                Image img = Image.FromStream(memstr);
-                return img;
-            }
-        }
+        //public ActionResult converetImagen(string correoId)
+        //{
+        //    //cadena de conexión...
+        //    using (SqlConnection cn = new SqlConnection(cadena))
+        //    {
+        //        var cmd = new SqlCommand("SP_GET_ImgPerfil", cn);
+        //        cmd.Parameters.AddWithValue("emailId", correoId);
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cn.Open();
+        //        using (SqlDataReader dr = cmd.ExecuteReader())
+        //        {
+        //            byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+        //            var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
+        //            return File(_byteString, "imagenes/jpg");
+        //        }
+        //    }
+        //}
 
         public ActionResult CerrarSesion()
         {

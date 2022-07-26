@@ -21,11 +21,9 @@ namespace InstaMazz2._0.Models
 
         public byte ImagenPerfil { get; set; }
 
-        //public IFormFile ImagenPerfil { get; set; }
-
-
-
         public string ConfirmarClave { get; set; }
+
+        public string imagenPerf { get; set; }
 
     }
 }
