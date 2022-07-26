@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Drawing;
+using System.Configuration;
 
 namespace InstaMazz2._0.Controllers
 {
