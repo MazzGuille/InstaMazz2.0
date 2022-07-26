@@ -13,13 +13,14 @@ using InstaMazz2._0.Models;
 using System.Web.Helpers;
 using Windows.Storage.Pickers;
 using System.Drawing;
+using System.Configuration;
 
 namespace InstaMazz2._0.Controllers
 {
     public class AccesoController : Controller
     {
 
-        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+        string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
         //COMENTARIO DE PRUEBA 2
 
         // GET: Acceso

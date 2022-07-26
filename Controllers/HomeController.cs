@@ -9,13 +9,14 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Drawing;
+using System.Configuration;
 
 namespace InstaMazz2._0.Controllers
 {
     [ValidarSesion]
     public class HomeController : Controller
     {
-        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+        string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
         public ActionResult Index()
         {
 
