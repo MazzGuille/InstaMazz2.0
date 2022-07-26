@@ -92,7 +92,7 @@ namespace InstaMazz2._0.Controllers
             var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
 
             //mandamos la imagen obtenida al siguiente carpeta...
-            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg); //ImgPerfil.FileName
+            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
 
             //copiamos la imagen seleccionada...
             ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
