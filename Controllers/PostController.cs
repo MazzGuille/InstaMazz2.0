@@ -1,6 +1,7 @@
 ﻿using InstaMazz2._0.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace InstaMazz2._0.Controllers
     public class PostController : Controller
     {
 
-        static string cadena = " Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
+        string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
 
 
 

@@ -9,14 +9,14 @@ using System.Data.SqlClient;
 using System.Data;
 using System.IO;
 using System.Drawing;
+using System.Configuration;
 
 namespace InstaMazz2._0.Controllers
 {
     [ValidarSesion]
     public class HomeController : Controller
     {
-        static string cadena = "Data Source=(local); Initial Catalog = InstaMazz; Integrated Security = true;";
-                
+        string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
         public ActionResult Index()
         {
             UsuarioModel model = new UsuarioModel();
@@ -37,11 +37,8 @@ namespace InstaMazz2._0.Controllers
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
-                        model.Nombre = dr["Nombre"].ToString();
-                        model.email = dr["email"].ToString();
-                        model.UserName = dr["UserName"].ToString();
-                        model.imagenPerf = _byteString;
-
+                        ViewBag.Img = "../..//Views/Upload/" + _byteString;
+                        //ViewBag.Img = "C:/Users/hp/Documents/GitHub/InstaMazz2.0/Views/Upload/" + _byteString;
                     }
                 }
             }
