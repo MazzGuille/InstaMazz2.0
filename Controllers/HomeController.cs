@@ -37,8 +37,10 @@ namespace InstaMazz2._0.Controllers
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
-                        ViewBag.Img = "../..//Views/Upload/" + _byteString;
-                        //ViewBag.Img = "C:/Users/hp/Documents/GitHub/InstaMazz2.0/Views/Upload/" + _byteString;
+                        model.Nombre = dr["Nombre"].ToString();
+                        model.email = dr["email"].ToString();
+                        model.UserName = dr["UserName"].ToString();
+                        model.imagenPerf = _byteString;
                     }
                 }
             }
