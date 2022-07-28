@@ -1,20 +1,27 @@
 ﻿@{
     ViewBag.Title = "Eliminar Publicacion";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+}   
+<head>
+    <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
+</head>
+  
+<div>
+    <h2>Eliminar Publicacion</h2>
 
-<h1>Eliminar Publicacion</h1>
+    <form action="@Url.Action("Delete", "Post")" method="post">
 
-<form action="@Url.Action("Delete", "Post")" method="post">
+        @*<input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost">*@
+        <input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost" style="display: none">
 
-    @*<input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost">*@
-    <input name="IdPost" type="number" class="form-control" value="@ViewBag.IdPost" style="display: none">
+        <div class="alert alert-danger" role="alert" style="Width:280px">
+            ¿Deseas eliminar la publicacion?
+        </div>
 
-    <div class="alert alert-danger" role="alert" style="Width:280px">
-        ¿Deseas eliminar la publicacion?
-    </div>
+        <button type="submit" class="btn btn-danger"><i class="bi bi-person-x"></i> Eliminar</button>
+    </form>
 
-    <button type="submit" class="btn btn-danger"><i class="bi bi-person-x"></i> Eliminar</button>
-</form>
+</div>
+
 
 
