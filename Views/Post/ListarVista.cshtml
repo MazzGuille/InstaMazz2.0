@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "ListarVista";
+    var listaPost = ViewBag.listaPost;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,23 +16,44 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in listaPost)
             {
                 <tr>
-                    <td>@item.UrlImg</td>
-                    <td>@item.Descripcion</td>
-                    <td style="display: none">@item.IdPost</td>
                     <td>
+                        <img class="img-responsive" src="~/@item.UrlImg" />
+                    </td>
+                    <td>@item.Descripcion</td>
+                    <td><a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a></td>
+                    @*<td style="display: none">@item.IdPost</td>*@
+                    <!--<td>-->
 
                         @*<a href="@Url.Action("EliminarPost","Post")" class="btn btn-danger btn-sm" asp-route-IdPost="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
 
                         @*<a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
-                        <a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
 
-                    </td>
+                    <!--</td>-->
                 </tr>
 
             }
+            @*@foreach (var item in Model)*@
+            @*{*@
+                <!--<tr>
+                    <td>
+                        <img class="img-responsive" src="item.UrlImg" style="width: 200px; height:200px" />
+                    </td>
+                    <td>item.Descripcion</td>
+                    <td style="display: none">item.IdPost</td>
+                    <td>-->
+
+                        @*<a href="@Url.Action("EliminarPost","Post")" class="btn btn-danger btn-sm" asp-route-IdPost="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
+
+                        @*<a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>*@
+                        <!--<a href="Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a>
+
+                    </td>
+                </tr>-->
+
+            @*}*@
         </tbody>
 
     </table>

@@ -17,8 +17,6 @@ namespace InstaMazz2._0.Controllers
 
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
 
-
-
         public ActionResult CrearPost()
         {
             var IdUsuario = (int)Session["IdUsuario"];
@@ -79,37 +77,56 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult ListarVista()
         {
-            return View(Listar());
+            ViewBag.listaPost = Listar().ToList();
+            return View();
+            //return View(Listar());
         }
 
         [HttpPost]
         public List<PublicacionesModel> Listar()
         {
-            var oLista = new List<PublicacionesModel>();
+            //var oLista = new List<PublicacionesModel>();
+
+            List<PublicacionesModel> _lista = new List<PublicacionesModel>();
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Listar", cn);
                 cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
-
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
                 {
                     while (dr.Read())
                     {
-                        oLista.Add(new PublicacionesModel
-                        {
-                            IdPost = Convert.ToInt32(dr["IdPost"]),
-                            IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                            UrlImg = dr["UrlImg"].ToString(),
-                            Descripcion = dr["Descripcion"].ToString()
-                        });
+                        PublicacionesModel oLista = new PublicacionesModel();
+
+                        //agregamos al objeto...
+                        oLista.IdPost = Convert.ToInt32(dr["IdPost"]);
+                        oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+                        oLista.UrlImg = dr["UrlImg"].ToString();
+                        oLista.Descripcion = dr["Descripcion"].ToString();
+
+                        //agregamos a la lista el objeto de list...
+                        _lista.Add(oLista);
+
+                        //oLista.Add(new PublicacionesModel
+                        //{
+                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
+                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                        //    UrlImg = dr["UrlImg"].ToString(),
+                        //    Descripcion = dr["Descripcion"].ToString()
+                        //});
                     }
                 }
+                //cerramos la Conexión...
+                cn.Close();
+
+                //retornamos la lista...
+                return _lista;
             }
-            return oLista;
+            //return oLista;
         }
     }
 }
