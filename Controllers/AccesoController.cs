@@ -66,6 +66,9 @@ namespace InstaMazz2._0.Controllers
                 var IdUsu = oUsuario.IdUsuario;
                 Session["IdUsuario"] = IdUsu;
 
+                var pass = oUsuario.Contraseña;
+                Session["Pass"] = pass;
+
 
                 return RedirectToAction("Index", "Home");
             }
@@ -191,14 +194,56 @@ namespace InstaMazz2._0.Controllers
         {
             var IdUsuario = (int)Session["IdUsuario"];
             ViewBag.IdUsuario = IdUsuario;
+
+            UsuarioModel model = new UsuarioModel();
+
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                var cmd = new SqlCommand("sp_Get_DataUser", cn);
+                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        //tratando de mostrar imagen en la vista, desde bytes a img.
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
+                        model.Nombre = dr["Nombre"].ToString();
+                        model.email = dr["email"].ToString();
+                        model.UserName = dr["UserName"].ToString();
+                        model.imagenPerf = _byteString;
+                    }
+                }
+            }
+
+            ViewBag.Nom = model.Nombre;
+            ViewBag.NomUs = model.UserName;
+            ViewBag.Celec = model.email;
+
+
             return View();
 
         }
 
+
+
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
-            oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
+            if (oUsario.Contraseña == oUsario.ConfirmarClave)
+            {
+                oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
+            }
+            else
+            {
+                ViewData["Mensaje"] = "Las contraseñas no coinciden";
+                return View();
+            }
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -218,7 +263,7 @@ namespace InstaMazz2._0.Controllers
 
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public static string ConvertirSHA256(string text)

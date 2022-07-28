@@ -1,4 +1,5 @@
 ﻿using InstaMazz2._0.Models;
+using InstaMazz2._0.Permisos;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace InstaMazz2._0.Controllers
 {
+    [ValidarSesion]
     public class PostController : Controller
     {
 
