@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Perfil";
+    var Publicaciones = ViewBag.Publicaciones;
 }
 @model InstaMazz2._0.Models.UsuarioModel
 <head>
@@ -31,26 +32,18 @@
                 <h1 class="gallery-title">Publicaciones</h1>
             </div>
             
-            @* 
-           <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in )
-                    {
-                        <tr>
-                            <td></td>
-                        </tr>
-                    }
-                </tbody>
+            @foreach (var item in Publicaciones)
+            {
+              <div class="card" style="width: 18rem;">
+                  <img src="@item.UrlImg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <p class="card-text">@item.Descripcion</p>
 
-            </table>
-        </div>
-            *@
+                  </div>
+              </div>      
+            }
+            
+            
         </div>
     </div>
 </div>

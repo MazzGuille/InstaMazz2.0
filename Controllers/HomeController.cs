@@ -1,4 +1,5 @@
 ﻿using InstaMazz2._0.Permisos;
+using InstaMazz2._0.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +46,38 @@ namespace InstaMazz2._0.Controllers
                 }
             }
 
+            ViewBag.Publicaciones = ListaPublicaiones();
+
             return View(model);
+        }
+
+        public List<PublicacionesModel> ListaPublicaiones()
+        {
+            var oLista = new List<PublicacionesModel>();
+
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Obtener", cn);
+                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        oLista.Add(new PublicacionesModel
+                        {
+                            IdPost = Convert.ToInt32(dr["IdPost"]),
+                            IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                            UrlImg = dr["UrlImg"].ToString(),
+                            Descripcion = dr["Descripcion"].ToString()
+                        });
+                    }
+                }
+            }
+            return oLista;
         }
 
         //public ActionResult converetImagen(string correoId)
