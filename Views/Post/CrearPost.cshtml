@@ -4,7 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Crear Publicacion</h1>
+<head>
+    <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
+</head>
+
+<h1>Crear Publicación</h1>
 
 <form action="@Url.Action("CrearPost", "Post")" method="post">
     <div class="form-group">
@@ -14,8 +18,8 @@
         <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">
     </div>
     <div class="form-group">
-        <input name="Descripcion" type="text" class="form-control" placeholder="Descripcion">
+        <input name="Descripcion" type="text" class="form-control" placeholder="descripción">
     </div>
-    <button type="submit" class="btn btn-primary">Crear publicacion</button>
+    <button type="submit" class="btn btn-primary">Crear Publicación</button>
 </form>
 

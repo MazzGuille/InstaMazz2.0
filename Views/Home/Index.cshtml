@@ -1,12 +1,14 @@
 ﻿@{
     ViewBag.Title = "Perfil";
+    var Publicaciones = ViewBag.Publicaciones;
 }
 @model InstaMazz2._0.Models.UsuarioModel
 <head>
     <link href="~/Content/CSS/Perfil.css" rel="stylesheet"/>
 </head>
-<div class="container wrapper">
-    <div class="container">
+<div class="container wrapper" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+    @*<div class="container" >
         <div class="row">
             <div class="col-md-6 details">
                 <div class="col-md-6 img">
@@ -19,38 +21,45 @@
                 </div>
             </div>
         </div>
+    </div>*@
+
+    <div class="container" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 50px; width: 100vw; padding: 0; margin: 0;">
+        <div>
+            <img src="/Upload/@Model.imagenPerf" alt="Imagen de perfil" class="img-rounded imagen" style="width: 150px; height: 150px" />
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.5px;">
+            <h3>@Model.Nombre</h3>
+            <p>@Model.UserName</p>
+            <p>@Model.email</p>
+        </div>
+
+
+    </div>
     
     <div class="container">
         <div class="botton-container">
-            <div class="btn btn-success btn-lg"> <i class="bi bi-plus-circle"></i> <a>@Html.ActionLink("Crear Publicacion", "CrearPost", "Post")</a> </div>
-            <div class="btn btn-danger btn-lg"> <i class="bi bi-dash-circle"></i> <a>@Html.ActionLink("Eliminar Publicacion", "ListarVista", "Post")</a> </div>
+            <div class="btn btn-success btn-lg"> <i class="bi bi-plus-circle"></i> <a>@Html.ActionLink("Crear Publicación", "CrearPost", "Post")</a> </div>
+            <div class="btn btn-danger btn-lg"> <i class="bi bi-dash-circle"></i> <a>@Html.ActionLink("Eliminar Publicación", "ListarVista", "Post")</a> </div>
             <div class="btn btn-info btn-lg"> <i class="bi bi-dash-circle"></i> <a>@Html.ActionLink("Editar Perfil", "EditarPerfil", "Acceso")</a> </div>
         </div>
         <div class="row">
             <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h1 class="gallery-title">Publicaciones</h1>
+                <h1 style="color:darkturquoise;" class="gallery-title">Publicaciones</h1>
             </div>
             
-            @* 
-           <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in )
-                    {
-                        <tr>
-                            <td></td>
-                        </tr>
-                    }
-                </tbody>
+            @foreach (var item in Publicaciones)
+            {
+              <div style="width: fit-content; background: none;">
+                  <img src="@item.UrlImg" class="card-img-top" alt="..." style="width:150px; height: 150px;">
+                  <div class="card-body" style="max-width: 150px; background: none;">
+                      <p class="card-text">@item.Descripcion</p>
 
-            </table>
-        </div>
-            *@
+                  </div>
+              </div>      
+            }
+            
+            
         </div>
     </div>
 </div>
