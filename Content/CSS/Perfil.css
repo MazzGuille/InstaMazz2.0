@@ -82,3 +82,18 @@ a {
 navbarNav {
     background-color: darkblue;
 }
+
+.boton-container {
+    display: flex;
+    flex-direction: row;
+    gap: 7.5px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media (max-width:550px) {
+    .boton-container {
+        flex-direction:column;
+    }
+}
