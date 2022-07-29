@@ -9,7 +9,7 @@
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>UrlImg</th>
+                <th>Imagen</th>
                 <th>Descripción</th>
 
                 <th></th>
@@ -20,7 +20,7 @@
             {
                 <tr>
                     <td>
-                        <img class="img-responsive" src="~/@item.UrlImg" />
+                        <img class="img-responsive" src="@item.UrlImg" style="width:100px; height:100px; margin-left:auto; margin-right: auto;" />
                     </td>
                     <td>@item.Descripcion</td>
                     <td><a href="@Url.Action("EliminarPost", "Post", new { id = item.IdPost})" class="btn btn-danger btn-sm" asp-route-Id="@item.IdPost"><i class="bi bi-person-x"></i> Eliminar</a></td>
