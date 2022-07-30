@@ -51,17 +51,17 @@
                             </div>
                         }
 
-                        @if (ViewBag.missingMail != null)
+                        @if (ViewBag.MailNull != null)
                         {
-                            <div>
-                                @ViewBag.missingMail
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.MailNull
                             </div>
                         }
 
-                        @if (ViewBag.missingPassword != null)
+                        @if (ViewBag.PassNull != null)
                         {
-                            <div>
-                                @ViewBag.missingPassword
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.PassNull
                             </div>
                         }
 

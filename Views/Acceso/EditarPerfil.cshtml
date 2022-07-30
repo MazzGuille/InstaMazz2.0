@@ -101,6 +101,28 @@
         </div>
     }
 
+    @if (ViewBag.NombreNull != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.NombreNull
+        </div>
+    }
+
+    @if (ViewBag.UserNameNull != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.UserNameNull
+        </div>
+    }
+
+    @if (ViewBag.MailNull != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.MailNull
+        </div>
+    }
+
+
     <div class="form-group">
         <div>
             <input type="submit" value="Confirmar" class="btn btn-success" />

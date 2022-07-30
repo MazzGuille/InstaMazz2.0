@@ -31,16 +31,18 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Login(UsuarioModel oUsuario)
         {
-            if (oUsuario.email == "")
+
+            if (string.IsNullOrEmpty(oUsuario.email))
             {
-                ViewBag.missingMail = "El campo E-Mail no puede estar vacio";
+                ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
+                return View();
             }
 
-            if (oUsuario.Contraseña == null)
+            if (string.IsNullOrEmpty(oUsuario.Contraseña))
             {
-                ViewBag.missingPassword = "El campo Contraseña no puede estar vacio";
+                ViewBag.PassNull = "El campo \"Contraseña\" es requerido";
+                return View();
             }
-
 
             oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
 
@@ -87,6 +89,31 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Registrar(UsuarioModel oUsuario)
         {
+            if (string.IsNullOrEmpty(oUsuario.Nombre))
+            {
+                ViewBag.NombreNull = "El campo \"Nombre\" es requerido";
+                return View();
+            }
+
+            if (string.IsNullOrEmpty(oUsuario.UserName))
+            {
+                ViewBag.UserNameNull = "El campo \"Nombre de usuario\" es requerido";
+                return View();
+            }
+
+            if (string.IsNullOrEmpty(oUsuario.email))
+            {
+                ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
+                return View();
+            }
+
+            if (String.IsNullOrEmpty(oUsuario.Contraseña) || String.IsNullOrEmpty(oUsuario.ConfirmarClave))
+            {
+                ViewData["Mensaje2"] = "Las contraseñas no pueden estar vacias";
+                return View();
+            }
+
+
             //comentario de prueba
             //obtenemos la imagen seleccionada...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
@@ -235,6 +262,24 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
+            if (string.IsNullOrEmpty(oUsario.Nombre))
+            {
+                ViewBag.NombreNull = "El campo \"Nombre\" es requerido";
+                return View();
+            }
+
+            if (string.IsNullOrEmpty(oUsario.UserName))
+            {
+                ViewBag.UserNameNull = "El campo \"Nombre de usuario\" es requerido";
+                return View();
+            }
+
+            if (string.IsNullOrEmpty(oUsario.email))
+            {
+                ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
+                return View();
+            }
+
             if (oUsario.Contraseña == oUsario.ConfirmarClave)
             {
                 oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
@@ -244,6 +289,13 @@ namespace InstaMazz2._0.Controllers
                 ViewData["Mensaje"] = "Las contraseñas no coinciden";
                 return View();
             }
+
+            if (String.IsNullOrEmpty(oUsario.Contraseña) || String.IsNullOrEmpty(oUsario.ConfirmarClave))
+            {
+                ViewData["Mensaje"] = "Las contraseñas no pueden estar vacias";
+                return View();
+            }
+
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
