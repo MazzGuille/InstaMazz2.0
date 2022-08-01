@@ -43,6 +43,7 @@ namespace InstaMazz2._0.Controllers
                         model.UserName = dr["UserName"].ToString();
                         model.imagenPerf = _byteString;
                     }
+                    Session["UsName"] = model.UserName;
                 }
             }
 

@@ -21,12 +21,16 @@ namespace InstaMazz2._0.Controllers
         {
             var IdUsuario = (int)Session["IdUsuario"];
             ViewBag.IdUsuario = IdUsuario;
+            var UserName = (string)Session["UsName"];
+            ViewBag.UserName = UserName;
             return View();
         }
 
         [HttpPost]
         public ActionResult CrearPost(PublicacionesModel oPublicacion)
         {
+
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -34,6 +38,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("IdUsuario", oPublicacion.IdUsuario);
                 cmd.Parameters.AddWithValue("UrlImg", oPublicacion.UrlImg);
                 cmd.Parameters.AddWithValue("Descripcion", oPublicacion.Descripcion);
+                cmd.Parameters.AddWithValue("UserName", Session["UsName"]);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
@@ -107,6 +112,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
+                        oLista.UserName = dr["UserName"].ToString();
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
@@ -127,6 +133,42 @@ namespace InstaMazz2._0.Controllers
                 return _lista;
             }
             //return oLista;
+        }
+
+        public ActionResult FeedView()
+        {
+            ViewBag.Feed = Feed();
+            return View();
+        }
+
+        [HttpPost]
+        public List<PublicacionesModel> Feed()
+        {
+            var oLista = new List<PublicacionesModel>();
+
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Feed", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        oLista.Add(new PublicacionesModel
+                        {
+                            IdPost = Convert.ToInt32(dr["IdPost"]),
+                            IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                            UrlImg = dr["UrlImg"].ToString(),
+                            Descripcion = dr["Descripcion"].ToString(),
+                            UserName = dr["UserName"].ToString()
+                        });
+                    }
+                }
+            }
+            return oLista;
         }
     }
 }
