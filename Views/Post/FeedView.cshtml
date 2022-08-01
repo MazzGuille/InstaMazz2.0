@@ -10,10 +10,11 @@
 @foreach (var item in Feed)
 { 
     <div class="container-fluid" style="display: flex; flex-direction: column; align-items: center; justify-content: left; gap:2px;">
-        <img @item.UrlImg style="width: 200px; height: 200px;" />
+        @*<img @item.UrlImg style="width: 200px; height: 200px;" />*@
+        <img class="img-responsive" src="@item.UrlImg" style="width:100px; height:100px; margin-left:auto; margin-right: auto;" />
         <p>@item.UserName</p>
         <p style="max-width:200px;">@item.Descripcion</p>
-        <br />        
+        <br />
     </div>
 }
 

@@ -29,8 +29,6 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult CrearPost(PublicacionesModel oPublicacion)
         {
-
-
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -42,7 +40,6 @@ namespace InstaMazz2._0.Controllers
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
-
             return RedirectToAction("Index", "Home");
         }
 
@@ -137,14 +134,15 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult FeedView()
         {
-            ViewBag.Feed = Feed();
+            ViewBag.Feed = Feed().ToList();
             return View();
         }
 
         [HttpPost]
         public List<PublicacionesModel> Feed()
         {
-            var oLista = new List<PublicacionesModel>();
+            //var oLista = new List<PublicacionesModel>();
+            List<PublicacionesModel> _lista = new List<PublicacionesModel>();
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -157,18 +155,31 @@ namespace InstaMazz2._0.Controllers
                 {
                     while (dr.Read())
                     {
-                        oLista.Add(new PublicacionesModel
-                        {
-                            IdPost = Convert.ToInt32(dr["IdPost"]),
-                            IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                            UrlImg = dr["UrlImg"].ToString(),
-                            Descripcion = dr["Descripcion"].ToString(),
-                            UserName = dr["UserName"].ToString()
-                        });
+                        PublicacionesModel oLista = new PublicacionesModel();
+
+                        oLista.IdPost = Convert.ToInt32(dr["IdPost"]);
+                        oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+                        oLista.UrlImg = dr["UrlImg"].ToString();
+                        oLista.Descripcion = dr["Descripcion"].ToString();
+                        oLista.UserName = dr["UserName"].ToString();
+
+                        _lista.Add(oLista);
+
+                        //oLista.Add(new PublicacionesModel
+                        //{
+                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
+                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                        //    UrlImg = dr["UrlImg"].ToString(),
+                        //    Descripcion = dr["Descripcion"].ToString(),
+                        //    UserName = dr["UserName"].ToString()
+                        //});
                     }
                 }
+                cn.Close();
+
+                return _lista;
             }
-            return oLista;
+            //return oLista;
         }
     }
 }
