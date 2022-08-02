@@ -36,7 +36,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("IdUsuario", oPublicacion.IdUsuario);
                 cmd.Parameters.AddWithValue("UrlImg", oPublicacion.UrlImg);
                 cmd.Parameters.AddWithValue("Descripcion", oPublicacion.Descripcion);
-                cmd.Parameters.AddWithValue("UserName", Session["UsName"]);
+                //cmd.Parameters.AddWithValue("UserName", Session["UsName"]);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
@@ -109,7 +109,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
-                        oLista.UserName = dr["UserName"].ToString();
+                        //oLista.UserName = dr["UserName"].ToString();
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
