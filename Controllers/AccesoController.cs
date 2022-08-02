@@ -206,7 +206,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult EditarPerfil()
         {
             var IdUsuario = (int)Session["IdUsuario"];
-            if(IdUsuario != 0)
+            if (IdUsuario != 0)
             {
                 //si existe la bariable session...
                 ViewBag.IdUsuario = IdUsuario;
@@ -240,12 +240,13 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.Nom = model.Nombre;
                 ViewBag.NomUs = model.UserName;
                 ViewBag.Celec = model.email;
+
                 return View();
             }
             else
             {
                 return Redirect("Index");
-            }        
+            }
         }
 
         [HttpPost]

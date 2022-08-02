@@ -45,6 +45,7 @@ namespace InstaMazz2._0.Controllers
                     }
                     //Session["UsName"] = model.UserName;
 
+
                 }
             }
 
