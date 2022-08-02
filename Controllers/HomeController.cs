@@ -44,6 +44,7 @@ namespace InstaMazz2._0.Controllers
                         model.imagenPerf = _byteString;
                     }
                     Session["UsName"] = model.UserName;
+
                 }
             }
 

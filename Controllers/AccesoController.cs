@@ -198,6 +198,7 @@ namespace InstaMazz2._0.Controllers
 
                 registrado = (bool)cmd.Parameters["Registrado"].Value;
                 mensaje = (string)cmd.Parameters["Mensaje"].Value;
+                Session["ImgPerf"] = _byteString;
             }
 
             ViewData["Mensaje"] = mensaje;
