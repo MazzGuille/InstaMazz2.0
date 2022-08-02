@@ -116,20 +116,25 @@ namespace InstaMazz2._0.Controllers
 
             //comentario de prueba
             //obtenemos la imagen seleccionada...
+            //HttpPostedFileBase ImgPerfil = Request.Files[0];
+
+            ////Colocar el nombre de la Img + email.
+            //var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
+
+            ////mandamos la imagen obtenida al siguiente carpeta...
+            //var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
+
+            ////copiamos la imagen seleccionada...
+            //ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
+
+            ////string imgName = ImgPerfil.FileName;
+            ////Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
+            //byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
+
+            //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
-
-            //Colocar el nombre de la Img + email.
-            var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
-
-            //mandamos la imagen obtenida al siguiente carpeta...
-            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
-
-            //copiamos la imagen seleccionada...
-            ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
-
-            //string imgName = ImgPerfil.FileName;
-            //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
-            byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
+            var ruta = Server.MapPath("~/Upload");
+            byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.email);
 
             bool registrado;
             string mensaje;
@@ -267,20 +272,20 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
+            //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
-
-            //Colocar el nombre de la Img + email.
-            var _newNameImg = oUsario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
-
-            //mandamos la imagen obtenida al siguiente carpeta...
-            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
-
-            //copiamos la imagen seleccionada...
-            ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
-
-            //string imgName = ImgPerfil.FileName;
-            //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
-            byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
+            byte[] _byteString;
+            if (ImgPerfil.FileName != "")
+            {
+                var ruta = Server.MapPath("~/Upload");
+                _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsario.email);
+            }
+            else
+            {
+                //mantener igual el byte...
+                _byteString = igualByteToByte(oUsario.ImagenPerfil);
+            }
+            
 
             if (string.IsNullOrEmpty(oUsario.Nombre))
             {
@@ -293,29 +298,6 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.UserNameNull = "El campo \"Nombre de usuario\" es requerido";
                 return View();
             }
-
-            //if (string.IsNullOrEmpty(oUsario.email))
-            //{
-            //    ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
-            //    return View();
-            //}
-
-            //if (oUsario.Contraseña == oUsario.ConfirmarClave)
-            //{
-            //    oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
-            //}
-            //else
-            //{
-            //    ViewData["Mensaje"] = "Las contraseñas no coinciden";
-            //    return View();
-            //}
-
-            //if (String.IsNullOrEmpty(oUsario.Contraseña) || String.IsNullOrEmpty(oUsario.ConfirmarClave))
-            //{
-            //    ViewData["Mensaje"] = "Las contraseñas no pueden estar vacias";
-            //    return View();
-            //}
-
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -331,10 +313,8 @@ namespace InstaMazz2._0.Controllers
                 cn.Open();
 
                 cmd.ExecuteNonQuery();
-
-
             }
-
+            //_byteString = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -355,6 +335,32 @@ namespace InstaMazz2._0.Controllers
             }
             return sb.ToString();
 
+        }
+
+        private static byte[] deCadenaToBytes(HttpPostedFileBase ImgPerfil, string Server, string email)
+        {
+            //HttpPostedFileBase ImgPerfil = Request.Files[0];
+
+            //Colocar el nombre de la Img + email.
+            var _newNameImg = email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
+
+            //mandamos la imagen obtenida al siguiente carpeta...
+            var str = Path.Combine(Server, _newNameImg);
+
+            //copiamos la imagen seleccionada...
+            ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
+
+            //string imgName = ImgPerfil.FileName;
+            //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
+            byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
+
+            return _byteString;
+        }
+
+        private static byte[] igualByteToByte(byte args)
+        {
+            byte[] _result = new byte[args];
+            return _result;
         }
     }
 }
