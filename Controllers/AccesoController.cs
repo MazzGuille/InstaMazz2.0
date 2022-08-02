@@ -221,41 +221,46 @@ namespace InstaMazz2._0.Controllers
         public ActionResult EditarPerfil()
         {
             var IdUsuario = (int)Session["IdUsuario"];
-            ViewBag.IdUsuario = IdUsuario;
-
-            UsuarioModel model = new UsuarioModel();
-
-            using (SqlConnection cn = new SqlConnection(cadena))
+            if(IdUsuario != 0)
             {
-                var cmd = new SqlCommand("sp_Get_DataUser", cn);
-                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
-                cmd.CommandType = CommandType.StoredProcedure;
+                //si existe la bariable session...
+                ViewBag.IdUsuario = IdUsuario;
 
-                cn.Open();
+                UsuarioModel model = new UsuarioModel();
 
-                using (SqlDataReader dr = cmd.ExecuteReader())
+                using (SqlConnection cn = new SqlConnection(cadena))
                 {
-                    if (dr.Read())
-                    {
-                        //tratando de mostrar imagen en la vista, desde bytes a img.
-                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                    var cmd = new SqlCommand("sp_Get_DataUser", cn);
+                    cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                        model.Nombre = dr["Nombre"].ToString();
-                        model.email = dr["email"].ToString();
-                        model.UserName = dr["UserName"].ToString();
-                        model.imagenPerf = _byteString;
+                    cn.Open();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            //tratando de mostrar imagen en la vista, desde bytes a img.
+                            byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                            var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
+                            model.Nombre = dr["Nombre"].ToString();
+                            model.email = dr["email"].ToString();
+                            model.UserName = dr["UserName"].ToString();
+                            model.imagenPerf = _byteString;
+                        }
                     }
                 }
+
+                ViewBag.Nom = model.Nombre;
+                ViewBag.NomUs = model.UserName;
+                ViewBag.Celec = model.email;
+                return View();
             }
-
-            ViewBag.Nom = model.Nombre;
-            ViewBag.NomUs = model.UserName;
-            ViewBag.Celec = model.email;
-
-
-            return View();
-
+            else
+            {
+                return Redirect("Index");
+            }        
         }
 
         [HttpPost]
