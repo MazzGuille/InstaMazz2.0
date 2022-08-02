@@ -113,24 +113,6 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
-
-            //comentario de prueba
-            //obtenemos la imagen seleccionada...
-            //HttpPostedFileBase ImgPerfil = Request.Files[0];
-
-            ////Colocar el nombre de la Img + email.
-            //var _newNameImg = oUsuario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
-
-            ////mandamos la imagen obtenida al siguiente carpeta...
-            //var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
-
-            ////copiamos la imagen seleccionada...
-            //ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
-
-            ////string imgName = ImgPerfil.FileName;
-            ////Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
-            //byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
-
             //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
             var ruta = Server.MapPath("~/Upload");
@@ -218,8 +200,6 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
-            //return View()
-
         }
 
 
@@ -305,8 +285,6 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("IdUsuario", oUsario.IdUsuario);
                 cmd.Parameters.AddWithValue("Nombre", oUsario.Nombre);
                 cmd.Parameters.AddWithValue("UserName", oUsario.UserName);
-                //cmd.Parameters.AddWithValue("email", oUsario.email);
-                //cmd.Parameters.AddWithValue("Contraseña", oUsario.Contraseña);
                 cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -314,7 +292,6 @@ namespace InstaMazz2._0.Controllers
 
                 cmd.ExecuteNonQuery();
             }
-            //_byteString = null;
             return RedirectToAction("Index", "Home");
         }
 
