@@ -63,17 +63,17 @@ namespace InstaMazz2._0.Controllers
 
 
         [HttpPost]
-        public ActionResult Delete(PublicacionesModel oPublicacion)
+        public ActionResult Delete(int? IdPost) //PublicacionesModel oPublicacion
         {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_EliminarPost", cn);
-                cmd.Parameters.AddWithValue("IdPost", oPublicacion.IdPost);
+                cmd.Parameters.AddWithValue("IdPost", IdPost); //oPublicacion.IdPost
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
-            return RedirectToAction("ListarVista", "Post");
+            return RedirectToAction("Index", "Home");
         }
 
 
