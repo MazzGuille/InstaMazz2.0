@@ -8,26 +8,28 @@
     <link href="~/Content/CSS/FeedCSS.css" rel="stylesheet" />
 </head>
 
-    @foreach (var item in Feed)
-    {
-        <div class="d-flex justify-content-center">
-            <div class="row">
-                <div class="col-xs-12 col-md-12 col-lg-10">
-                    <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 50rem;">
-                        <div class="card-header text-left">
-                            <h3 class="text-secondary">@item.UserName</h3>
-                        </div>
-                        <img class="img-responsive card-img-top" src="@item.UrlImg" />
-                        <div class="card-body">
-                            <div class="card-text">
-                                @item.Descripcion
-                            </div>
+
+@foreach (var item in Feed)
+{ 
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-10">
+                <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 50rem;">
+                    <div class="card-header text-center">
+                        <h3 class="text-secondary">@item.UserName</h3>
+                    </div>
+                    <img class="img-responsive card-img-top" src="@item.UrlImg" />
+                    <div class="card-body">
+                        <div class="card-text">
+                            @item.Descripcion
+
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
     }
 
 
