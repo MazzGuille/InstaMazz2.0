@@ -266,6 +266,21 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
+            HttpPostedFileBase ImgPerfil = Request.Files[0];
+
+            //Colocar el nombre de la Img + email.
+            var _newNameImg = oUsario.email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
+
+            //mandamos la imagen obtenida al siguiente carpeta...
+            var str = Path.Combine(Server.MapPath("~/Upload"), _newNameImg);
+
+            //copiamos la imagen seleccionada...
+            ImgPerfil.InputStream.CopyToAsync(new FileStream(str, FileMode.Create));
+
+            //string imgName = ImgPerfil.FileName;
+            //Obtenemos un string y lo convertimos a byte... usando la imagen de perfil...
+            byte[] _byteString = Encoding.ASCII.GetBytes(_newNameImg);
+
             if (string.IsNullOrEmpty(oUsario.Nombre))
             {
                 ViewBag.NombreNull = "El campo \"Nombre\" es requerido";
@@ -278,27 +293,27 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
-            if (string.IsNullOrEmpty(oUsario.email))
-            {
-                ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
-                return View();
-            }
+            //if (string.IsNullOrEmpty(oUsario.email))
+            //{
+            //    ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
+            //    return View();
+            //}
 
-            if (oUsario.Contraseña == oUsario.ConfirmarClave)
-            {
-                oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
-            }
-            else
-            {
-                ViewData["Mensaje"] = "Las contraseñas no coinciden";
-                return View();
-            }
+            //if (oUsario.Contraseña == oUsario.ConfirmarClave)
+            //{
+            //    oUsario.Contraseña = ConvertirSHA256(oUsario.Contraseña);
+            //}
+            //else
+            //{
+            //    ViewData["Mensaje"] = "Las contraseñas no coinciden";
+            //    return View();
+            //}
 
-            if (String.IsNullOrEmpty(oUsario.Contraseña) || String.IsNullOrEmpty(oUsario.ConfirmarClave))
-            {
-                ViewData["Mensaje"] = "Las contraseñas no pueden estar vacias";
-                return View();
-            }
+            //if (String.IsNullOrEmpty(oUsario.Contraseña) || String.IsNullOrEmpty(oUsario.ConfirmarClave))
+            //{
+            //    ViewData["Mensaje"] = "Las contraseñas no pueden estar vacias";
+            //    return View();
+            //}
 
 
             using (SqlConnection cn = new SqlConnection(cadena))
@@ -307,9 +322,9 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("IdUsuario", oUsario.IdUsuario);
                 cmd.Parameters.AddWithValue("Nombre", oUsario.Nombre);
                 cmd.Parameters.AddWithValue("UserName", oUsario.UserName);
-                cmd.Parameters.AddWithValue("email", oUsario.email);
-                cmd.Parameters.AddWithValue("Contraseña", oUsario.Contraseña);
-                cmd.Parameters.AddWithValue("ImagenPerfil", oUsario.ImagenPerfil);
+                //cmd.Parameters.AddWithValue("email", oUsario.email);
+                //cmd.Parameters.AddWithValue("Contraseña", oUsario.Contraseña);
+                cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
