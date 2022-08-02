@@ -91,9 +91,31 @@ navbarNav {
     align-items: center;
 }
 
+.imagen-feed {
+    width: 50vw;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feed-UsNam{
+    text-align:left;
+    margin-left:0;
+}
+
+.feed-desc {
+    max-width: 50vw;
+}
+
 
 @media (max-width:550px) {
     .boton-container {
         flex-direction:column;
+    }
+}
+
+@media (max-width:800px) {
+    .imagen-feed {
+        height: 200PX;
     }
 }

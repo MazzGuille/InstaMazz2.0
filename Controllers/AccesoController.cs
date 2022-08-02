@@ -72,7 +72,7 @@ namespace InstaMazz2._0.Controllers
                 Session["Pass"] = pass;
 
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("FeedView", "Post");
             }
             else
             {
