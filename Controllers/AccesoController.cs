@@ -305,7 +305,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("UserName", oUsario.UserName);
                 cmd.Parameters.AddWithValue("email", oUsario.email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsario.Contraseña);
-                //cmd.Parameters.AddWithValue("ImagenPerfil", oUsario.ImagenPerfil);
+                cmd.Parameters.AddWithValue("ImagenPerfil", oUsario.ImagenPerfil);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
