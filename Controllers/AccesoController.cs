@@ -258,8 +258,6 @@ namespace InstaMazz2._0.Controllers
 
         }
 
-
-
         [HttpPost]
         public ActionResult EditarPerfil(UsuarioModel oUsario)
         {
