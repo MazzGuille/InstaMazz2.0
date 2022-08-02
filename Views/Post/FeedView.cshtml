@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "FeedView";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var Feed = ViewBag.Feed;
@@ -11,14 +10,23 @@
 
 @foreach (var item in Feed)
 { 
-    <div class="container-fluid" style="display: flex; flex-direction: column; align-items: center; justify-content: left; gap:2px;">
-        @*<img @item.UrlImg style="width: 200px; height: 200px;" />*@
-        <img class="img-responsive imagen-feed" src="@item.UrlImg" />
-        <div style="width:50vw; flex; flex-direction: column; align-items:flex-start; justify-content:left; gap: 3px;">
-            <h3 class="feed-UsNam">@item.UserName</h3>
-            <p class="feed-desc">@item.Descripcion</p>
+    <div class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-lg-10">
+                <div class="card mt-3 shadow" style="width: 50rem;">
+                    <div class="card-header text-center">
+                        <h3 class="text-secondary">@item.UserName</h3>
+                    </div>
+                    <img class="img-responsive card-img-top" src="@item.UrlImg" />
+                    <div class="card-body">
+                        <div class="card-text">
+                            @item.Descripcion
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <br />
+        
     </div>
 }
 
