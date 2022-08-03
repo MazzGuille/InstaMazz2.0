@@ -27,6 +27,7 @@ namespace InstaMazz2._0.Models
         public string ConfirmarClave { get; set; }
 
         public string imagenPerf { get; set; }
+        public string BioUsuario { get; set; }
 
     }
 }

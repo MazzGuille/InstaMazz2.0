@@ -175,6 +175,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("email", oUsuario.email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);//_byteString
+                cmd.Parameters.AddWithValue("BioUsuario", oUsuario.BioUsuario);
                 cmd.Parameters.Add("Registrado", SqlDbType.Bit).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 100).Direction = ParameterDirection.Output;
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -232,6 +233,7 @@ namespace InstaMazz2._0.Controllers
                             model.Nombre = dr["Nombre"].ToString();
                             model.email = dr["email"].ToString();
                             model.UserName = dr["UserName"].ToString();
+                            model.BioUsuario = dr["BioUsuario"].ToString();
                             model.imagenPerf = _byteString;
                         }
                     }
@@ -240,6 +242,7 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.Nom = model.Nombre;
                 ViewBag.NomUs = model.UserName;
                 ViewBag.Celec = model.email;
+                ViewBag.Bio = model.BioUsuario;
 
                 return View();
             }
@@ -265,7 +268,7 @@ namespace InstaMazz2._0.Controllers
                 //mantener igual el byte...
                 _byteString = igualByteToByte(oUsario.ImagenPerfil);
             }
-            
+
 
             if (string.IsNullOrEmpty(oUsario.Nombre))
             {
@@ -286,6 +289,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("Nombre", oUsario.Nombre);
                 cmd.Parameters.AddWithValue("UserName", oUsario.UserName);
                 cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);
+                cmd.Parameters.AddWithValue("BioUsuario", oUsario.BioUsuario);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();

@@ -49,15 +49,16 @@
     </div>-->
 
 
-    <div class="card mb-3" style="max-width: 40vw;">
+    <div class="card mb-3" style="max-width: 60vw;">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="/Upload/@Model.imagenPerf" class="img-fluid rounded-start">
+            <div class="col-md-4" >
+                <img  src="/Upload/@Model.imagenPerf" class="img-fluid rounded-start h-100 w-100">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
                     <h2 class="card-title">@Model.Nombre</h2>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text">@Model.BioUsuario</p>
+                    @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
                     <h4 class="card-text"><small class="text-muted">@Model.UserName</small></h4>
                     <div class="d-flex flex-row justify-content-start gap-3">
                         <form action="@Url.Action("CrearPost", "Post")">
@@ -98,9 +99,9 @@
             @foreach (var item in Publicaciones)
             {
                 <div style="width: fit-content; background: none;">
-                    <img src="@item.UrlImg" class="card-img-top" alt="..." style="width:150px; height: 150px;">
-                    <div class="card-body" style="max-width: 150px; height:100px; background: none;">
-                        <p class="card-text">@item.Descripcion</p>
+                    <img src="@item.UrlImg" class="card-img-top" alt="..." style="width:200px; height: 200px;">
+                    <div class="card-body mw-150px bg-none" style="max-width: 200px; min-height:130px; background: none;">
+                        <p class="card-text bg-white p-2">@item.Descripcion</p>
                         @*<div class="btn btn-danger btn-lg"> <i class="bi bi-trash"></i>@Html.ActionLink(" ", "ListarVista", "Post")</div>*@
 
                     </div>
