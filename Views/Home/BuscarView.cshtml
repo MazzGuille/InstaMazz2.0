@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "BuscarView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Buscar = ViewBag.Buscar;
+}
+
+<div class="px-5">
+    <form action="@Url.Action("BuscarView", "Home")">
+        <div class="input-group">
+            <input class="form-control" asp-for="Buscar" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-success">Buscar</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div>
+       @foreach (var item in Buscar)
+       {
+           <h2>Nombre: @item.Nombre</h2>
+           <p>User Name: @item.UserName</p>
+           <img src="@item.imagenPerf" class="img-fluid rounded-start h-100 w-100"/>
+           @*<p>ID: @item.IdUsuario </p>*@
+           <br />
+       }
+    </div>
+</div>

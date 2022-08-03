@@ -324,6 +324,7 @@
     <Content Include="Views\Post\ListarVista.cshtml" />
     <Content Include="Views\Acceso\EditarPerfil.cshtml" />
     <Content Include="Views\Post\FeedView.cshtml" />
+    <Content Include="Views\Home\BuscarView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

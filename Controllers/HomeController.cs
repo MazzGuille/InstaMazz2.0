@@ -78,6 +78,7 @@ namespace InstaMazz2._0.Controllers
                             UrlImg = dr["UrlImg"].ToString(),
                             Descripcion = dr["Descripcion"].ToString()
                         });
+
                     }
                 }
             }
@@ -102,6 +103,45 @@ namespace InstaMazz2._0.Controllers
         //        }
         //    }
         //}
+
+        public ActionResult BuscarView()
+        {
+            ViewBag.Buscar = Buscar().ToList();
+            return View();
+        }
+
+
+        public List<UsuarioModel> Buscar()
+        {
+            var oLista = new List<UsuarioModel>();
+
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
+
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+
+                    while (dr.Read())
+                    {
+                        oLista.Add(new UsuarioModel
+                        {
+                            Nombre = dr["Nombre"].ToString(),
+                            UserName = dr["UserName"].ToString(),
+                            IdUsuario = ((int)dr["IdUsuario"]),
+                            //ImagenPerfil = (byte)dr["ImagenPerfil"]
+                        });
+
+                    }
+                }
+            }
+            return oLista;
+        }
+
 
         public ActionResult CerrarSesion()
         {
