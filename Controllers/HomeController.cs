@@ -128,12 +128,15 @@ namespace InstaMazz2._0.Controllers
 
                     while (dr.Read())
                     {
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
                         oLista.Add(new UsuarioModel
                         {
                             Nombre = dr["Nombre"].ToString(),
                             UserName = dr["UserName"].ToString(),
                             IdUsuario = ((int)dr["IdUsuario"]),
-                            //ImagenPerfil = (byte)dr["ImagenPerfil"]
+                            imagenPerf = _byteString
                         });
 
                     }
