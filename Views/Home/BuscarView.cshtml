@@ -6,9 +6,20 @@
 }
 
 <div class="px-5">
-    <form action="@Url.Action("BuscarView", "Home")">
+
+    @*<div>
+        @using (Html.BeginForm("Buscar", "Home"))
+        {
+            <div class="search">
+                <input type="text" name="Nombre"><button type="submit">Search</button>
+            </div>
+        }
+    </div>*@
+
+
+    <form action="@Url.Action("Buscar","Home")">
         <div class="input-group">
-            <input class="form-control" asp-for="Buscar" />
+            <input name="Nombre" type="text" class="form-control"/>
             <div class="input-group-append">
                 <button type="submit" class="btn btn-success">Buscar</button>
             </div>
@@ -16,14 +27,20 @@
     </form>
 
 
-    <div>
-       @foreach (var item in Buscar)
-       {
-           <h2>Nombre: @item.Nombre</h2>
-           <p>User Name: @item.UserName</p>
-           <img src="@item.imagenPerf" class="img-fluid rounded-start h-100 w-100"/>
-           @*<p>ID: @item.IdUsuario </p>*@
-           <br />
-       }
+    <div class="container">
+        @foreach (var item in Buscar)
+        {
+
+         <div class="row">
+             <div class="col-3">
+                 <img src="/Upload/@item.imagenPerf" class="rounded-circle img-fluid h-10 w-10" />
+             </div>
+             <div class="col-3">
+                 <h2>Nombre: @item.Nombre</h2>
+                 <p>User Name: @item.UserName</p>
+             </div>
+         </div>
+         <br />          
+        }
     </div>
 </div>
