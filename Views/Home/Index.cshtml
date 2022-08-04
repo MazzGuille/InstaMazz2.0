@@ -8,51 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <div class="container">
-
-    @*<div class="container" >
-            <div class="row">
-                <div class="col-md-6 details">
-                    <div class="col-md-6 img">
-                        <img src="/Upload/@Model.imagenPerf" alt="Imagen de perfil" class="img-rounded imagen" style="width: 100px; height: 100px" />
-                    </div>
-                    <div class="col-md-6 details">
-                        <h3>@Model.Nombre</h3>
-                        <p>@Model.UserName</p>
-                        <p>@Model.email</p>
-                    </div>
-                </div>
-            </div>
-        </div>*@
-
-    <!--<div class="container" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 50px; width: 100vw; padding: 0; margin: 0;">-->
-    @*@if (Session["ImgPerf"] != null)
-        {*@
-    <!--<div>
-        <img src="/Upload/@Model.imagenPerf" alt="Imagen de perfil" class="img-rounded imagen" style="width: 150px; height: 150px" />
-    </div>-->
-    @*}
-         else
-        {
-         <div>
-             <img src="~/Content/CSS/avatar.jpg" alt="Imagen de perfil" class="img-rounded imagen" style="width: 150px; height: 150px" />
-         </div>
-        }*@
-
-
-    <!--<div style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 1.5px;">
-            <h3>@Model.Nombre</h3>
-            <p>@Model.UserName</p>
-            <p>@Model.email</p>
-        </div>
-
-
-    </div>-->
-
-
-    <div class="card " style="max-width: 60vw;">
+    <div class="card mb-3" style="max-width: 60vw;">
         <div class="row g-0">
-            <div class="col-md-4" >
-                <img  src="/Upload/@Model.imagenPerf" class="img-fluid rounded-start h-100 w-100">
+            <div class="col-md-4">
+                <img src="/Upload/@Model.imagenPerf" class="img-fluid rounded-start h-100 w-100">
             </div>
             <div class="col-md-8">
                 <div class="card-body">
@@ -78,18 +37,20 @@
 
     <div class="container">
         <!--<div class="container boton-container">-->
-            @*<div class="btn btn-success btn-lg"> <i class="bi bi-plus-circle"></i> <a>@Html.ActionLink("Crear Publicación", "CrearPost", "Post")</a> </div>
-                <div class="btn btn-info btn-lg"><i class="bi bi-pencil"></i><a>@Html.ActionLink("editar", "EditarPerfil", "Acceso")</a></div>*@
+        @*<div class="btn btn-success btn-lg"> <i class="bi bi-plus-circle"></i> <a>@Html.ActionLink("Crear Publicación", "CrearPost", "Post")</a> </div>
+            <div class="btn btn-info btn-lg"><i class="bi bi-pencil"></i><a>@Html.ActionLink("editar", "EditarPerfil", "Acceso")</a></div>*@
 
-            <!--<form action="@Url.Action("CrearPost", "Post")">
+        <!--<form action="Url.Action("CrearPost", "Post")">
                 <button type="submit" class="btn btn-success btn-lg"><i class="bi bi-plus-circle"></i> </button>
             </form>
 
-            <form action="@Url.Action("EditarPerfil", "Acceso")">
+            <form action="Url.Action("EditarPerfil", "Acceso")">
                 <button type="submit" class="btn btn-info btn-lg"><i class="bi bi-pencil"></i> </button>
             </form>
 
 
+        </div>-->
+        <div class="row">
             <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h1 style="color:darkturquoise;" class="gallery-title">Publicaciones</h1>
             </div>
@@ -109,7 +70,8 @@
                 </div>
             }
 
+
         </div>
     </div>
-    
+
 </div>
