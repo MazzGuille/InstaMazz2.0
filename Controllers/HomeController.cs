@@ -106,31 +106,33 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult BuscarView()
         {
-
             ViewBag.Buscar = Buscar().ToList();
+            
             return View();
         }
 
         [HttpPost]
-        public ActionResult Search(UsuarioModel oPersona)
+        public ActionResult Search(UsuarioModel oUsu)
         {
-            using (SqlConnection cn = new SqlConnection(cadena))
-            {
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
+            //obtengo el dato del input-> del formulario...
+            Session["busc"] = oUsu.Nombre;
 
-                cmd.Parameters.AddWithValue("buscar", oPersona.Nombre);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-
-            }
-
+            //redireccionamos a la vista donde se ve los datos...
             return RedirectToAction("BuscarView", "Home");
         }
 
         public List<UsuarioModel> Buscar()
         {
             var oLista = new List<UsuarioModel>();
+            //obtengo el dato de la barible...
+            var usu = Session["busc"];
+
+            //verifico si la variable existe o si es null..
+            if(usu == null)
+            {
+                //si la variable es null se lo coloca un vacio...
+                usu = "";
+            }
 
 
 
@@ -138,10 +140,8 @@ namespace InstaMazz2._0.Controllers
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
-                cmd.Parameters.AddWithValue("Usu", null);
-
-
+                SqlCommand cmd = new SqlCommand("SP_Buscar", cn);
+                cmd.Parameters.AddWithValue("usu", usu);
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
