@@ -8,21 +8,23 @@
     <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
 </head>
 
-<h1>Crear Publicación</h1>
 
-<form action="@Url.Action("CrearPost", "Post")" method="post">
-    <div class="form-group">
-        <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display:none">
-    </div>
-    <div class="form-group">
-        <input name="UserName" type="text" class="form-control" value="@ViewBag.UserName" style="display:none">
-    </div>
-    <div class="form-group">
-        <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">
-    </div>
-    <div class="form-group">
-        <input name="Descripcion" type="text" class="form-control" placeholder="descripción">
-    </div>
-    <button type="submit" class="btn btn-primary">Crear Publicación</button>
-</form>
+<div class="p-5">
+    <h1>Crear Publicación</h1>
 
+    <form action="@Url.Action("CrearPost", "Post")" method="post">
+        <div class="form-group">
+            <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display:none">
+        </div>
+        <div class="form-group">
+            <input name="UserName" type="text" class="form-control" value="@ViewBag.UserName" style="display:none">
+        </div>
+        <div class="form-group">
+            <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">
+        </div>
+        <div class="form-group">
+            <input name="Descripcion" type="text" class="form-control" placeholder="descripción">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear Publicación</button>
+    </form>
+</div>

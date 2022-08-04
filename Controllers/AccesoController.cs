@@ -243,6 +243,7 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.NomUs = model.UserName;
                 ViewBag.Celec = model.email;
                 ViewBag.Bio = model.BioUsuario;
+                ViewBag.Img = model.imagenPerf;
 
                 return View();
             }

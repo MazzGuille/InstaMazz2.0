@@ -8,42 +8,51 @@
     <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
 </head>
 
-<h2>EditarPerfil</h2>
+<div class="p-5 w-100 ms-5 d-flex flex-column align-items-center justify-content-center">
+    <h2>EditarPerfil</h2>
 
-<form action="@Url.Action("EditarPerfil", "Acceso")" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display: none">
-    </div>
-    <div class="form-group">
-        Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control">
-    </div>
+    <div class="card p-3" style="width: 35vw">
 
-    <div class="form-group">
-        Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control">
-    </div>
 
-    <div class="form-group">
-        Bio <input name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control" style="height: 80px;">
-    </div>
-    
-    <div class="form-group">
-        Imagen de perfil <input type="file" name="ImagenPerfil" value="@ViewBag.Img" class="form-control input_pass">
-    </div>
+        <form action="@Url.Action("EditarPerfil", "Acceso")" method="post" enctype="multipart/form-data">
 
-    @if (ViewBag.NombreNull != null)
-    {
-        <div class="alert alert-danger" role="alert">
-            @ViewBag.NombreNull
-        </div>
-    }
+            <div class="form-group">
+                <img class="img-fluid rounded-start h-100 w-100" src="/Upload/@ViewBag.Img" />
+                Imagen de perfil <input type="file" name="ImagenPerfil" value="@ViewBag.Img" class="form-control input_pass">
+            </div>
 
-    @if (ViewBag.UserNameNull != null)
-    {
-        <div class="alert alert-danger" role="alert">
-            @ViewBag.UserNameNull
-        </div>
-    }
-    <div class="d-flex mt-3 ">
-        <button type="submit" class="btn btn-success">Editar</button>
+            <div class="form-group">
+                <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display: none">
+            </div>
+
+            <div class="form-group">
+                Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control">
+            </div>
+
+            <div class="form-group">
+                Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control">
+            </div>
+
+            <div class="form-group">
+                Bio <input name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control" style="height: 80px;">
+            </div>
+
+            @if (ViewBag.NombreNull != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.NombreNull
+                </div>
+            }
+
+            @if (ViewBag.UserNameNull != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.UserNameNull
+                </div>
+            }
+            <div class="d-flex mt-3 ">
+                <button type="submit" class="btn btn-success">Editar</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>

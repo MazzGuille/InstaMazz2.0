@@ -14,15 +14,15 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="padding-top: 100px;">
+<body>
       <nav class="navbar navbar-expand-lg bg-secondary" style="top: 0; position: fixed; height: 10px; width: 100%; z-index:999;">
-        <a class="navbar-brand" @Html.ActionLink("InstaMazz", "Index", "Home") </a>
+          <a class="navbar-brand"> @Html.ActionLink("InstaMazz", "Index", "Home")</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav">
-                <li class="links">@Html.ActionLink("Inicio", "FeedView", "Post")</li>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav col-12 d-flex justify-content-end pe-4">
+                <li>@Html.ActionLink("Inicio", "FeedView", "Post")</li>
                 <li>@Html.ActionLink("Perfil", "Index", "Home")</li>
                 <li>@Html.ActionLink("Buscar", "BuscarView", "Home")</li>
                 <li>@Html.ActionLink("Salir", "CerrarSesion", "Home")</li>

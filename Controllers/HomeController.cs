@@ -106,15 +106,9 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult BuscarView()
         {
-            if (Search() == null)
-            {
-                ViewBag.Buscar = Buscar().ToList();
-                return View();
-            }
-            else
-            {
 
-            }
+            ViewBag.Buscar = Buscar().ToList();
+            return View();
         }
 
         [HttpPost]
@@ -125,7 +119,7 @@ namespace InstaMazz2._0.Controllers
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
 
-                cmd.Parameters.AddWithValue("Nombre", oPersona.Nombre);
+                cmd.Parameters.AddWithValue("buscar", oPersona.Nombre);
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -138,10 +132,15 @@ namespace InstaMazz2._0.Controllers
         {
             var oLista = new List<UsuarioModel>();
 
+
+
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
+                cmd.Parameters.AddWithValue("Usu", null);
+
 
 
                 cmd.CommandType = CommandType.StoredProcedure;
