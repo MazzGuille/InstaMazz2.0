@@ -20,12 +20,12 @@ namespace InstaMazz2._0.Controllers
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
 
         UsuarioModel model = new UsuarioModel();
-        public ActionResult Index()
+        public ActionResult Index(string idE)
         {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
-                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                cmd.Parameters.AddWithValue("idEmail", idE);//Session["usuario"]
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cn.Open();
@@ -53,6 +53,13 @@ namespace InstaMazz2._0.Controllers
             ViewBag.Publicaciones = ListaPublicaiones();
 
             return View(model);
+        }
+
+        public ActionResult PerfilUsu()
+        {
+            var _id = Session["usuario"];
+            return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
+            //return Index(_id.ToString());
         }
 
         public List<PublicacionesModel> ListaPublicaiones()

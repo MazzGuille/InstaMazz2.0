@@ -135,6 +135,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult FeedView()
         {
             ViewBag.Feed = Feed().ToList();
+            ViewBag.Ids = Session["usuario"];
             return View();
         }
 
