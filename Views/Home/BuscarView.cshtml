@@ -7,24 +7,24 @@
 
 <div class="px-5">
 
-    <div>
-        @using (Html.BeginForm("BuscarView", "Home"))
+    @*<div>
+        @using (Html.BeginForm("Buscar", "Home"))
         {
             <div class="search">
-                <input type="search" name="BuscarView"><button type="submit">Search</button>
+                <input type="text" name="Nombre"><button type="submit">Search</button>
             </div>
         }
-    </div>
+    </div>*@
 
 
-    @*<form action="@Url.Action("BuscarView","Home")">
+    <form action="@Url.Action("Buscar","Home")">
         <div class="input-group">
-            <input class="form-control" asp-for="Buscar" />
+            <input name="Nombre" type="text" class="form-control"/>
             <div class="input-group-append">
                 <button type="submit" class="btn btn-success">Buscar</button>
             </div>
         </div>
-    </form>*@
+    </form>
 
 
     <div class="container">

@@ -18,10 +18,10 @@ namespace InstaMazz2._0.Controllers
     public class HomeController : Controller
     {
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
+
+        UsuarioModel model = new UsuarioModel();
         public ActionResult Index()
         {
-            UsuarioModel model = new UsuarioModel();
-
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
@@ -106,10 +106,33 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult BuscarView()
         {
-            ViewBag.Buscar = Buscar().ToList();
-            return View();
+            if (Search() == null)
+            {
+                ViewBag.Buscar = Buscar().ToList();
+                return View();
+            }
+            else
+            {
+
+            }
         }
 
+        [HttpPost]
+        public ActionResult Search(UsuarioModel oPersona)
+        {
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Buscar", cn);
+
+                cmd.Parameters.AddWithValue("Nombre", oPersona.Nombre);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+
+            }
+
+            return RedirectToAction("BuscarView", "Home");
+        }
 
         public List<UsuarioModel> Buscar()
         {
