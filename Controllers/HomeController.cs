@@ -60,6 +60,8 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult MePerfil(string email)
         {
+            //obtenemos el email / correo del usuario al que vamos a mandar la invitacion...
+            // o ver sus publicaciones...
             return RedirectToAction("Index", "Home", new { idE = email });
         }
 
@@ -166,7 +168,6 @@ namespace InstaMazz2._0.Controllers
                             Email = dr["Email"].ToString(),
                             imagenPerf = _byteString
                         });
-
                     }
                 }
             }
