@@ -37,7 +37,8 @@
                     <div>
                         <h2>Nombre: @item.Nombre</h2>
                         <h4>User Name: @item.UserName</h4>
-                        <a>@Html.ActionLink("ir a perfil", "Index", "Home", new {@class = "btn btn-primary"})</a>                       
+                        <a>@Html.ActionLink("Ir a Perfil", "MePerfil", "Home",new { email ='"'& item.email &'"' }, new {@class="btn btn-primary"})</a>
+                        @*"ir a perfil", "MePerfil", "Home", new { email = 1}, new {@class = "btn btn-primary"}*@
                     </div>
                 </div>
                 <br />
