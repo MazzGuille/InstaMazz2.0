@@ -61,15 +61,9 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
         }
 
-        public ActionResult MePerfil(int id, string email)
+        public ActionResult MePerfil(string email)
         {
-
-            var result = Request.RawUrl;
-
-            var r = result;
-
-            //return _idPerfil;
-            return RedirectToAction("Index", "Home", new { idE = "test1@gmail.com" });
+            return RedirectToAction("Index", "Home", new { idE = email });
         }
 
         public List<PublicacionesModel> ListaPublicaiones()
