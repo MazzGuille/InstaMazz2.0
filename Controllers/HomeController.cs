@@ -59,7 +59,6 @@ namespace InstaMazz2._0.Controllers
         {
             var _id = Session["usuario"];
             return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
-            //return Index(_id.ToString());
         }
 
         public List<PublicacionesModel> ListaPublicaiones()
