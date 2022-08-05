@@ -19,7 +19,7 @@ namespace InstaMazz2._0.Models
         [Required]
         public string Contraseña { get; set; }
 
-        public string email { get; set; }
+        public string Email { get; set; }
 
         public byte ImagenPerfil { get; set; }
 

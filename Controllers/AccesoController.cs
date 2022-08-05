@@ -32,7 +32,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult Login(UsuarioModel oUsuario)
         {
 
-            if (string.IsNullOrEmpty(oUsuario.email))
+            if (string.IsNullOrEmpty(oUsuario.Email))
             {
                 ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
                 return View();
@@ -49,7 +49,7 @@ namespace InstaMazz2._0.Controllers
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_ValidarUsuario", cn);
-                cmd.Parameters.AddWithValue("email", oUsuario.email);
+                cmd.Parameters.AddWithValue("email", oUsuario.Email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -62,7 +62,7 @@ namespace InstaMazz2._0.Controllers
 
             if (oUsuario.IdUsuario != 0)
             {
-                var usu = oUsuario.email;
+                var usu = oUsuario.Email;
                 Session["usuario"] = usu;
 
                 var IdUsu = oUsuario.IdUsuario;
@@ -101,7 +101,7 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
-            if (string.IsNullOrEmpty(oUsuario.email))
+            if (string.IsNullOrEmpty(oUsuario.Email))
             {
                 ViewBag.MailNull = "El campo \"E-Mail\" es requerido";
                 return View();
@@ -116,13 +116,13 @@ namespace InstaMazz2._0.Controllers
             //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
             var ruta = Server.MapPath("~/Upload");
-            byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.email);
+            byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
 
             bool registrado;
             string mensaje;
             bool email;
 
-            email = oUsuario.email.Contains('.');
+            email = oUsuario.Email.Contains('.');
 
             if (email == false)
             {
@@ -172,7 +172,7 @@ namespace InstaMazz2._0.Controllers
                 var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
                 cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
                 cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
-                cmd.Parameters.AddWithValue("email", oUsuario.email);
+                cmd.Parameters.AddWithValue("email", oUsuario.Email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);//_byteString
                 cmd.Parameters.AddWithValue("BioUsuario", oUsuario.BioUsuario);
@@ -231,7 +231,7 @@ namespace InstaMazz2._0.Controllers
                             var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
                             model.Nombre = dr["Nombre"].ToString();
-                            model.email = dr["email"].ToString();
+                            model.Email = dr["email"].ToString();
                             model.UserName = dr["UserName"].ToString();
                             model.BioUsuario = dr["BioUsuario"].ToString();
                             model.imagenPerf = _byteString;
@@ -241,7 +241,7 @@ namespace InstaMazz2._0.Controllers
 
                 ViewBag.Nom = model.Nombre;
                 ViewBag.NomUs = model.UserName;
-                ViewBag.Celec = model.email;
+                ViewBag.Celec = model.Email;
                 ViewBag.Bio = model.BioUsuario;
                 ViewBag.Img = model.imagenPerf;
 
@@ -262,7 +262,7 @@ namespace InstaMazz2._0.Controllers
             if (ImgPerfil.FileName != "")
             {
                 var ruta = Server.MapPath("~/Upload");
-                _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsario.email);
+                _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsario.Email);
             }
             else
             {

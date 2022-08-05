@@ -39,7 +39,7 @@ namespace InstaMazz2._0.Controllers
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
                         model.Nombre = dr["Nombre"].ToString();
-                        model.email = dr["email"].ToString();
+                        model.Email = dr["email"].ToString();
                         model.UserName = dr["UserName"].ToString();
                         model.imagenPerf = _byteString;
                         model.BioUsuario = dr["BioUsuario"].ToString();
@@ -61,17 +61,21 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
         }
 
-        public ActionResult MePerfil(string email)
+        public ActionResult MePerfil(int id, string email)
         {
-            var _idPerfil = email;
 
-            var result = Request.Url;
+            var result = Request.RawUrl;
 
             var r = result;
 
             //return _idPerfil;
-            return RedirectToAction("Index", "Home", new { idE = _idPerfil });
+            return RedirectToAction("Index", "Home", new { idE = "test1@gmail.com" });
         }
+
+        //private string ObtenerUrl(string url)
+        //{
+        //    string _url = url
+        //}
 
         public List<PublicacionesModel> ListaPublicaiones()
         {
@@ -151,9 +155,6 @@ namespace InstaMazz2._0.Controllers
                 //si la variable es null se lo coloca un vacio...
                 usu = "";
             }
-
-
-
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
