@@ -64,16 +64,16 @@
                         @*<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
                         <h4 class="card-text"><small class="text-muted">@Model.UserName</small></h4>
                         <div class="d-flex flex-row justify-content-start gap-3">
-                            <form action="@Url.Action("CrearPost", "Post")">
-                                <button type="submit" class="btn btn-success btn-lg"><i class="bi bi-plus-circle"></i> </button>
-                            </form>
-
-                            <form action="@Url.Action("EditarPerfil", "Acceso")">
-                                <button type="submit" class="btn btn-info btn-lg"><i class="bi bi-pencil"></i> </button>
-                            </form>
+                            @if (ViewBag.usu) { 
+                                <form action="@Url.Action("CrearPost", "Post")">
+                                    <button type="submit" class="btn btn-success btn-lg"><i class="bi bi-plus-circle"></i> </button>
+                                </form>
+                                <form action="@Url.Action("EditarPerfil", "Acceso")">
+                                    <button type="submit" class="btn btn-info btn-lg"><i class="bi bi-pencil"></i> </button>
+                                </form>
+                            }
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -150,9 +150,11 @@
                             @*<div class="btn btn-danger btn-lg"> <i class="bi bi-trash"></i>@Html.ActionLink(" ", "ListarVista", "Post")</div>*@
 
                         </div>
-                        <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
-                            <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-trash"></i> </button>
-                        </form>
+                        @if (ViewBag.usu){
+                            <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
+                                <button type="submit" class="btn btn-danger btn-lg"><i class="bi bi-trash"></i> </button>
+                            </form>
+                         }
                     </div>
                 }
 

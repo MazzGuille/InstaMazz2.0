@@ -22,6 +22,7 @@ namespace InstaMazz2._0.Controllers
         UsuarioModel model = new UsuarioModel();
         public ActionResult Index(string idE)
         {
+            bool usu;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
@@ -46,8 +47,18 @@ namespace InstaMazz2._0.Controllers
                     }
                 }
             }
-
+            string _exiteUsu = Session["usuario"].ToString();
+            if(_exiteUsu == idE)
+            {
+                usu = true;
+            }
+            else
+            {
+                usu = false;
+            }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
+            //usu = Convert.ToBoolean(_exiteUsu.Length);
+            ViewBag.usu = usu;
 
             return View(model);
         }
