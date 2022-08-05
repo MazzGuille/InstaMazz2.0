@@ -54,14 +54,14 @@ namespace InstaMazz2._0.Controllers
 
             return View(model);
         }
-
+        //REVISAR ACA ---------------------------------------------------------------------------
         public ActionResult PerfilUsu()
         {
             var _id = Session["usuario"];
             return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
             //return Index(_id.ToString());
         }
-
+        //REVISAR ACA ---------------------------------------------------------------------------
         public List<PublicacionesModel> ListaPublicaiones()
         {
             var oLista = new List<PublicacionesModel>();
