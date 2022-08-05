@@ -172,6 +172,7 @@ namespace InstaMazz2._0.Controllers
                             Nombre = dr["Nombre"].ToString(),
                             UserName = dr["UserName"].ToString(),
                             IdUsuario = ((int)dr["IdUsuario"]),
+                            Email = dr["Email"].ToString(),
                             imagenPerf = _byteString
                         });
 
