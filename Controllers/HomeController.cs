@@ -39,7 +39,7 @@ namespace InstaMazz2._0.Controllers
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
                         model.Nombre = dr["Nombre"].ToString();
-                        model.Email = dr["email"].ToString();
+                        model.Email = dr["Email"].ToString();
                         model.UserName = dr["UserName"].ToString();
                         model.imagenPerf = _byteString;
                         model.BioUsuario = dr["BioUsuario"].ToString();
@@ -55,7 +55,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult PerfilUsu()
         {
             var _id = Session["usuario"];
-            return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
+            return RedirectToAction("Index", "Home", new { idE = _id.ToString() });
         }
 
         public ActionResult MePerfil(string email)
@@ -117,7 +117,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult BuscarView()
         {
             ViewBag.Buscar = Buscar().ToList();
-            
+
             return View();
         }
 
@@ -138,7 +138,7 @@ namespace InstaMazz2._0.Controllers
             var usu = Session["busc"];
 
             //verifico si la variable existe o si es null..
-            if(usu == null)
+            if (usu == null)
             {
                 //si la variable es null se lo coloca un vacio...
                 usu = "";

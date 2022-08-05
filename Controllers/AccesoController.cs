@@ -49,7 +49,7 @@ namespace InstaMazz2._0.Controllers
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_ValidarUsuario", cn);
-                cmd.Parameters.AddWithValue("email", oUsuario.Email);
+                cmd.Parameters.AddWithValue("Email", oUsuario.Email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -172,7 +172,7 @@ namespace InstaMazz2._0.Controllers
                 var cmd = new SqlCommand("sp_RegistrarUsuario", cn);
                 cmd.Parameters.AddWithValue("Nombre", oUsuario.Nombre);
                 cmd.Parameters.AddWithValue("UserName", oUsuario.UserName);
-                cmd.Parameters.AddWithValue("email", oUsuario.Email);
+                cmd.Parameters.AddWithValue("Email", oUsuario.Email);
                 cmd.Parameters.AddWithValue("Contraseña", oUsuario.Contraseña);
                 cmd.Parameters.AddWithValue("ImagenPerfil", _byteString);//_byteString
                 cmd.Parameters.AddWithValue("BioUsuario", oUsuario.BioUsuario);
@@ -231,7 +231,7 @@ namespace InstaMazz2._0.Controllers
                             var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
                             model.Nombre = dr["Nombre"].ToString();
-                            model.Email = dr["email"].ToString();
+                            model.Email = dr["Email"].ToString();
                             model.UserName = dr["UserName"].ToString();
                             model.BioUsuario = dr["BioUsuario"].ToString();
                             model.imagenPerf = _byteString;
@@ -297,7 +297,7 @@ namespace InstaMazz2._0.Controllers
 
                 cmd.ExecuteNonQuery();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
         }
 
         public static string ConvertirSHA256(string text)
