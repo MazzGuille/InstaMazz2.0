@@ -44,9 +44,6 @@ namespace InstaMazz2._0.Controllers
                         model.imagenPerf = _byteString;
                         model.BioUsuario = dr["BioUsuario"].ToString();
                     }
-                    //Session["UsName"] = model.UserName;
-
-
                 }
             }
 
