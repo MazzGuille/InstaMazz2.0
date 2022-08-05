@@ -73,7 +73,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
         }
 
 

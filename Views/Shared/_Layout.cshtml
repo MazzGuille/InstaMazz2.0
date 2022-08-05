@@ -8,29 +8,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
-    <link href="~/Content/CSS/site.css" rel="stylesheet" />
+    @*<link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
+    <link href="~/Content/CSS/site.css" rel="stylesheet" />*@
     <title>@ViewBag.Title - InstaMazz</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
-    @*style="padding-top: 100px;"*@
-    @*style="top: 0; position: fixed; height: 10px; width: 100%; z-index:999;"*@
-      <nav class="navbar navbar-expand-lg bg-secondary" style="top: 0; position: fixed; height: 10px; width: 100%; z-index:999;">
-          <a class="navbar-brand"> @Html.ActionLink("InstaMazz", "Index", "Home")</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav col-12 d-flex justify-content-end pe-4">
-                <li>@Html.ActionLink("Inicio", "FeedView", "Post")</li>
-                <li>@Html.ActionLink("Perfil", "PerfilUsu", "Home")</li>
-                <li>@Html.ActionLink("Buscar", "BuscarView", "Home")</li>
-                <li>@Html.ActionLink("Salir", "CerrarSesion", "Home")</li>
-            </ul>
-        </div>
-    </nav>
+<body style="padding:0;">
+   
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand" href="#">InstaMazz</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="@Url.Action("FeedView","Post")">Inicio</a>
+                    <a class="nav-item nav-link" href="@Url.Action("PerfilUsu","Home")">Perfil</a>
+                    <a class="nav-item nav-link" href="@Url.Action("BuscarView","Home")">Buscar</a>
+                    <a class="nav-item nav-link" href="@Url.Action("CerrarSesion","Home")">Salir</a>
+                </div>
+            </div>
+        </nav>
+    </div>
 
 
 
