@@ -59,7 +59,18 @@ namespace InstaMazz2._0.Controllers
         {
             var _id = Session["usuario"];
             return RedirectToAction("Index", "Home", new { idE = _id.ToString()});
-            //return Index(_id.ToString());
+        }
+
+        public ActionResult MePerfil(string email)
+        {
+            var _idPerfil = email;
+
+            var result = Request.Url;
+
+            var r = result;
+
+            //return _idPerfil;
+            return RedirectToAction("Index", "Home", new { idE = _idPerfil });
         }
         //REVISAR ACA ---------------------------------------------------------------------------
         public List<PublicacionesModel> ListaPublicaiones()
