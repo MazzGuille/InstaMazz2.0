@@ -47,7 +47,7 @@ namespace InstaMazz2._0.Controllers
                 }
             }
 
-            ViewBag.Publicaciones = ListaPublicaiones();
+            ViewBag.Publicaciones = ListaPublicaiones(idE);
 
             return View(model);
         }
@@ -65,7 +65,7 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home", new { idE = email });
         }
 
-        public List<PublicacionesModel> ListaPublicaiones()
+        public List<PublicacionesModel> ListaPublicaiones(string idE)
         {
             var oLista = new List<PublicacionesModel>();
 
@@ -73,7 +73,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Obtener", cn);
-                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                cmd.Parameters.AddWithValue("idEmail", idE);//Session["usuario"]
 
                 cmd.CommandType = CommandType.StoredProcedure;
 
