@@ -54,7 +54,7 @@ namespace InstaMazz2._0.Controllers
 
             return View(model);
         }
-
+        //REVISAR ACA ---------------------------------------------------------------------------
         public ActionResult PerfilUsu()
         {
             var _id = Session["usuario"];
@@ -71,11 +71,6 @@ namespace InstaMazz2._0.Controllers
             //return _idPerfil;
             return RedirectToAction("Index", "Home", new { idE = "test1@gmail.com" });
         }
-
-        //private string ObtenerUrl(string url)
-        //{
-        //    string _url = url
-        //}
 
         public List<PublicacionesModel> ListaPublicaiones()
         {
