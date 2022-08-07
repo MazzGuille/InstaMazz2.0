@@ -4,14 +4,12 @@
     ViewBag.Title = "EditarPerfil";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*<head>
-    <link href="~/Content/CSS/Perfil.css" rel="stylesheet" />
-</head>*@
 
-<div class="p-5 mt-5 w-100 ms-5 d-flex flex-column align-items-center justify-content-center">
+
+<div class="row p-0 mt-3 mx-2 w-100 d-flex flex-column align-items-center justify-content-center w-100">
     <h2>EditarPerfil</h2>
 
-    <div class="card p-3" style="width: 35vw">
+    <div class="card col-xs-12 col-md-7 col-lg-5 p-3">
 
 
         <form action="@Url.Action("EditarPerfil", "Acceso")" method="post" enctype="multipart/form-data">
