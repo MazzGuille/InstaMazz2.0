@@ -57,7 +57,6 @@ namespace InstaMazz2._0.Controllers
                 usu = false;
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
-            //usu = Convert.ToBoolean(_exiteUsu.Length);
             ViewBag.usu = usu;
 
             return View(model);
