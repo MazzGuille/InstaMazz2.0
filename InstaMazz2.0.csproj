@@ -325,11 +325,11 @@
     <Content Include="Views\Acceso\EditarPerfil.cshtml" />
     <Content Include="Views\Post\FeedView.cshtml" />
     <Content Include="Views\Home\BuscarView.cshtml" />
+    <Content Include="Views\Amigos\SolicitudesVista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Upload\" />
-    <Folder Include="Views\Amigos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
