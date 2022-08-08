@@ -63,6 +63,7 @@ namespace InstaMazz2._0.Controllers
             if (_act)
             {
                 _btn = true;
+                var r = Session["IdUsuAmigo"]; //Session["IdUsuAmigo"]
             }
             else
             {
@@ -74,12 +75,11 @@ namespace InstaMazz2._0.Controllers
                 {
                     _btn = false;
                 }
-
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = usu;
-            ViewBag.nBTN = _btn;
-
+            ViewBag.nBTN = _btn; // para el boton de enviar solicitud.. si es true o false...
+            ViewBag.IdUsuAmigo = Session["IdUsuAmigo"];
             return View(model);
         }
 
@@ -102,7 +102,7 @@ namespace InstaMazz2._0.Controllers
                         while (dr.Read())
                         {
                             ViewBag.IdUsu = (int)dr["IdUsu"];
-                            ViewBag.IdUsuAmigo = (int)dr["IdUsuAmigo"];
+                            Session["IdUsuAmigo"] = (int)dr["IdUsuAmigo"];
                             _verificar = (int)dr["Activo"];
 
                             ////verificamos si trae un cero... si existe la solicitud...
