@@ -16,13 +16,15 @@ namespace InstaMazz2._0.Controllers
     {
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
         // GET: Amigos
-        public ActionResult AgregarAmigo(Amigos oAmigo)
+        public ActionResult AgregarAmigo(int nSolt, string idemail) //Amigos oAmigo
         {
-            if (oAmigo.Activo != 0 && oAmigo.Activo != 1)
-            {
-                oAmigo.Activo = 0;
-            }
-            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
+            //si es 0 el btn va hacer de color azul..
+            //sino el btn va hacer de color rojo...
+            Session["activ"] = nSolt;
+            //enviamos los datos al metodo de agregar amigos...
+            AgregarAmg(Session["usuario"].ToString(), idemail, nSolt);
+            //retornamos la vista del usuario...
+            return RedirectToAction("Index", "Home", new { idE = idemail });
         }
 
         public ActionResult SolicitudesVista()
@@ -30,6 +32,30 @@ namespace InstaMazz2._0.Controllers
             ViewBag.listaSolicitudes = Solicitudes().ToList();
             return View();
             //return View(Listar());
+        }
+
+        //CREAR EL MEDO DE AGREGAR...
+        private bool AgregarAmg(string EmailMio, string EmailAmigo, int Bits)
+        {
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_Insert_Amigos", cn);
+                    cmd.Parameters.AddWithValue("Email_Mio", EmailMio);
+                    cmd.Parameters.AddWithValue("Email_Amigo", EmailAmigo);
+                    cmd.Parameters.AddWithValue("Solict", Bits);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    return false;
+                }
+            }
         }
 
         public List<Amigos> Solicitudes()

@@ -34,9 +34,24 @@
                             }
                             else
                             {
-                                <form action="@Url.Action("AgregarAmigo", "Amigos")">
-                                    <button type="submit" class="btn btn-primary btn-s gap-3"><i class="bi bi-person-plus"></i> Enviar Invitación</button>
-                                </form>
+                                @*<form action="@Url.Action("AgregarAmigo", "Amigos", new { nSolt = 1})">
+                                    @if (ViewBag.nBTN)
+                                    {
+                                        <button type="submit" class="btn btn-danger btn-s gap-3"><i class="bi bi-person-plus"></i> Cancelar Invitación</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-primary btn-s gap-3"><i class="bi bi-person-plus"></i> Enviar Invitación</button>
+                                    }
+                                </form>*@
+                                if (ViewBag.nBTN)
+                                {
+                                    <a><i class="bi bi-person-minus"></i>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
+                                }
+                                else
+                                {
+                                    <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                }
                             }
                         </div>
                     </div>

@@ -23,6 +23,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult Index(string idE)
         {
             bool usu;
+            bool _btn;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
@@ -56,8 +57,17 @@ namespace InstaMazz2._0.Controllers
             {
                 usu = false;
             }
+            if (Convert.ToBoolean(Session["activ"]))
+            {
+                _btn = true;
+            }
+            else
+            {
+                _btn = false;
+            }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = usu;
+            ViewBag.nBTN = _btn;
 
             return View(model);
         }
@@ -127,7 +137,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult BuscarView()
         {
             ViewBag.Buscar = Buscar().ToList();
-
+            ViewBag.nBTN = false;
             return View();
         }
 
