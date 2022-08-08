@@ -270,6 +270,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Amigos.cs" />
     <Compile Include="Models\PublicacionesModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Permisos\ValidarSesionAttribute.cs" />
