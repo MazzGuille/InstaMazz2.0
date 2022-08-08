@@ -57,13 +57,24 @@ namespace InstaMazz2._0.Controllers
             {
                 usu = false;
             }
-            if (Convert.ToBoolean(Session["activ"]))
+
+            //verificamos si tiene solicitud... si es tru o false...
+            bool _act = ObtenerSolicitud(idE);
+            if (_act)
             {
                 _btn = true;
             }
             else
             {
-                _btn = false;
+                if (Convert.ToBoolean(Session["activ"]))
+                {
+                    _btn = true;
+                }
+                else
+                {
+                    _btn = false;
+                }
+
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = usu;
@@ -71,6 +82,48 @@ namespace InstaMazz2._0.Controllers
 
             return View(model);
         }
+
+        //Metodo para Obtener si Enviamos Solicitud O no...
+        private bool ObtenerSolicitud(string idE)
+        {
+            //vamos a guardar el numero, del activo, eso si existe solicitudes para el usuario...
+            int _verificar;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_Amigos", cn);
+                    cmd.Parameters.AddWithValue("email", idE);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    using (var dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            ViewBag.IdUsu = (int)dr["IdUsu"];
+                            ViewBag.IdUsuAmigo = (int)dr["IdUsuAmigo"];
+                            _verificar = (int)dr["Activo"];
+
+                            ////verificamos si trae un cero... si existe la solicitud...
+                            //_verificar = (int)dr["Activo"];
+                            if (_verificar == 0)
+                            {
+                                Session["activ"] = 1;
+                            }
+                        }
+                    }
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+
+            }
+        }
+
         //REVISAR ACA ---------------------------------------------------------------------------
         public ActionResult PerfilUsu()
         {

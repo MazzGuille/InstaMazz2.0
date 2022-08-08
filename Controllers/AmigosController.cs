@@ -27,13 +27,6 @@ namespace InstaMazz2._0.Controllers
             return RedirectToAction("Index", "Home", new { idE = idemail });
         }
 
-        public ActionResult SolicitudesVista()
-        {
-            ViewBag.listaSolicitudes = Solicitudes().ToList();
-            return View();
-            //return View(Listar());
-        }
-
         //CREAR EL MEDO DE AGREGAR...
         private bool AgregarAmg(string EmailMio, string EmailAmigo, int Bits)
         {
@@ -58,10 +51,16 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
+        public ActionResult SolicitudesVista()
+        {
+            ViewBag.listaSolicitudes = Solicitudes().ToList();
+            return View();
+        }
+
         public List<Amigos> Solicitudes()
         {
             List<Amigos> _lista = new List<Amigos>();
-
+            
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -83,7 +82,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.Nombre = dr["Nombre"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
 
-                        //oLista.UserName = dr["UserName"].ToString();
+                        
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
