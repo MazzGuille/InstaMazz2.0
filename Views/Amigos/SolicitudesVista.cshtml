@@ -2,8 +2,16 @@
 @{
     ViewBag.Title = "SolicitudesVista";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var solicitudes = ViewBag.listaSolicitudes;
 }
 <div style="margin-top: 10vh;">
     <h2>SolicitudesVista</h2>
 </div>
+
+@foreach (var item in solicitudes)
+{
+    <p>@item.IdUsu</p>
+    <p>@item.IdUsuAmigo</p>
+}
+
 

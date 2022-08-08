@@ -16,9 +16,13 @@ namespace InstaMazz2._0.Controllers
     {
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
         // GET: Amigos
-        public ActionResult AgregarAmigo()
+        public ActionResult AgregarAmigo(Amigos oAmigo)
         {
-            return View();
+            if (oAmigo.Activo != 0 && oAmigo.Activo != 1)
+            {
+                oAmigo.Activo = 0;
+            }
+            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
         }
 
         public ActionResult SolicitudesVista()

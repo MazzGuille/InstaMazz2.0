@@ -10,6 +10,6 @@ namespace InstaMazz2._0.Models
         public int Id { get; set; }
         public int IdUsu { get; set; }
         public int IdUsuAmigo { get; set; }
-        public int Activo { get; set; }
+        public int Activo { get; set; } = 3;
     }
 }
