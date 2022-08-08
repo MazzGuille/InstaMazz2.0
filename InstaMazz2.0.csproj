@@ -326,6 +326,7 @@
     <Content Include="Views\Post\FeedView.cshtml" />
     <Content Include="Views\Home\BuscarView.cshtml" />
     <Content Include="Views\Amigos\SolicitudesVista.cshtml" />
+    <Content Include="Views\Amigos\ListaAmigosVista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
