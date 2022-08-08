@@ -63,7 +63,7 @@ namespace InstaMazz2._0.Controllers
             if (_act)
             {
                 _btn = true;
-                var r = Session["IdUsuAmigo"]; //Session["IdUsuAmigo"]
+                int r = Convert.ToInt32(Session["IdUsuAmigo"]); //Session["IdUsuAmigo"]
             }
             else
             {
@@ -88,6 +88,7 @@ namespace InstaMazz2._0.Controllers
         {
             //vamos a guardar el numero, del activo, eso si existe solicitudes para el usuario...
             int _verificar;
+            int _idSesionAmig;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 try
@@ -102,9 +103,10 @@ namespace InstaMazz2._0.Controllers
                         while (dr.Read())
                         {
                             ViewBag.IdUsu = (int)dr["IdUsu"];
-                            Session["IdUsuAmigo"] = (int)dr["IdUsuAmigo"];
+                            _idSesionAmig = (int)dr["IdUsuAmigo"];
                             _verificar = (int)dr["Activo"];
 
+                            Session["IdUsuAmigo"] = _idSesionAmig;
                             ////verificamos si trae un cero... si existe la solicitud...
                             //_verificar = (int)dr["Activo"];
                             if (_verificar == 0)
