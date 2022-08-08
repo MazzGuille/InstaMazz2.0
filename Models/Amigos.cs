@@ -13,6 +13,7 @@ namespace InstaMazz2._0.Models
         public int Activo { get; set; }
         public string Nombre { get; set; }
         public string UserName { get; set; }
+        public string imagenPerf { get; set; }
 
     }
 }

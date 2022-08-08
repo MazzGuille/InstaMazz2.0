@@ -73,6 +73,9 @@ namespace InstaMazz2._0.Controllers
                 {
                     while (dr.Read())
                     {
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
                         Amigos oLista = new Amigos();
 
                         //agregamos al objeto...
@@ -82,6 +85,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.Activo = (int)dr["Activo"];
                         oLista.Nombre = dr["Nombre"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
+                        oLista.imagenPerf = _byteString;
 
                         //oLista.UserName = dr["UserName"].ToString();
 

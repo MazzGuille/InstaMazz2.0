@@ -10,9 +10,16 @@
 
 @foreach (var item in solicitudes)
 {
-    <div class="d-flex gap-3">
-        <p>@item.Nombre</p>
-        <p>@item.UserName</p>
+    <div class="row d-flex w-100 gap-3">
+        <div class="col-lg-4 col-xs-12">
+            <img src="/Upload/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <p>@item.Nombre</p>
+        </div>
+        <div class="col-lg-4 col-xs-12">
+            <p>@item.UserName</p>
+        </div>
     </div>
 }
 
