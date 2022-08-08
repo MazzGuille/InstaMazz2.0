@@ -24,6 +24,7 @@ namespace InstaMazz2._0.Controllers
         {
             bool usu;
             bool _btn;
+            int _idUsuAmigo;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
@@ -40,6 +41,7 @@ namespace InstaMazz2._0.Controllers
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
                         var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
 
+                        model.IdUsuario = (int)dr["IdUsuario"];
                         model.Nombre = dr["Nombre"].ToString();
                         model.Email = dr["Email"].ToString();
                         model.UserName = dr["UserName"].ToString();
@@ -63,7 +65,7 @@ namespace InstaMazz2._0.Controllers
             if (_act)
             {
                 _btn = true;
-                int r = Convert.ToInt32(Session["IdUsuAmigo"]); //Session["IdUsuAmigo"]
+                _idUsuAmigo = Convert.ToInt32(Session["IdUsuAmigo"]); //Session["IdUsuAmigo"]
             }
             else
             {
@@ -75,11 +77,12 @@ namespace InstaMazz2._0.Controllers
                 {
                     _btn = false;
                 }
+                _idUsuAmigo = 0;
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = usu;
             ViewBag.nBTN = _btn; // para el boton de enviar solicitud.. si es true o false...
-            ViewBag.IdUsuAmigo = Session["IdUsuAmigo"];
+            ViewBag.IdUsuAmigo = _idUsuAmigo;
             return View(model);
         }
 
@@ -106,12 +109,12 @@ namespace InstaMazz2._0.Controllers
                             _idSesionAmig = (int)dr["IdUsuAmigo"];
                             _verificar = (int)dr["Activo"];
 
-                            Session["IdUsuAmigo"] = _idSesionAmig;
                             ////verificamos si trae un cero... si existe la solicitud...
                             //_verificar = (int)dr["Activo"];
                             if (_verificar == 0)
                             {
                                 Session["activ"] = 1;
+                                Session["IdUsuAmigo"] = _idSesionAmig;
                             }
                         }
                     }
