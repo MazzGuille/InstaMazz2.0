@@ -10,8 +10,10 @@
 
 @foreach (var item in solicitudes)
 {
-    <p>@item.IdUsu</p>
-    <p>@item.IdUsuAmigo</p>
+    <div class="d-flex gap-3">
+        <p>@item.Nombre</p>
+        <p>@item.UserName</p>
+    </div>
 }
 
 

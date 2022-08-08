@@ -11,5 +11,8 @@ namespace InstaMazz2._0.Models
         public int IdUsu { get; set; }
         public int IdUsuAmigo { get; set; }
         public int Activo { get; set; }
+        public string Nombre { get; set; }
+        public string UserName { get; set; }
+
     }
 }
