@@ -91,8 +91,6 @@ namespace InstaMazz2._0.Controllers
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
-
-
                     }
                 }
                 //cerramos la Conexión...
