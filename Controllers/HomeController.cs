@@ -52,9 +52,10 @@ namespace InstaMazz2._0.Controllers
                 }
             }
             string _exiteUsu = Session["usuario"].ToString();
-            if(_exiteUsu == idE)
+            if (_exiteUsu == idE)
             {
                 _usu = true;
+                
             }
             else
             {
@@ -98,7 +99,7 @@ namespace InstaMazz2._0.Controllers
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = _usu;
             // para el boton de enviar solicitud.. si es true o false...
-            ViewBag.nBTN = _btn; 
+            ViewBag.nBTN = _btn;
             //pasamos si es fue aceptado o no la solicitud...
             ViewBag.Amigos = _serAmigo;
             //pasamos el id del usuario del amigo...
@@ -141,7 +142,7 @@ namespace InstaMazz2._0.Controllers
                         {
                             Session["amigxs"] = 1;
                         }
-                        
+
                         _esVerdFal = true;
                     }
                     else

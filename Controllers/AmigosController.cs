@@ -86,6 +86,8 @@ namespace InstaMazz2._0.Controllers
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
 
+                        Session["Estado"] = (int)oLista.Activo;
+
 
 
 

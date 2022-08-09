@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Perfil";
     var Publicaciones = ViewBag.Publicaciones;
+    
 }
 @model InstaMazz2._0.Models.UsuarioModel
 
@@ -34,7 +35,10 @@
                             }
                             else
                             {
-                                if (ViewBag.Amigos)
+                                bool estado =Convert.ToBoolean(Session["Estado"]);
+                                
+                                
+                                if (ViewBag.Amigos && estado )
                                 {
                                     <div>
                                         <button class="btn btn-success btn-s"><i class="bi bi-person-check"></i> </button>
@@ -47,16 +51,16 @@
                                     {
                                         if (ViewBag.IdUsuAmigo == Model.IdUsuario)
                                         {
-                                            <a><i class="bi bi-person-minus"></i>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
+                                            <a>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
                                         }
                                         else
                                         {
-                                            <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                            <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
                                         }
                                     }
                                     else
                                     {
-                                        <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                        <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
                                     }
                                 }
                             }
