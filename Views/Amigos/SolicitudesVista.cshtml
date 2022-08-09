@@ -8,12 +8,12 @@
     <h2>Solicitudes Pendiente</h2>
     @foreach (var item in solicitudes)
     {
-        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2" @*style="width: 18rem;"*@>
+        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
             <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
-            <div class="card-body">
-                <h3 class="card-title">@item.Nombre</h3>
-                <h5 class="card-text">@item.UserName</h5>
-                <div>
+            <div class="card-body p-0">
+                <h3 class="card-title ms-2">@item.Nombre</h3>
+                <h5 class="card-text ms-2">@item.UserName</h5>
+                <div class="d-flex gap-1 mx-1 mb-2">
                     <a href="#" class="btn btn-sm btn-success">Aceptar solicitud</a> 
                     <a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>
                 </div>
@@ -25,19 +25,6 @@
 
 
 
-@*<div class="card col-xs-12 col-md-7 col-lg-5">
-    <div class="row g-0 p-0">
-        <div class="col-xs-12 col-md-6 p-0">
-            <img src="/Upload/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">
-        </div>
-        <div class="col-xs-12 col-md-6 p-0">
-            <div class="card-body">
-                <h2 class="card-title">@item.Nombre</h2>
-                <p class="card-text">@item.UserName</p>
-            </div>
-        </div>
-    </div>
-</div>
-<br />*@
+
 
 
