@@ -116,6 +116,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_ListaAmigos", cn);
+                cmd.Parameters.AddWithValue("email", Session["usuario"]);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
