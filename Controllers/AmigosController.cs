@@ -60,7 +60,7 @@ namespace InstaMazz2._0.Controllers
         public List<Amigos> Solicitudes()
         {
             List<Amigos> _lista = new List<Amigos>();
-            
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -86,7 +86,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
 
-                        
+
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
@@ -122,6 +122,9 @@ namespace InstaMazz2._0.Controllers
                 {
                     while (dr.Read())
                     {
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+
                         Amigos oLista = new Amigos();
 
                         //agregamos al objeto...
@@ -129,8 +132,11 @@ namespace InstaMazz2._0.Controllers
                         oLista.IdUsu = (int)dr["IdUsu"];
                         oLista.IdUsuAmigo = (int)dr["IdUsuAmigo"];
                         oLista.Activo = (int)dr["Activo"];
+                        oLista.Nombre = dr["Nombre"].ToString();
+                        oLista.UserName = dr["UserName"].ToString();
+                        oLista.imagenPerf = _byteString;
 
-                        //oLista.UserName = dr["UserName"].ToString();
+
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
@@ -150,7 +156,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult AceptarSolicitud(int idAcp, int AcpRech)
         {
             UpdateSolicitud(idAcp, AcpRech);
-            return RedirectToAction("ListaAmigosVista","Amigos");
+            return RedirectToAction("ListaAmigosVista", "Amigos");
         }
 
         private bool UpdateSolicitud(int id, int Bits)
