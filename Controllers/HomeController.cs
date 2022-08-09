@@ -92,39 +92,39 @@ namespace InstaMazz2._0.Controllers
             //vamos a guardar el numero, del activo, eso si existe solicitudes para el usuario...
             int _verificar;
             int _idSesionAmig;
+            bool _esVerdFal;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
-                try
-                {
-                    cn.Open();
-                    SqlCommand cmd = new SqlCommand("sp_Amigos", cn);
-                    cmd.Parameters.AddWithValue("email", idE);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("sp_Amigos", cn);
+                cmd.Parameters.AddWithValue("email", idE);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-                    using (var dr = cmd.ExecuteReader())
+                using (var dr = cmd.ExecuteReader())
+                {
+                    //verifica si existe el ususrio en la tabla amigos...
+                    if (dr.Read())
                     {
-                        while (dr.Read())
+                        ViewBag.IdUsu = (int)dr["IdUsu"];
+                        _idSesionAmig = (int)dr["IdUsuAmigo"];
+                        _verificar = (int)dr["Activo"];
+
+                        ////verificamos si trae un cero... si existe la solicitud...
+                        //_verificar = (int)dr["Activo"];
+                        if (_verificar == 0)
                         {
-                            ViewBag.IdUsu = (int)dr["IdUsu"];
-                            _idSesionAmig = (int)dr["IdUsuAmigo"];
-                            _verificar = (int)dr["Activo"];
-
-                            ////verificamos si trae un cero... si existe la solicitud...
-                            //_verificar = (int)dr["Activo"];
-                            if (_verificar == 0)
-                            {
-                                Session["activ"] = 1;
-                                Session["IdUsuAmigo"] = _idSesionAmig;
-                            }
+                            Session["activ"] = 1;
+                            Session["IdUsuAmigo"] = _idSesionAmig;
                         }
+                        _esVerdFal = true;
                     }
+                    else
+                    {
+                        _esVerdFal = false;
+                    }
+                }
 
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                return _esVerdFal;
 
             }
         }
