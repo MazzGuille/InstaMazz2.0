@@ -34,20 +34,26 @@
                             }
                             else
                             {
-                                if (ViewBag.nBTN)
+                                if (ViewBag.Amigos) 
                                 {
-                                    if (ViewBag.IdUsuAmigo == Model.IdUsuario)
+                                    <h2>Ya son Amigos...</h2>
+                                } 
+                                else { 
+                                    if (ViewBag.nBTN)
                                     {
-                                        <a><i class="bi bi-person-minus"></i>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
+                                        if (ViewBag.IdUsuAmigo == Model.IdUsuario)
+                                        {
+                                            <a><i class="bi bi-person-minus"></i>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
+                                        }
+                                        else
+                                        {
+                                            <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                        }
                                     }
                                     else
                                     {
                                         <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
-                                    }
-                                }
-                                else
-                                {
-                                    <a><i class="bi bi-person-plus"></i>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                    }                                
                                 }
                             }
                         </div>

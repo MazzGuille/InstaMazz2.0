@@ -22,8 +22,9 @@ namespace InstaMazz2._0.Controllers
         UsuarioModel model = new UsuarioModel();
         public ActionResult Index(string idE)
         {
-            bool usu;
+            bool _usu;
             bool _btn;
+            bool _serAmigo;
             int _idUsuAmigo;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -53,19 +54,33 @@ namespace InstaMazz2._0.Controllers
             string _exiteUsu = Session["usuario"].ToString();
             if(_exiteUsu == idE)
             {
-                usu = true;
+                _usu = true;
             }
             else
             {
-                usu = false;
+                _usu = false;
             }
 
             //verificamos si tiene solicitud... si es tru o false...
             bool _act = ObtenerSolicitud(idE); // _act = activo
             if (_act)
             {
+                //colocamos en true, al boton para que los demas usuario tengan 
+                //solo en estado del boton original, pero solo cambiaria el que envio la solicitud...
                 _btn = true;
-                _idUsuAmigo = Convert.ToInt32(Session["IdUsuAmigo"]); //Session["IdUsuAmigo"]
+                //pasamos el id del usuario amigo...
+                _idUsuAmigo = Convert.ToInt32(Session["IdUsuAmigo"]);
+                //verificamos si fue aceptado o no la solicitud...
+                if (Convert.ToBoolean(Session["amigxs"]))
+                {
+                    _serAmigo = true;
+                }
+                else
+                {
+                    _serAmigo = false;
+                }
+                //pasamos si es fue aceptado o no la solicitud...
+                ViewBag.Amigos = _serAmigo;
             }
             else
             {
@@ -80,8 +95,12 @@ namespace InstaMazz2._0.Controllers
                 _idUsuAmigo = 0;
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
-            ViewBag.usu = usu;
-            ViewBag.nBTN = _btn; // para el boton de enviar solicitud.. si es true o false...
+            ViewBag.usu = _usu;
+            // para el boton de enviar solicitud.. si es true o false...
+            ViewBag.nBTN = _btn; 
+            //pasamos si es fue aceptado o no la solicitud...
+            //ViewBag.Amigos = _serAmigo;
+            //pasamos el id del usuario del amigo...
             ViewBag.IdUsuAmigo = _idUsuAmigo;
             return View(model);
         }
@@ -115,7 +134,13 @@ namespace InstaMazz2._0.Controllers
                         {
                             Session["activ"] = 1;
                             Session["IdUsuAmigo"] = _idSesionAmig;
+                            //Session["amigxs"] = 0;
                         }
+                        else
+                        {
+                            Session["amigxs"] = 1;
+                        }
+                        
                         _esVerdFal = true;
                     }
                     else
