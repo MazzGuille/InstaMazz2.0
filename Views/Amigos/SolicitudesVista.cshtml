@@ -1,11 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "SolicitudesVista";
+    ViewBag.Title = "Solicitudes";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var solicitudes = ViewBag.listaSolicitudes;
 }
 <div class="row" style="margin-top: 10vh; margin-left: 3vw; margin-right: 3vw;">
-    <h2>SolicitudesVista</h2>
+    <h2>Solicitudes Pendiente</h2>
     @foreach (var item in solicitudes)
     {
         <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2" @*style="width: 18rem;"*@>
