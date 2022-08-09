@@ -61,7 +61,7 @@ namespace InstaMazz2._0.Controllers
             }
 
             //verificamos si tiene solicitud... si es tru o false...
-            bool _act = ObtenerSolicitud(idE);
+            bool _act = ObtenerSolicitud(idE); // _act = activo
             if (_act)
             {
                 _btn = true;
