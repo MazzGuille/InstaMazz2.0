@@ -2,7 +2,22 @@
 @{
     ViewBag.Title = "ListaAmigosVista";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var solicitudes = ViewBag.listaSolicitudes;
 }
-<div style="margin-top: 10vh;">
-    <h2>ListaAmigosVista</h2>
+<div class="row" style="margin-top: 10vh; margin-left: 3vw; margin-right: 3vw;">
+    <h2>Lista de amigos</h2>
+    @foreach (var item in solicitudes)
+    {
+        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
+            <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+            <div class="card-body p-0">
+                <h3 class="card-title ms-2">@item.Nombre</h3>
+                <h5 class="card-text ms-2">@item.UserName</h5>
+                <div class="d-flex gap-1 mx-1 mb-2">
+                    <a href="#" class="btn btn-sm btn-primary">Ver perfil</a>
+                    <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>
