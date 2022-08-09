@@ -8,7 +8,7 @@
     <h2>SolicitudesVista</h2>
     @foreach (var item in solicitudes)
     {
-        <div class="card col-xs-12 col-md-3 p-0" @*style="width: 18rem;"*@>
+        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2" @*style="width: 18rem;"*@>
             <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
             <div class="card-body">
                 <h3 class="card-title">@item.Nombre</h3>
@@ -18,8 +18,7 @@
                     <a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>
                 </div>
             </div>
-        </div>
-        <br />
+        </div>        
     }
 </div>
 
