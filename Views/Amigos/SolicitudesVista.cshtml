@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var solicitudes = ViewBag.listaSolicitudes;
 }
-<div class="row" style="margin-top: 10vh; margin-left: 10vh;">
+<div class="row" style="margin-top: 10vh; margin-left: 3vw; margin-right: 3vw;">
     <h2>SolicitudesVista</h2>
     @foreach (var item in solicitudes)
     {
-        <div class="card col-xs-12 col-lg-3 p-0 mx-3" @*style="width: 18rem;"*@>
+        <div class="card col-xs-12 col-md-3 p-0" @*style="width: 18rem;"*@>
             <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
             <div class="card-body">
                 <h3 class="card-title">@item.Nombre</h3>
