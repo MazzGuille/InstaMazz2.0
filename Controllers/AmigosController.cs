@@ -116,7 +116,6 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_ListaAmigos", cn);
-                /* cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);*/
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -148,11 +147,35 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-        //public ActionResult(int idAcp)
-        //{
+        public ActionResult AceptarSolicitud(int idAcp, int AcpRech)
+        {
+            UpdateSolicitud(idAcp, AcpRech);
+            return RedirectToAction("ListaAmigosVista","Amigos");
+        }
 
-        //    RedirectToAction();
-        //}
+        private bool UpdateSolicitud(int id, int Bits)
+        {
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_Update_AceptarSolicitud", cn);
+                    cmd.Parameters.AddWithValue("idAcptar", id);
+                    cmd.Parameters.AddWithValue("AceptarRechazo", Bits);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch
+                {
+                    //cerramos la Conexión...
+                    cn.Close();
+                    return false;
+                }
+            }
+        }
 
     }
 }
