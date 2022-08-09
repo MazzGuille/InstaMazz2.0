@@ -14,8 +14,10 @@
                 <h3 class="card-title ms-2">@item.Nombre</h3>
                 <h5 class="card-text ms-2">@item.UserName</h5>
                 <div class="d-flex gap-1 mx-1 mb-2">
-                    <a href="#" class="btn btn-sm btn-success">Aceptar solicitud</a> 
-                    <a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>
+                    @*<a href="#" class="btn btn-sm btn-success">Aceptar solicitud</a>*@
+                    <a>@Html.ActionLink("Aceptar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 1 }, new { @class = "btn btn-sm btn-success" })</a>
+                    @*<a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>*@
+                    <a>@Html.ActionLink("Rechazar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn btn-sm btn-danger" })</a>
                 </div>
             </div>
         </div>        

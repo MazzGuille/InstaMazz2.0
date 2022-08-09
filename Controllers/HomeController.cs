@@ -80,7 +80,7 @@ namespace InstaMazz2._0.Controllers
                     _serAmigo = false;
                 }
                 //pasamos si es fue aceptado o no la solicitud...
-                ViewBag.Amigos = _serAmigo;
+                //ViewBag.Amigos = _serAmigo;
             }
             else
             {
@@ -93,13 +93,14 @@ namespace InstaMazz2._0.Controllers
                     _btn = false;
                 }
                 _idUsuAmigo = 0;
+                _serAmigo = false;
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = _usu;
             // para el boton de enviar solicitud.. si es true o false...
             ViewBag.nBTN = _btn; 
             //pasamos si es fue aceptado o no la solicitud...
-            //ViewBag.Amigos = _serAmigo;
+            ViewBag.Amigos = _serAmigo;
             //pasamos el id del usuario del amigo...
             ViewBag.IdUsuAmigo = _idUsuAmigo;
             return View(model);
@@ -134,7 +135,7 @@ namespace InstaMazz2._0.Controllers
                         {
                             Session["activ"] = 1;
                             Session["IdUsuAmigo"] = _idSesionAmig;
-                            //Session["amigxs"] = 0;
+                            Session["amigxs"] = 0;
                         }
                         else
                         {
