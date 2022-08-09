@@ -14,6 +14,7 @@ namespace InstaMazz2._0.Models
         public string Nombre { get; set; }
         public string UserName { get; set; }
         public string imagenPerf { get; set; }
+        public string Email { get; set; }
 
     }
 }

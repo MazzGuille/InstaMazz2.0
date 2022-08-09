@@ -88,6 +88,7 @@ namespace InstaMazz2._0.Controllers
 
 
 
+
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
                     }
@@ -136,6 +137,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.Nombre = dr["Nombre"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
+                        oLista.Email = dr["Email"].ToString();
 
 
 
