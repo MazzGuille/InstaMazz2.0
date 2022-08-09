@@ -16,7 +16,8 @@
                 <div class="d-flex gap-1 mx-1 mb-2">
                     @*<a href="#" class="btn btn-sm btn-primary">Ver perfil</a>*@
                     <a>@Html.ActionLink("Ver perfil", "MePerfil", "Home", new { email = item.Email }, new { @class = "btn btn-primary" })</a>
-                    <a href="#" class="btn btn-sm btn-danger">Eliminar</a>
+                    @*<a href="#" class="btn btn-sm btn-danger">Eliminar</a>*@
+                    <a>@Html.ActionLink("Eliminar", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn btn-sm btn-danger" })</a>
                 </div>
             </div>
         </div>
