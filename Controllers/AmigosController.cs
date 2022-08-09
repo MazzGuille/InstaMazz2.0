@@ -147,5 +147,12 @@ namespace InstaMazz2._0.Controllers
 
             }
         }
+
+        //public ActionResult(int idAcp)
+        //{
+
+        //    RedirectToAction();
+        //}
+
     }
 }
