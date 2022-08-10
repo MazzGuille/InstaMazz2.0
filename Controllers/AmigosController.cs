@@ -44,7 +44,7 @@ namespace InstaMazz2._0.Controllers
 
                     return true;
                 }
-                catch (Exception e)
+                catch
                 {
                     return false;
                 }

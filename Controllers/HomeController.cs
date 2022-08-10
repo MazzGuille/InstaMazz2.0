@@ -22,6 +22,7 @@ namespace InstaMazz2._0.Controllers
         UsuarioModel model = new UsuarioModel();
         public ActionResult Index(string idE)
         {
+            string _SessionUsuario = Session["usuario"].ToString();
             bool _usu;
             bool _btn;
             bool _serAmigo;
@@ -63,7 +64,9 @@ namespace InstaMazz2._0.Controllers
             }
 
             //verificamos si tiene solicitud... si es tru o false...
-            bool _act = ObtenerSolicitud(idE); // _act = activo
+            //PASAMOS LA SESÍÓN EL QUIEN ESTA LOGEADO, PARA OBTENER LA LISTA DE AMIGOS...
+            // Y ASI VALIDAR...
+            bool _act = ObtenerSolicitud(_SessionUsuario, idE); // _act = activo --->idE
             if (_act)
             {
                 //colocamos en true, al boton para que los demas usuario tengan 
@@ -98,17 +101,17 @@ namespace InstaMazz2._0.Controllers
             }
             ViewBag.Publicaciones = ListaPublicaiones(idE);
             ViewBag.usu = _usu;
-            // para el boton de enviar solicitud.. si es true o false...
-            ViewBag.nBTN = _btn;
             //pasamos si es fue aceptado o no la solicitud...
             ViewBag.Amigos = _serAmigo;
+            // para el boton de enviar solicitud.. si es true o false...
+            ViewBag.nBTN = _btn;
             //pasamos el id del usuario del amigo...
             ViewBag.IdUsuAmigo = _idUsuAmigo;
             return View(model);
         }
 
         //Metodo para Obtener si Enviamos Solicitud O no...
-        private bool ObtenerSolicitud(string idE)
+        private bool ObtenerSolicitud(string idUsuSession,string idE)
         {
             //vamos a guardar el numero, del activo, eso si existe solicitudes para el usuario...
             int _verificar;
@@ -118,7 +121,8 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Amigos", cn);
-                cmd.Parameters.AddWithValue("email", idE);
+                cmd.Parameters.AddWithValue("email", idUsuSession);
+                cmd.Parameters.AddWithValue("emailAmigo", idE);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -140,6 +144,7 @@ namespace InstaMazz2._0.Controllers
                         }
                         else
                         {
+                            Session["IdUsuAmigo"] = _idSesionAmig;
                             Session["amigxs"] = 1;
                         }
 
@@ -197,15 +202,6 @@ namespace InstaMazz2._0.Controllers
                         int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
                         oLista.TotalPost = _totals;
                         _lista.Add(oLista);
-
-                        //oLista.Add(new PublicacionesModel
-                        //{
-                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
-                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                        //    UrlImg = dr["UrlImg"].ToString(),
-                        //    Descripcion = dr["Descripcion"].ToString()
-                        //});
-
                     }
                 }
                 cn.Close();
