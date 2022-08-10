@@ -160,9 +160,10 @@ namespace InstaMazz2._0.Controllers
         }
 
         //btn Me-Gusta
-        public ActionResult MGusta(string email, int IdPost)
+        public ActionResult MGusta(string IdUsu, int IdPost)
         {
             //aca va el metodo privado de "guardar el megusta".. 
+            MGustaBTN(IdUsu, IdPost);
             return RedirectToAction("FeedView", "Post");
         }
 
