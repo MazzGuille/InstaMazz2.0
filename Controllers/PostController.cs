@@ -149,7 +149,9 @@ namespace InstaMazz2._0.Controllers
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
-
+                        //obtener el total de los post...
+                        int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
+                        oLista.TotalPost = _totals;
                         _lista.Add(oLista);
                     }
                 }
@@ -160,9 +162,10 @@ namespace InstaMazz2._0.Controllers
         }
 
         //btn Me-Gusta
-        public ActionResult MGusta(string email, int IdPost)
+        public ActionResult MGusta(string IdUsu, int IdPost)
         {
             //aca va el metodo privado de "guardar el megusta".. 
+            MGustaBTN(IdUsu, IdPost);
             return RedirectToAction("FeedView", "Post");
         }
 
@@ -185,6 +188,32 @@ namespace InstaMazz2._0.Controllers
                 {
                     return false;
                 }
+            }
+        }
+
+        //total de M-Gusta del Post
+        private int TMGusta(int idPost)
+        {
+            int _totalEs;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("SP_Get_TotalxPost", cn);
+                cmd.Parameters.AddWithValue("IdPost", idPost);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        _totalEs = Convert.ToInt32(dr["TOTAL"]);
+                    }
+                    else
+                    {
+                        _totalEs = 0;
+                    }
+                }
+               return _totalEs;
             }
         }
     }

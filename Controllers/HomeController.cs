@@ -172,7 +172,8 @@ namespace InstaMazz2._0.Controllers
 
         public List<PublicacionesModel> ListaPublicaiones(string idE)
         {
-            var oLista = new List<PublicacionesModel>();
+            //var oLista = new List<PublicacionesModel>();
+            List<PublicacionesModel> _lista = new List<PublicacionesModel>();
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -186,18 +187,32 @@ namespace InstaMazz2._0.Controllers
                 {
                     while (dr.Read())
                     {
-                        oLista.Add(new PublicacionesModel
-                        {
-                            IdPost = Convert.ToInt32(dr["IdPost"]),
-                            IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                            UrlImg = dr["UrlImg"].ToString(),
-                            Descripcion = dr["Descripcion"].ToString()
-                        });
+                        PublicacionesModel oLista = new PublicacionesModel();
+
+                        oLista.IdPost = Convert.ToInt32(dr["IdPost"]);
+                        oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
+                        oLista.UrlImg = dr["UrlImg"].ToString();
+                        oLista.Descripcion = dr["Descripcion"].ToString();
+                        //obtener el total de los post...
+                        int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
+                        oLista.TotalPost = _totals;
+                        _lista.Add(oLista);
+
+                        //oLista.Add(new PublicacionesModel
+                        //{
+                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
+                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
+                        //    UrlImg = dr["UrlImg"].ToString(),
+                        //    Descripcion = dr["Descripcion"].ToString()
+                        //});
 
                     }
                 }
+                cn.Close();
+
+                return _lista;
             }
-            return oLista;
+            //return oLista;
         }
 
         //public ActionResult converetImagen(string correoId)
@@ -280,13 +295,36 @@ namespace InstaMazz2._0.Controllers
             return oLista;
         }
 
+        private int TMGusta(int idPost)
+        {
+            int _totalEs;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("SP_Get_TotalxPost", cn);
+                cmd.Parameters.AddWithValue("IdPost", idPost);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        _totalEs = Convert.ToInt32(dr["TOTAL"]);
+                    }
+                    else
+                    {
+                        _totalEs = 0;
+                    }
+                }
+                return _totalEs;
+            }
+        }
 
         public ActionResult CerrarSesion()
         {
             Session["usuario"] = null;
             return RedirectToAction("Login", "Acceso");
         }
-
 
     }
 }
