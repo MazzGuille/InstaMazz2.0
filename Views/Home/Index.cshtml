@@ -21,16 +21,16 @@
                             @if (ViewBag.usu)
                             {
                                 <form action="@Url.Action("CrearPost", "Post")">
-                                    <button type="submit" class="btn btn-success btn-s"><i class="bi bi-plus-circle"></i> </button>
+                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class="btn btn-success btn-s"><i class="bi bi-plus-circle"></i> </button>
                                 </form>
                                 <form action="@Url.Action("EditarPerfil", "Acceso")">
-                                    <button type="submit" class="btn btn-primary btn-s"><i class="bi bi-pencil"></i> </button>
+                                    <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class="btn btn-primary btn-s"><i class="bi bi-pencil"></i> </button>
                                 </form>
                                 <form action="@Url.Action("ListaAmigosVista", "Amigos")">
-                                    <button type="submit" class="btn btn-info btn-s"><i class="bi bi-person-lines-fill"></i> </button>
+                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class="btn btn-info btn-s"><i class="bi bi-person-lines-fill"></i> </button>
                                 </form>
                                 <form action="@Url.Action("SolicitudesVista", "Amigos")">
-                                    <button type="submit" class="btn btn-warning btn-s"><i class="bi bi-person-plus"></i> </button>
+                                    <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class="btn btn-warning btn-s"><i class="bi bi-person-plus"></i> </button>
                                 </form>
                             }
                             else

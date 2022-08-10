@@ -286,6 +286,7 @@
     <Content Include="Content\CSS\Login.css" />
     <Content Include="Content\CSS\site.css" />
     <Content Include="Content\JS\MeGusta.js" />
+    <Content Include="Content\JS\Tooltip.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
