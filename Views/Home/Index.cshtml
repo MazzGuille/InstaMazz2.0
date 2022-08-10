@@ -6,8 +6,8 @@
 @model InstaMazz2._0.Models.UsuarioModel
 
     <div class="container d-flex flex-column justify-content-center align-items-center w-100row p-0 gap-5" style="margin-top: 10vh;">
-        <div class="card col-xs-12 col-md-7 col-lg-5" >
-            <div class="row g-0 p-0">
+        <div class="card col-xs-12 col-md-7 col-lg-5 shadow-lg">
+            <div class="row g-0 p-2">
                 <div class="col-xs-12 col-md-6 p-0">
                     <img src="/Upload/@Model.imagenPerf" class="img-fluid rounded-start h-100 w-100">
                 </div>
@@ -76,22 +76,25 @@
         </div>
 
         <div class="container d-flex flex-column justify-content-center align-items-center w-100">
-            <div class="row">               
+            <div class="row">
+
                 @foreach (var item in Publicaciones)
                 {
                     <div class="col-xs-12 col-md-4 col-lg-3">
-                        <div>
-                            <img src="@item.UrlImg" class="img-responsive card-img-top w-100 h-100">
+                        <div class="card vw-25% bg-light">
+                            @*<div>*@
+                                <img src="@item.UrlImg" class="img-responsive card-img-top w-100 h-100 p-2">
+                            @*</div>*@
+                            <div class="card-body bg-none">
+                                <p class="card-text mb-3">@item.Descripcion</p>
+                                @if (ViewBag.usu)
+                                {
+                                    <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
+                                        <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
+                                    </form>
+                                }
+                            </div>
                         </div>
-                        <div class="card-body bg-none">
-                            <p class="card-text bg-white mb-3">@item.Descripcion</p>                          
-
-                        </div>
-                        @if (ViewBag.usu){
-                            <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
-                                <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
-                            </form>                          
-                         }
                     </div>
                 }
 
