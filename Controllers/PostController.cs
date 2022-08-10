@@ -158,5 +158,12 @@ namespace InstaMazz2._0.Controllers
                 return _lista;
             }
         }
+
+        //btn Me-Gusta
+        public ActionResult MGusta(int IdUsu, int IdPost)
+        {
+            //aca va el metodo privado de "guardar el megusta".. 
+            return RedirectToAction("FeedView", "Post");
+        }
     }
 }
