@@ -21,7 +21,7 @@
                     @*<p id="contar-click"></p>*@
                     <p>
                         @Html.ActionLink("Me Gusta", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-danger mt-1" })
-                        0
+                        <span class="ml-2">@item.TotalPost</span>
                     </p>
                 </div>
                 <div class="card-body">
