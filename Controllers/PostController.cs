@@ -160,10 +160,32 @@ namespace InstaMazz2._0.Controllers
         }
 
         //btn Me-Gusta
-        public ActionResult MGusta(int IdUsu, int IdPost)
+        public ActionResult MGusta(string email, int IdPost)
         {
             //aca va el metodo privado de "guardar el megusta".. 
             return RedirectToAction("FeedView", "Post");
+        }
+
+        private bool MGustaBTN(string email, int idpost)
+        {
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_InsertDelete_MGusta", cn);
+                    cmd.Parameters.AddWithValue("Email", email);
+                    cmd.Parameters.AddWithValue("IdPost", idpost);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
         }
     }
 }
