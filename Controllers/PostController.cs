@@ -61,15 +61,14 @@ namespace InstaMazz2._0.Controllers
 
         }
 
-
         [HttpPost]
-        public ActionResult Delete(int? IdPost) //PublicacionesModel oPublicacion
+        public ActionResult Delete(int? IdPost)
         {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_EliminarPost", cn);
-                cmd.Parameters.AddWithValue("IdPost", IdPost); //oPublicacion.IdPost
+                cmd.Parameters.AddWithValue("IdPost", IdPost);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
@@ -81,14 +80,11 @@ namespace InstaMazz2._0.Controllers
         {
             ViewBag.listaPost = Listar().ToList();
             return View();
-            //return View(Listar());
         }
 
         [HttpPost]
         public List<PublicacionesModel> Listar()
         {
-            //var oLista = new List<PublicacionesModel>();
-
             List<PublicacionesModel> _lista = new List<PublicacionesModel>();
 
             using (SqlConnection cn = new SqlConnection(cadena))
@@ -113,14 +109,6 @@ namespace InstaMazz2._0.Controllers
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
-
-                        //oLista.Add(new PublicacionesModel
-                        //{
-                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
-                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                        //    UrlImg = dr["UrlImg"].ToString(),
-                        //    Descripcion = dr["Descripcion"].ToString()
-                        //});
                     }
                 }
                 //cerramos la Conexión...
@@ -129,7 +117,6 @@ namespace InstaMazz2._0.Controllers
                 //retornamos la lista...
                 return _lista;
             }
-            //return oLista;
         }
 
         public ActionResult FeedView()
@@ -142,7 +129,6 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public List<PublicacionesModel> Feed()
         {
-            //var oLista = new List<PublicacionesModel>();
             List<PublicacionesModel> _lista = new List<PublicacionesModel>();
 
             using (SqlConnection cn = new SqlConnection(cadena))
@@ -165,22 +151,12 @@ namespace InstaMazz2._0.Controllers
                         oLista.UserName = dr["UserName"].ToString();
 
                         _lista.Add(oLista);
-
-                        //oLista.Add(new PublicacionesModel
-                        //{
-                        //    IdPost = Convert.ToInt32(dr["IdPost"]),
-                        //    IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                        //    UrlImg = dr["UrlImg"].ToString(),
-                        //    Descripcion = dr["Descripcion"].ToString(),
-                        //    UserName = dr["UserName"].ToString()
-                        //});
                     }
                 }
                 cn.Close();
 
                 return _lista;
             }
-            //return oLista;
         }
     }
 }
