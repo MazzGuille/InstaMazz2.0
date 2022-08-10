@@ -87,9 +87,10 @@
                             @*</div>*@
                             <div class="card-body bg-none">
                                 <p class="card-text mb-3">@item.Descripcion</p>
+                                <p class="fw-lighter">Me Gusta: <small class="text-dark">@item.TotalPost</small></p>
                                 @if (ViewBag.usu)
                                 {
-                                    <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
+                                    <form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">
                                         <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
                                     </form>
                                 }
