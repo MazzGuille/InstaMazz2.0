@@ -137,8 +137,23 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult FeedView()
         {
+            bool _manito;
+            int _idPost;
             ViewBag.Feed = Feed().ToList();
-            ViewBag.Ids = Session["usuario"];
+            ViewBag.Ids = Session["usuario"].ToString();
+            bool _result = Convert.ToBoolean(Session["TotalsMGusta"]);
+            if (_result)
+            {
+                _manito = true;
+                _idPost = Convert.ToInt32(Session["IdPost"]);
+            }
+            else
+            {
+                _manito = false;
+                _idPost = 0;
+            }
+            ViewBag.Manito = _manito;
+            ViewBag.IdPost = _idPost;
             return View();
         }
 
@@ -146,7 +161,7 @@ namespace InstaMazz2._0.Controllers
         public List<PublicacionesModel> Feed()
         {
             List<PublicacionesModel> _lista = new List<PublicacionesModel>();
-
+            int _idPost;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -169,7 +184,10 @@ namespace InstaMazz2._0.Controllers
                         //obtener el total de los post...
                         int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
                         oLista.TotalPost = _totals;
+                        TotMGusta(Session["usuario"].ToString(), Convert.ToInt32(dr["IdPost"]));
                         _lista.Add(oLista);
+
+
                     }
                 }
                 cn.Close();
@@ -183,6 +201,8 @@ namespace InstaMazz2._0.Controllers
         {
             //aca va el metodo privado de "guardar el megusta".. 
             MGustaBTN(IdUsu, IdPost);
+            var result = TotMGusta(IdUsu, IdPost);
+            Session["TotalsMGusta"] = result;
             return RedirectToAction("FeedView", "Post");
         }
 
@@ -198,13 +218,45 @@ namespace InstaMazz2._0.Controllers
                     cmd.Parameters.AddWithValue("IdPost", idpost);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
-
-                    return true;
+                     return true;
                 }
                 catch
                 {
                     return false;
                 }
+            }
+        }
+
+        //Totales de Megusta de Post
+        private bool TotMGusta(string email, int idpost)
+        {
+            bool _manito;
+            int _totals = 0;
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("SP_Get_TotalClickPost", cn);
+                cmd.Parameters.AddWithValue("Email", email);
+                cmd.Parameters.AddWithValue("IdPost", idpost);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while(dr.Read())
+                    {
+                        _totals = Convert.ToInt32(dr["Totals"]);
+                        Session["IdPost"] = (int)dr["IdPost"];
+                    }
+                    if (_totals > 0)
+                    {
+                        _manito = true;
+                    }
+                    else
+                    {
+                        _manito = false;
+                    }
+                }
+                return _manito;
             }
         }
 
