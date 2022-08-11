@@ -8,21 +8,23 @@
     <h2>Solicitudes Pendiente</h2>
     @foreach (var item in solicitudes)
     {
-        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
-            <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
-            <div class="card-body p-0">
-                <h3 class="card-title ms-2">@item.Nombre</h3>
-                <h5 class="card-text ms-2">@item.UserName</h5>
-                <div class="d-flex gap-1 mx-1 mb-2">
-                    @*<a href="#" class="btn btn-sm btn-success">Aceptar solicitud</a>*@
-                    <a>@Html.ActionLink("Aceptar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 1 }, new { @class = "btn btn-sm btn-success" })</a>
-                    @*<a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>*@
-                    <a>@Html.ActionLink("Rechazar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn btn-sm btn-danger" })</a>
+        <div class="card col-xs-12 col-md-4 p-0 me-2 mb-2 ms-2">
+            <div class="p-3" style="height: 350px;">
+                <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+            </div>
+                <div class="card-body p-2">
+                    <h3 class="card-title ms-2">@item.Nombre</h3>
+                    <h5 class="card-text ms-2">@item.UserName</h5>
+                    <div class="d-flex gap-1 mx-1 mb-2">
+                        @*<a href="#" class="btn btn-sm btn-success">Aceptar solicitud</a>*@
+                        <a>@Html.ActionLink(" Aceptar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 1 }, new { @class = "btn text-success border border-success bi bi-person-plus-fill" })</a>
+                        @*<a href="#" class="btn btn-sm btn-danger">Rechazar solicitud</a>*@
+                        <a>@Html.ActionLink(" Rechazar Solicitud", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn text-danger border border-danger bi bi-person-x-fill" })</a>
+                    </div>
                 </div>
             </div>
-        </div>        
-    }
-</div>
+            }
+        </div>
 
 
 
