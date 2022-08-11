@@ -113,12 +113,13 @@
                 @foreach (var item in Publicaciones)
                 {
                     <div class="col-xs-12 col-md-4 col-lg-3">
-                        <div class="card vw-25% bg-light">
+                        <div class="card bg-light vw-25%">
                             @*<div>*@
                                 <img src="@item.UrlImg" class="img-responsive card-img-top w-100 h-100 p-2 bg-white">
                             @*</div>*@
                         <div class="card-body bg-none">
                             <p class="d-flex justify-content-between">
+                                <span>@item.IdPost</span>
                                 <span>Titulo del Post</span>
                                 <span class="fw-bold">Me Gusta: <small class="text-primary">@item.TotalPost</small></span>
                             </p>
