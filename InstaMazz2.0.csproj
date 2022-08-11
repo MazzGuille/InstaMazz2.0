@@ -330,6 +330,7 @@
     <Content Include="Views\Home\BuscarView.cshtml" />
     <Content Include="Views\Amigos\SolicitudesVista.cshtml" />
     <Content Include="Views\Amigos\ListaAmigosVista.cshtml" />
+    <Content Include="Views\Home\ListaAmigosDeAmigoVista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

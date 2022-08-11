@@ -26,9 +26,9 @@
                                 <form action="@Url.Action("EditarPerfil", "Acceso")">
                                     <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class=" shadow btn text-primary border border-primary"><i class="bi bi-pencil-fill"></i></button>
                                 </form>
-                                <form action="@Url.Action("ListaAmigosVista", "Amigos")">
-                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class=" shadow btn text-info border border-info"><i class="bi bi-person-lines-fill"></i></button>
-                                </form>
+
+                                @Html.ActionLink(" ", "ListaAmigosVista", "Amigos", new { IdEmail = Model.Email }, new { @class = "shadow btn text-info border border-info bi bi-person-lines-fill" })
+
                                 <form action="@Url.Action("SolicitudesVista", "Amigos")">
                                     <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class=" shadow btn text-warning border border-warning"><i class="bi bi-person-plus"></i></button>
                                 </form>
@@ -36,11 +36,14 @@
                             else
                             {
                                 if (ViewBag.Amigos)
-                                {                                    
-                                        <button class=" shadow btn text-success border border-success" disabled><i class="bi bi-person-check-fill"> Amigos</i></button>
-                                        <form>
-                                            <button class=" shadow btn text-primary border border-primary"><i class="bi bi-person-lines-fill"> Ver amigos</i></button>
-                                        </form>
+                                {
+                                    <button class=" shadow btn text-success border border-success" disabled><i class="bi bi-person-check-fill"> Amigos</i></button>
+
+                                    @*<form>
+                                        <button class=" shadow btn text-primary border border-primary"><i class="bi bi-person-lines-fill"> Ver amigos</i></button>
+                                    </form>*@
+
+                                    @Html.ActionLink(" Ver amigos", "ListaAmigosVista", "Amigos", new { IdEmail = Model.Email }, new { @class = "shadow btn text-primary border border-primary bi bi-person-lines-fill" })
                                 }
                                 else
                                 {

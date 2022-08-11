@@ -100,15 +100,15 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-        public ActionResult ListaAmigosVista()
+        public ActionResult ListaAmigosVista(string IdEmail)
         {
-            ViewBag.listaSolicitudes = ListaAmigos().ToList();
+            ViewBag.listaSolicitudes = ListaAmigos(IdEmail).ToList();
             ViewBag.IdUsu = Session["usuario"].ToString();
             return View();
             //return View(Listar());
         }
 
-        public List<Amigos> ListaAmigos()
+        public List<Amigos> ListaAmigos(string IdEmail)
         {
             List<Amigos> _lista = new List<Amigos>();
 
@@ -116,7 +116,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_ListaAmigos", cn);
-                cmd.Parameters.AddWithValue("email", Session["usuario"]);
+                cmd.Parameters.AddWithValue("email", IdEmail); //Session["usuario"]
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
