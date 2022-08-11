@@ -21,23 +21,27 @@
                             @if (ViewBag.usu)
                             {
                                 <form action="@Url.Action("CrearPost", "Post")">
-                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class="btn text-success border border-success"><i class="bi bi-plus-circle-fill"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class=" shadow btn text-success border border-success"><i class="bi bi-plus-circle-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("EditarPerfil", "Acceso")">
-                                    <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class="btn text-primary border border-primary"><i class="bi bi-pencil-fill"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class=" shadow btn text-primary border border-primary"><i class="bi bi-pencil-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("ListaAmigosVista", "Amigos")">
-                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class="btn text-info border border-info"><i class="bi bi-person-lines-fill"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class=" shadow btn text-info border border-info"><i class="bi bi-person-lines-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("SolicitudesVista", "Amigos")">
-                                    <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class="btn text-warning border border-warning"><i class="bi bi-person-plus"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class=" shadow btn text-warning border border-warning"><i class="bi bi-person-plus"></i></button>
                                 </form>
                             }
                             else
                             {
                                 if (ViewBag.Amigos)
                                 {
-                                   <button class="btn text-success border border-success"><i class="bi bi-person-check-fill"> Amigos</i></button>
+                                    
+                                        <button class=" shadow btn text-success border border-success" disabled><i class="bi bi-person-check-fill"> Amigos</i></button>
+                                 
+                                        <button class=" shadow btn text-primary border border-primary"><i class="bi bi-person-lines-fill"> Ver amigos</i></button>
+                                   
                                 }
                                 else
                                 {
@@ -84,7 +88,7 @@
                             {
                                 <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
                                     <div>
-                                        <button type="submit" class="btn text-danger border border-danger"><i class="bi bi-trash-fill"></i> </button>
+                                        <button type="submit" class=" shadow btn text-danger border border-danger"><i class="bi bi-trash-fill"></i> </button>
                                     </div>
                                 </form>
                             }

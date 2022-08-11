@@ -283,6 +283,12 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
+            if (string.IsNullOrEmpty(oUsario.BioUsuario))
+            {
+                ViewBag.BioNull = "El campo \"Biografia\" es requerido";
+                return View();
+            }
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Editar", cn);

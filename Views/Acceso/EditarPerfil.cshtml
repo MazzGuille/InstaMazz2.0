@@ -24,15 +24,15 @@
             </div>
 
             <div class="form-group">
-                Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control">
+                Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control border border-cyan">
             </div>
 
             <div class="form-group">
-                Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control">
+                Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control border border-cyan">
             </div>
 
             <div class="form-group">
-                Bio <input name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control" style="height: 80px;">
+                Biografia <textarea name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control border border-cyan" style="height: 80px;"></textarea>
             </div>
 
             @if (ViewBag.NombreNull != null)
@@ -48,9 +48,17 @@
                     @ViewBag.UserNameNull
                 </div>
             }
-            <div class="d-flex mt-3 ">
-                <button type="submit" class="btn btn-primary">Editar</button>
-            </div>
+
+            @if (ViewBag.BioNull != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.BioNull
+                </div>
+            }
+                
+        <div class="my-2" style="display:grid; place-content: center;">
+            <button type="submit" class="btn text-primary border border-primary bi bi-pencil-fill shadow"> Guardar cambios</button>
+        </div>
         </form>
     </div>
 </div>
