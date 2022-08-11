@@ -8,6 +8,7 @@
     <h2>Lista de amigos</h2>
     @foreach (var item in solicitudes)
     {
+<<<<<<< HEAD
         if (ViewBag.IdUsu != item.Email)
         {
             <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
@@ -21,6 +22,18 @@
                         <a>@Html.ActionLink("Ver perfil", "MePerfil", "Home", new { email = item.Email }, new { @class = "btn btn-primary" })</a>
                         <a>@Html.ActionLink("Eliminar", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn btn-sm btn-danger" })</a>
                     </div>
+=======
+        <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
+            <div style="height: 300px;">
+                <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+            </div>
+            <div class="card-body p-0">
+                <h3 class="card-title ms-2">@item.Nombre</h3>
+                <h5 class="card-text ms-2">@item.UserName</h5>
+                <div class="d-flex gap-1 mx-1 mb-2">
+                    <a>@Html.ActionLink("Ver perfil", "MePerfil", "Home", new { email = item.Email }, new { @class = "btn btn-primary" })</a>
+                    <a>@Html.ActionLink("Eliminar", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn btn-danger" })</a>
+>>>>>>> d1b437f4e5ae5b849e4db3d84447153658e0153e
                 </div>
             </div>
         }
