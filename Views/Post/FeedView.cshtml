@@ -21,11 +21,11 @@
                     <p>
                         @if (@item.TotalPost == 0)
                         {
-                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1" })
+                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1 border-0" })
                         }
                         else
                         {
-                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1" })
+                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1 border-0" })
                         }
 
                         <span class="ml-2">@item.TotalPost</span>
