@@ -21,16 +21,16 @@
                             @if (ViewBag.usu)
                             {
                                 <form action="@Url.Action("CrearPost", "Post")">
-                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class="btn btn-lg text-success"><i class="bi bi-plus-circle-fill"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class="btn text-success border border-success"><i class="bi bi-plus-circle-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("EditarPerfil", "Acceso")">
-                                    <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class="btn btn-primary btn-s"><i class="bi bi-pencil"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class="btn text-primary border border-primary"><i class="bi bi-pencil-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("ListaAmigosVista", "Amigos")">
-                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class="btn btn-info btn-s"><i class="bi bi-person-lines-fill"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Amigos" type="submit" class="btn text-info border border-info"><i class="bi bi-person-lines-fill"></i></button>
                                 </form>
                                 <form action="@Url.Action("SolicitudesVista", "Amigos")">
-                                    <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class="btn btn-warning btn-s"><i class="bi bi-person-plus"></i></button>
+                                    <button data-bs-toggle="mensaje" title="Solicitudes pendientes" type="submit" class="btn text-warning border border-warning"><i class="bi bi-person-plus"></i></button>
                                 </form>
                             }
                             else
@@ -75,7 +75,7 @@
                 @foreach (var item in Publicaciones)
                 {
                     <div class="col-xs-12 col-md-4 col-lg-3">
-                        <div class="card bg-light vw-25%">
+                        <div class="card bg-light shadow vw-25%">
                             @*<div>*@
                                 <img src="@item.UrlImg" class="img-responsive card-img-top w-100 h-100 p-2 bg-white">
                             @*</div>*@
@@ -89,7 +89,7 @@
                             {
                                 <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
                                     <div>
-                                        <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
+                                        <button type="submit" class="btn text-danger border border-danger"><i class="bi bi-trash-fill"></i> </button>
                                     </div>
                                 </form>
                             }
