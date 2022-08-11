@@ -19,7 +19,7 @@
                 <div class="w-100 d-flex justify-content-start align-items-center gap-3">
                    
                     <p>
-                        @if (@item.TotalPost == 0 && item.Email == ViewBag.Ids)
+                        @if (@item.TotalPost == 0 @*&& item.Email == ViewBag.Ids*@)
                         {
                             @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1 border-0" })
                         }
