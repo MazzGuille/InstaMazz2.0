@@ -75,35 +75,12 @@
                             {
                                 if (ViewBag.Amigos)
                                 {
-                                    //if (ViewBag.IdUsuAmigo == Model.IdUsuario)
-                                    //{
-                                        <div>
-                                            <p class="text-primary">
-                                                <label class="bg-success p-2"><i class="bi bi-person-check text-white"></i> </label>
-                                                Amigo en común con <small class="text-dark">Link ir al amigo en comun</small>..
-                                            </p>
-                                        </div>
-                                    //}
-                                    //else
-                                    //{
-                                    //    ViewBag.Amigos = false;
-                                    //ViewBag.IdUsuAmigo = 0;
-                                        @*if (ViewBag.nBTN)
-                                        {
-                                            if (ViewBag.IdUsuAmigo == Model.IdUsuario)
-                                            {
-                                                <a>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
-                                            }
-                                            else
-                                            {
-                                                <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
-                                            }
-                                        }
-                                        else
-                                        {
-                                            <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
-                                        }*@
-                                    //}
+                                    <div>
+                                        <p class="text-primary">
+                                            <label class="bg-success p-2"><i class="bi bi-person-check text-white"></i> </label>
+                                            Amigo en común con <small class="text-dark">Link ir al amigo en comun</small>..
+                                        </p>
+                                    </div>
                                 }
                                 else
                                 {
@@ -162,7 +139,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">                           
+                                                <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">                           
                                                     <p>¿Estas seguro que deseas eliminar la publicación?</p>   
                                                     <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> Confirmar eliminación</button>
                                                 </form>
