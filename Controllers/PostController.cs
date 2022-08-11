@@ -36,6 +36,7 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("IdUsuario", oPublicacion.IdUsuario);
                 cmd.Parameters.AddWithValue("UrlImg", oPublicacion.UrlImg);
                 cmd.Parameters.AddWithValue("Descripcion", oPublicacion.Descripcion);
+                cmd.Parameters.AddWithValue("Titulo", oPublicacion.Titulo);
                 //cmd.Parameters.AddWithValue("UserName", Session["UsName"]);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();

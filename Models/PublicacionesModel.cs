@@ -17,6 +17,7 @@ namespace InstaMazz2._0.Models
 
         //solo para el total de post....
         public int TotalPost { get; set; }
+        public string Titulo { get; set; }
 
 
 

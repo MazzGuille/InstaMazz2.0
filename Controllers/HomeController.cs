@@ -197,6 +197,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
+                        oLista.Titulo = dr["Titulo"].ToString();
                         //obtener el total de los post...
                         int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
                         oLista.TotalPost = _totals;
