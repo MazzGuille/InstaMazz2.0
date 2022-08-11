@@ -103,6 +103,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult ListaAmigosVista()
         {
             ViewBag.listaSolicitudes = ListaAmigos().ToList();
+            ViewBag.IdUsu = Session["usuario"].ToString();
             return View();
             //return View(Listar());
         }
