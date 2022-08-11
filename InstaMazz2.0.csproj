@@ -283,6 +283,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\CSS\avatar.jpg" />
     <Content Include="Content\CSS\InstaMazz.jpg" />
+    <Content Include="Content\CSS\like.css" />
     <Content Include="Content\CSS\Login.css" />
     <Content Include="Content\CSS\site.css" />
     <Content Include="Content\JS\MeGusta.js" />

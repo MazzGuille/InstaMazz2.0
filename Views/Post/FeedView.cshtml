@@ -19,7 +19,15 @@
                 <div class="w-100 d-flex justify-content-start align-items-center gap-3">
                    
                     <p>
-                        @Html.ActionLink("Me Gusta", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-danger mt-1" })
+                        @if (@item.TotalPost == 0)
+                        {
+                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1" })
+                        }
+
                         <span class="ml-2">@item.TotalPost</span>
                     </p>
                 </div>
