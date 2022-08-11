@@ -64,15 +64,31 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Delete(int? IdPost)
         {
+            int _idPost = Convert.ToInt32(IdPost);
+            DeletePost(_idPost, Session["usuario"].ToString());
+            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
+        }
+
+        private bool DeletePost(int IdPost, string IdUsu)
+        {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
-                cn.Open();
-                SqlCommand cmd = new SqlCommand("sp_EliminarPost", cn);
-                cmd.Parameters.AddWithValue("IdPost", IdPost);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("sp_EliminarPost", cn);
+                    cmd.Parameters.AddWithValue("IdPost", IdPost);
+                    cmd.Parameters.AddWithValue("Email", IdUsu);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
         }
 
 
