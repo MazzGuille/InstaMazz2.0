@@ -1,3 +1,7 @@
-﻿.green {
-    display: none;
+﻿@media (max-width: 800px)
+{
+    .buscar{
+        padding:0;
+        margin:0;
+    }
 }
