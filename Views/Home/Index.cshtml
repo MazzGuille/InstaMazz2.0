@@ -23,8 +23,44 @@
                             @if (ViewBag.usu)
                             {
                                 <form action="@Url.Action("CrearPost", "Post")">
-                                    <button data-bs-toggle="mensaje" title="Crear publicacion" type="submit" class="btn btn-success btn-s"><i class="bi bi-plus-circle"></i> </button>
+                            @*<div>*@
+                                <button data-bs-toggle="@*modal*@ mensaje" @*data-bs-target="#CrearModal"*@ title="Crear publicacion" type="submit" class="btn btn-success btn-s"><i class="bi bi-plus-circle"></i> </button>
+                            @*</div>*@
                                 </form>
+
+                               <!--CONDIGO PARA CREAR MODAL-->
+                                @*<div class="modal" id="CrearModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitle">Crear Publicación</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="@Url.Action("CrearPost", "Post")" method="post">
+                                                    <div class="form-group">
+                                                        <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display:none">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="UserName" type="text" class="form-control" value="@ViewBag.UserName" style="display:none">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="Descripcion" type="text" class="form-control" placeholder="descripción">
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Crear Publicación</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+
+
                                 <form action="@Url.Action("EditarPerfil", "Acceso")">
                                     <button data-bs-toggle="mensaje" title="Editar Perfil" type="submit" class="btn btn-primary btn-s"><i class="bi bi-pencil"></i> </button>
                                 </form>
@@ -104,19 +140,41 @@
                             @*<div>*@
                                 <img src="@item.UrlImg" class="img-responsive card-img-top w-100 h-100 p-2 bg-white">
                             @*</div>*@
-                            <div class="card-body bg-none">
-                                <p class="d-flex justify-content-between">
-                                    <span>Titulo del Post</span>
-                                    <span class="fw-bold">Me Gusta: <small class="text-primary">@item.TotalPost</small></span>
-                                </p>
-                                <p class="card-text mb-3">@item.Descripcion</p>
-                                @if (ViewBag.usu)
-                                {
-                                    <form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">
-                                        <button data-bs-toggle="mensaje" title="Eliminar publicacion" type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
-                                    </form>
-                                }
-                            </div>
+                        <div class="card-body bg-none">
+                            <p class="d-flex justify-content-between">
+                                <span>Titulo del Post</span>
+                                <span class="fw-bold">Me Gusta: <small class="text-primary">@item.TotalPost</small></span>
+                            </p>
+                            <p class="card-text mb-3">@item.Descripcion</p>
+                            @if (ViewBag.usu)
+                            {
+                                @*<form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">*@
+                                <div>
+                                    <button data-bs-toggle="modal" data-bs-target="#EliminarModal" title="Eliminar publicacion" type="button" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
+                                </div>
+                                @*</form>*@
+                                <!--CONDIGO PARA CREAR MODAL-->
+                                <div class="modal" id="EliminarModal" tabindex="-1" aria-hidden="true" aria-labelledby="modalTitle">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitle">Eliminar publicación</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">                           
+                                                    <p>¿Estas seguro que deseas eliminar la publicación?</p>   
+                                                    <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> Confirmar eliminación</button>
+                                                </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                         </div>
                     </div>
                 }
