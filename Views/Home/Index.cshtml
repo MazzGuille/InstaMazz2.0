@@ -88,9 +88,9 @@
                             <p class="card-text mb-3">@item.Descripcion</p>
                             @if (ViewBag.usu)
                             {
-                                <form action="@Url.Action("Delete", "Post", new {IdPost = item.TotalPost})" method="post">
+                                <form action="@Url.Action("Delete", "Post", new {IdPost = item.IdPost})" method="post">
                                     <div>
-                                        <button type="button" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
+                                        <button type="submit" class="btn btn-danger btn-s mb-3"><i class="bi bi-trash"></i> </button>
                                     </div>
                                 </form>
                             }

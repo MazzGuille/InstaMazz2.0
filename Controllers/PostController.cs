@@ -81,7 +81,6 @@ namespace InstaMazz2._0.Controllers
                     cmd.Parameters.AddWithValue("Email", IdUsu);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
-
                     return true;
                 }
                 catch
