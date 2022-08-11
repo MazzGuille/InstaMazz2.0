@@ -7,22 +7,41 @@
 
 
 
-<div class="p-5 mt-5">
-    <h1>Crear Publicación</h1>
+<div class="card shadow" style="width: 33rem; margin:auto; margin-top:25vh;">
+    <div class="card-body">
+        <h1 class="card-title">Crear Publicación</h1>
 
-    <form action="@Url.Action("CrearPost", "Post")" method="post">
-        <div class="form-group">
-            <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display:none">
-        </div>
-        <div class="form-group">
-            <input name="UserName" type="text" class="form-control" value="@ViewBag.UserName" style="display:none">
-        </div>
-        <div class="form-group">
-            <input name="UrlImg" type="url" class="form-control" placeholder="URL de la imagen">
-        </div>
-        <div class="form-group">
-            <input name="Descripcion" type="text" class="form-control" placeholder="descripción">
-        </div>
-        <button type="submit" class="btn btn-primary">Crear Publicación</button>
-    </form>
+        <form action="@Url.Action("CrearPost", "Post")" method="post">
+            <div class="form-group">
+                <input name="IdUsuario" type="number" class="form-control card-text" value="@ViewBag.IdUsuario" style="display:none">
+            </div>
+            <div class="form-group">
+                <input name="UserName" type="text" class="form-control card-text" value="@ViewBag.UserName" style="display:none">
+            </div>
+            <div class="form-group">
+                <input name="UrlImg" type="url" class="form-control card-text" placeholder="URL de la imagen">
+            </div>
+            <div class="form-group">
+                <input name="Descripcion" type="text" class="form-control card-text" placeholder="descripción">
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Publicación</button>
+        </form>
+
+    </div>
+
 </div>
+
+
+
+
+
+
+@*<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+    </div>
+</div>*@
