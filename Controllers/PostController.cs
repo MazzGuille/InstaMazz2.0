@@ -165,6 +165,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
+                        oLista.Email = dr["Email"].ToString();
                         //obtener el total de los post...
                         int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
                         oLista.TotalPost = _totals;
@@ -229,7 +230,7 @@ namespace InstaMazz2._0.Controllers
                         _totalEs = 0;
                     }
                 }
-               return _totalEs;
+                return _totalEs;
             }
         }
     }
