@@ -9,7 +9,9 @@
     @foreach (var item in solicitudes)
     {
         <div class="card col-xs-12 col-md-3 p-0 me-2 mb-2">
-            <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+            <div style="height: 300px;">
+                <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+            </div>
             <div class="card-body p-0">
                 <h3 class="card-title ms-2">@item.Nombre</h3>
                 <h5 class="card-text ms-2">@item.UserName</h5>
