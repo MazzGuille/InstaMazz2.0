@@ -130,7 +130,7 @@ namespace InstaMazz2._0.Controllers
 
                         //agregamos al objeto...
                         oLista.Id = (int)dr["Id"];
-                        oLista.IdUsu = (int)dr["IdUsu"];
+                        //oLista.IdUsu = (int)dr["IdUsu"];
                         oLista.IdUsuAmigo = (int)dr["IdUsuAmigo"];
                         oLista.Activo = (int)dr["Activo"];
                         oLista.Nombre = dr["Nombre"].ToString();
