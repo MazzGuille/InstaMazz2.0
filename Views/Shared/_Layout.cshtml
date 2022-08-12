@@ -16,34 +16,31 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="pt-3">
-   
-    <div class="fixed-top" >
-        <nav class="navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-end w-100">
-            <a class="navbar-brand" href="#" style="width: 85vw;">InstaMazz</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav d-flex justify-content-end w-100" >
-                    <a class="nav-item nav-link" href="@Url.Action("FeedView","Post")">Inicio</a>
-                    <a class="nav-item nav-link" href="@Url.Action("PerfilUsu","Home")">Perfil</a>
-                    <a class="nav-item nav-link" href="@Url.Action("BuscarView","Home")">Buscar</a>
-                    <a class="nav-item nav-link" href="@Url.Action("CerrarSesion","Home")">Salir</a>
+
+    <div class="fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light d-flex justify-content-between w-100">  
+            <div class="d-flex justify-content-between align-items-center w-100 px-2">
+                <div>
+                    <a class="nav-item navbar-brand" href="@Url.Action("FeedView","Post")">InstaMazz</a>
+                </div>
+                <div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="width:90vw;">
+                <div class="navbar-nav d-flex justify-content-end w-100">
+                    <a class="nav-item nav-link" href="@Url.Action("FeedView","Post")"><i class="bi bi-house-fill text-primary"></i> Inicio</a>
+                    <a class="nav-item nav-link" href="@Url.Action("PerfilUsu","Home")"><i class="bi bi-person-fill text-primary"></i> Perfil</a>
+                    <a class="nav-item nav-link" href="@Url.Action("BuscarView","Home")"><i class="bi bi-search text-info"></i> Buscar</a>
+                    <a class="nav-item nav-link" href="@Url.Action("CerrarSesion","Home")"><i class="bi bi-door-open-fill text-danger"></i> Salir</a>
                 </div>
             </div>
         </nav>
-    </div>
-
-
-
-
-    @*<div style="width: 100vw;" class="container body-content">*@
+    </div>   
     @RenderBody()
-    @*<hr />*@
-    @*<footer class="navbar navbar-expand-lg bg-secondary" style="height: 10px; text-decoration: none; text-decoration-color: white; margin-bottom: 0; bottom: 0; position: fixed; width: 100%; z-index: 999;">
-            <p>&copy; @DateTime.Now.Year - InstaMazz</p>
-        </footer>*@
-    @*</div>*@
+   
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
