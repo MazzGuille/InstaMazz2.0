@@ -1,6 +1,49 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
 
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 body,
 html {
     margin: 0;
@@ -88,5 +131,5 @@ html {
         width: 90VW;
         
     }
-}
+}*/
     
