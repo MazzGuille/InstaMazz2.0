@@ -18,11 +18,10 @@
                     <h5 class="card-text ms-2">@item.UserName</h5>
                     <div class="d-flex gap-1 mx-1 mb-2">
                         <a>@Html.ActionLink(" Ver perfil", "MePerfil", "Home", new { email = item.Email }, new { @class = "btn text-primary border border-primary bi bi-person-lines-fill" })</a>
-                        @if(item.Email == Session["usuario"])
+                        @if(ViewBag.Activo)
                         {
                          <a>@Html.ActionLink(" Eliminar", "AceptarSolicitud", "Amigos", new { idAcp = item.Id, AcpRech = 0 }, new { @class = "btn text-danger border border-danger bi bi-person-dash-fill" })</a>
-                        }
-                        
+                        }                        
                     </div>
                 </div>
             </div>

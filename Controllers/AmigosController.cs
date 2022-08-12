@@ -102,13 +102,28 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult ListaAmigosVista(string IdEmail)
         {
+            //HABILITA EL BOTON, DE ELIMINAR SI ES, LA SESIÓN ACTUAL,
+            // EL QUE LE PASO A LA LISTA DE AMIGOS...
+            bool _PermisosPerfil;
+            //session de uno mismo...
+            string _existe = Session["usuario"].ToString();
+
             ViewBag.listaSolicitudes = ListaAmigos(IdEmail).ToList();
-            ViewBag.IdUsu = Session["usuario"].ToString();
+            ViewBag.IdUsu = _existe;
+            if(_existe == IdEmail)
+            {
+                _PermisosPerfil = true;
+            }
+            else
+            {
+                _PermisosPerfil = false;
+            }
+            //activar el btn de eliminar... o de enviar solicitud...
+            ViewBag.Activo = _PermisosPerfil;
             return View();
-            //return View(Listar());
         }
 
-        public List<Amigos> ListaAmigos(string IdEmail)
+        private List<Amigos> ListaAmigos(string IdEmail)
         {
             List<Amigos> _lista = new List<Amigos>();
 
@@ -153,8 +168,9 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult AceptarSolicitud(int idAcp, int AcpRech)
         {
+            string _Email = Session["usuario"].ToString();
             UpdateSolicitud(idAcp, AcpRech);
-            return RedirectToAction("ListaAmigosVista", "Amigos");
+            return RedirectToAction("ListaAmigosVista", "Amigos", new { IdEmail = _Email });
         }
 
         private bool UpdateSolicitud(int id, int Bits)
