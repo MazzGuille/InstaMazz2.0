@@ -47,16 +47,16 @@
                                     {
                                         if (ViewBag.IdUsuAmigo == Model.IdUsuario)
                                         {
-                                            <a>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "btn btn-danger btn-s gap-3" })</a>
+                                            <a>@Html.ActionLink(" Cancelar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 0, idemail = Model.Email }, new { @class = "shadow btn text-danger border border-danger bi bi-person-x-fill" })</a>
                                         }
                                         else
                                         {
-                                            <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                            <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "shadow btn text-primary border border-primary bi bi-person-plus-fill" })</a>
                                         }
                                     }
                                     else
                                     {
-                                        <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "btn btn-primary btn-s gap-3" })</a>
+                                        <a>@Html.ActionLink(" Enviar Solicitud", "AgregarAmigo", "Amigos", new { nSolt = 1, idemail = Model.Email }, new { @class = "shadow btn text-primary border border-primary bi bi-person-plus-fill" })</a>
                                     }
                                 }
                             }
