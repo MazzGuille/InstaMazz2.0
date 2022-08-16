@@ -21,13 +21,8 @@ namespace InstaMazz2._0.Models
         public string Email { get; set; }
 
 
+        //solo para adjuntar el Mgusta
+        public bool Mgusta { get; set; }
 
-
-        //private string Name(string n)
-        //{
-        //    n = nam.UserName;
-
-        //    return n;
-        //}
     }
 }

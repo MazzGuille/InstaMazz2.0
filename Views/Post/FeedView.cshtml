@@ -2,6 +2,7 @@
     ViewBag.Title = "FeedView";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var Feed = ViewBag.Feed;
+    var MGusta = ViewBag.ListMGusta;
 }
 
 <div style="margin-top: 10vh">
@@ -19,16 +20,10 @@
                 <div class="w-100 d-flex justify-content-start align-items-center gap-3">
                    
                     <p>
-                        @if (ViewBag.Manito)
+                        @*ViewBag.Manito*@
+                        @if (item.Mgusta)
                         {
-                            if (item.IdPost == ViewBag.IdPost)
-                            {
-                                @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1 border-0" })
-                            }
-                            else
-                            {
-                                @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1 border-0" })
-                            }
+                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1 border-0" })
                         }
                         else
                         {
