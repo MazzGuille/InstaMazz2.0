@@ -129,8 +129,6 @@ namespace InstaMazz2._0.Controllers
                 _byteString = xDefecto(0);
             }
 
-            //byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
-
             bool registrado;
             string mensaje;
             bool email;

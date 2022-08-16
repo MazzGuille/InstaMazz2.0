@@ -8,6 +8,15 @@
     background: #eee;
 }
 
+.contenido {
+    border: 1px solid #ccc;
+    display: inline-block;
+    color: gray;
+    padding: 6px 12px;
+    cursor: pointer;
+    width: 100%;
+}
+
 
 
 
@@ -132,4 +141,4 @@ html {
         
     }
 }*/
-    
+
