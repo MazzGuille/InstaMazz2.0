@@ -113,9 +113,23 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
+
             //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
             var ruta = Server.MapPath("~/Upload");
+
+            //string _img;
+
+            //if (ImgPerfil.FileName != "")
+            //{
+            //    _img = ImgPerfil.FileName;
+            //}
+            //else
+            //{
+            //    _img = "~/Content/CSS/avatar.jpg";
+            //}
+
+
             byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
 
             bool registrado;
@@ -145,17 +159,6 @@ namespace InstaMazz2._0.Controllers
 
                 return View();
             }
-
-            //if (registrado)
-            //{
-
-            //    return RedirectToAction("Login", "Acceso");
-            //}
-            //else
-            //{
-            //    return View();
-
-            //}
 
             if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
             {

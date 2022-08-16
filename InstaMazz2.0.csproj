@@ -285,7 +285,9 @@
     <Content Include="Content\CSS\InstaMazz.jpg" />
     <Content Include="Content\CSS\like.css" />
     <Content Include="Content\CSS\Login.css" />
+    <Content Include="Content\CSS\register.png" />
     <Content Include="Content\CSS\site.css" />
+    <Content Include="Content\JS\Input.js" />
     <Content Include="Content\JS\MeGusta.js" />
     <Content Include="Content\JS\Tooltip.js" />
     <Content Include="favicon.ico" />
