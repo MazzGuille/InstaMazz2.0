@@ -118,19 +118,18 @@ namespace InstaMazz2._0.Controllers
             HttpPostedFileBase ImgPerfil = Request.Files[0];
             var ruta = Server.MapPath("~/Upload");
 
-            string _img;
+            byte[] _byteString;
 
             if (ImgPerfil.FileName != "")
             {
-                _img = ImgPerfil.ToString();
+                _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
             }
             else
             {
-                _img = "~/Content/CSS/avatar.jpg";
+                _byteString = xDefecto(0);
             }
 
-
-            byte[] _byteString = deCadenaToBytes(_img, ruta, oUsuario.Email);
+            //byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
 
             bool registrado;
             string mensaje;
@@ -205,7 +204,6 @@ namespace InstaMazz2._0.Controllers
             }
 
         }
-
 
         public ActionResult EditarPerfil()
         {
@@ -330,8 +328,6 @@ namespace InstaMazz2._0.Controllers
 
         private static byte[] deCadenaToBytes(HttpPostedFileBase ImgPerfil, string Server, string email)
         {
-            //HttpPostedFileBase ImgPerfil = Request.Files[0];
-
             //Colocar el nombre de la Img + email.
             var _newNameImg = email + '_' + Path.GetFileName(ImgPerfil.FileName);//System.IO.Path.GetFileName(ImgPerfil.FileName);
 
@@ -347,6 +343,14 @@ namespace InstaMazz2._0.Controllers
 
             return _byteString;
         }
+
+        private static byte[] xDefecto(int num)
+        {
+            //convertimos el numero a byte..
+            byte[] _bytesInt = BitConverter.GetBytes(num);
+            return _bytesInt;
+        }
+
 
         private static byte[] igualByteToByte(byte args)
         {

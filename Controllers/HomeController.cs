@@ -27,6 +27,7 @@ namespace InstaMazz2._0.Controllers
             bool _btn;
             bool _serAmigo;
             int _idUsuAmigo;
+            bool _existeImg = false;
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 var cmd = new SqlCommand("sp_Get_DataUser", cn);
@@ -41,12 +42,23 @@ namespace InstaMazz2._0.Controllers
                     {
                         //tratando de mostrar imagen en la vista, desde bytes a img.
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        string _byteString;
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            _existeImg = true;
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        }
+                        else
+                        {
+                            _existeImg = false;
+                            _byteString = "avatar.jpg";
+                        }
 
                         model.IdUsuario = (int)dr["IdUsuario"];
                         model.Nombre = dr["Nombre"].ToString();
                         model.Email = dr["Email"].ToString();
                         model.UserName = dr["UserName"].ToString();
+                        //mandamos la imagen a la vista de perfil...
                         model.imagenPerf = _byteString;
                         model.BioUsuario = dr["BioUsuario"].ToString();
                     }
@@ -106,6 +118,8 @@ namespace InstaMazz2._0.Controllers
             ViewBag.nBTN = _btn;
             //pasamos el id del usuario del amigo...
             ViewBag.IdUsuAmigo = _idUsuAmigo;
+            //verificamos si existe la imagen en el perfil...
+            ViewBag.V_F = _existeImg;
             return View(model);
         }
 
