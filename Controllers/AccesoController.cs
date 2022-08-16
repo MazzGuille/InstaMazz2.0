@@ -118,19 +118,19 @@ namespace InstaMazz2._0.Controllers
             HttpPostedFileBase ImgPerfil = Request.Files[0];
             var ruta = Server.MapPath("~/Upload");
 
-            //string _img;
+            string _img;
 
-            //if (ImgPerfil.FileName != "")
-            //{
-            //    _img = ImgPerfil.FileName;
-            //}
-            //else
-            //{
-            //    _img = "~/Content/CSS/avatar.jpg";
-            //}
+            if (ImgPerfil.FileName != "")
+            {
+                _img = ImgPerfil.ToString();
+            }
+            else
+            {
+                _img = "~/Content/CSS/avatar.jpg";
+            }
 
 
-            byte[] _byteString = deCadenaToBytes(ImgPerfil, ruta, oUsuario.Email);
+            byte[] _byteString = deCadenaToBytes(_img, ruta, oUsuario.Email);
 
             bool registrado;
             string mensaje;
