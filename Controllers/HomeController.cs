@@ -55,8 +55,7 @@ namespace InstaMazz2._0.Controllers
             string _exiteUsu = Session["usuario"].ToString();
             if (_exiteUsu == idE)
             {
-                _usu = true;
-                
+                _usu = true;                
             }
             else
             {
