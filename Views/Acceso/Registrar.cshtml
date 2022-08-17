@@ -23,6 +23,11 @@
         <div class="container py-1 h-100">
             <div class="row d-flex align-items-center justify-content-center h-50">  
                 <div class="col-md-8 col-lg-7 col-xl-6">
+
+                    @*<div style="width: 100%; display: grid; place-content: center; color: #4285F4; margin-bottom:75px;">
+                        <h2 style="">REGISTRAR</h2>
+                    </div>*@
+                   
                     <img src="~/Content/CSS/register.png" class="img-fluid imagen" alt="Phone image">
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-6"> 
@@ -31,7 +36,6 @@
 
                         <!-- Email input -->
                         @*<input type="email" name="email" class="form-control input_user" value="" placeholder="E-Mail">*@
-
                         <div class="form-outline mt-2 mb-2">
                             <label class="form-label m-0" for="form1Example13"><i class="bi bi-envelope-fill text-primary"></i> E-Mail</label>
                             <input type="email" name="email" id="form1Example13" class="form-control" placeholder="EJ: usuario@email.com" />
@@ -52,10 +56,10 @@
                         </div>
 
                         <!-- Imagen de perfil input -->
-                        <div class="form-outline mb-2">
+                        <div class="form-outline mb-2 mt-0">
+                            <img id="imagen" class="img-fluid" style="max-width:150px; max-height:150px;">
                             <div><i class="bi bi-image-fill text-primary"></i> Imagén de perfil (Opcional)</div>
-                            <img id="imagen" class="img-fluid" style="height: 100px; width: 100px;">
-                            <label for="Boton" class="form-label m-0 contenido">Selecciona una imagen &nbsp;&nbsp;&nbsp;&nbsp; <span style="width: 100%;" id="fileName">Nombre del archivo: </span></label>                            
+                            <label for="Boton" class="form-label m-0 contenido" style="overflow: hidden;"><i class="bi bi-file-earmark-arrow-down-fill fa-lg text-primary"></i> &nbsp; <span style="width: 100%;" id="fileName">Nombre del archivo: </span></label>
                             <input name="ImagenPerfil" type="file" id="Boton" style="display: none;">
                         </div>                        
 

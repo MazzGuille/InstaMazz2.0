@@ -5,34 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<head>
+    <link href="~/Content/CSS/Login.css" rel="stylesheet" />
+    <script defer src="~/Content/JS/Input.js"></script>
+</head>
 
-<div class="row p-0 mt-3 mx-2 w-100 d-flex flex-column align-items-center justify-content-center w-100">
-    <h2>EditarPerfil</h2>
+<div class="row p-0 mt-3 mx-2 w-100 d-flex flex-column align-items-center justify-content-center w-100">   
 
-    <div class="card shadow-lg col-xs-12 col-md-6 col-lg-3 p-3">
-
+    <div class="card shadow-lg col-xs-12 col-md-6 col-lg-3 p-3" style="margin-top: 12vh; max-height: fit-content;">     
 
         <form action="@Url.Action("EditarPerfil", "Acceso")" method="post" enctype="multipart/form-data">
 
             <div class="form-group">
-                <img class="img-fluid rounded-start h-100 w-100" src="/Upload/@ViewBag.Img" />
-                Imagen de perfil <input type="file" name="ImagenPerfil" class="form-control input_pass">
+                <div style="margin-left: auto; margin-right: auto; display: grid; place-content: center;">
+                    <h2>Editar Perfil</h2>
+                </div>
+                <div class="shadow-lg">
+                    <img id="imagen" class="img-fluid rounded-start h-100 w-100" src="/Upload/@ViewBag.Img" />
+                </div>
             </div>
+
+            <div class="form-group mb-0">
+                <div ><i class="ms-1 bi bi-image-fill text-primary"></i> Imagén de perfil</div>
+                <label class="contenido mb-0 mt-0 form-label" for="Boton" style="width:89%; border-radius: 5px;"><i class="bi bi-file-earmark-arrow-down-fill fa-lg text-primary"></i> &nbsp; <span id="fileName"> Archivo: </span></label>
+                <input type="file" name="ImagenPerfil" id="Boton" class="form-control" style="display: none;">
+            </div>          
 
             <div class="form-group">
                 <input name="IdUsuario" type="number" class="form-control" value="@ViewBag.IdUsuario" style="display: none">
             </div>
 
             <div class="form-group">
-                Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control border border-cyan">
+                <i class="ms-1 bi bi-person-fill text-primary"></i> Nombre <input name="Nombre" type="text" value="@ViewBag.Nom" class="form-control border border-cyan">
             </div>
 
             <div class="form-group">
-                Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control border border-cyan">
+                <i class="ms-1 bi bi-person-fill text-primary"></i> Nombre de usuario <input name="UserName" type="text" value="@ViewBag.NomUs" class="form-control border border-cyan">
             </div>
 
             <div class="form-group">
-                Biografia <textarea name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control border border-cyan" style="height: 80px;"></textarea>
+                <i class="ms-1 bi bi-map-fill text-primary"></i> Biografia <textarea name="BioUsuario" maxlength="120" type="text" value="@ViewBag.Bio" class="form-control border border-cyan" style="height: 80px;"></textarea>
             </div>
 
             @if (ViewBag.NombreNull != null)
@@ -55,10 +67,10 @@
                     @ViewBag.BioNull
                 </div>
             }
-                
-        <div class="my-2" style="display:grid; place-content: center;">
-            <button type="submit" class="btn shadow-lg text-primary border border-primary bi bi-pencil-fill"> Guardar cambios</button>
-        </div>
+
+            <div class="my-2" style="display:grid; place-content: center;">
+                <button type="submit" class="btn shadow-lg text-primary border border-primary bi bi-pencil-fill"> Guardar cambios</button>
+            </div>
         </form>
     </div>
 </div>

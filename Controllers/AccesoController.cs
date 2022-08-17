@@ -212,7 +212,7 @@ namespace InstaMazz2._0.Controllers
             var IdUsuario = (int)Session["IdUsuario"];
             if (IdUsuario != 0)
             {
-                //si existe la bariable session...
+                //si existe la variable session...
                 ViewBag.IdUsuario = IdUsuario;
 
                 UsuarioModel model = new UsuarioModel();
