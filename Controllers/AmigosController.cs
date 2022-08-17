@@ -52,14 +52,16 @@ namespace InstaMazz2._0.Controllers
         }
 
         public ActionResult SolicitudesVista()
-        {
+        {            
             ViewBag.listaSolicitudes = Solicitudes().ToList();
+            ViewBag.V_F = Convert.ToBoolean(Session["ImgAvatar"]);
             return View();
         }
 
         public List<Amigos> Solicitudes()
         {
             List<Amigos> _lista = new List<Amigos>();
+            string _byteString;
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -73,8 +75,17 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-
+                        //string _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            Session["ImgAvatar"] = true;
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        }
+                        else
+                        {
+                            Session["ImgAvatar"] = false;
+                            _byteString = "avatar.jpg";
+                        }
                         Amigos oLista = new Amigos();
 
                         //agregamos al objeto...
