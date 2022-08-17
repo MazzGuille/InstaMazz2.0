@@ -8,7 +8,7 @@
     <div class="container d-flex flex-column justify-content-center align-items-center w-100row p-0 gap-5" style="margin-top: 10vh;">
         <div class="card col-xs-12 col-md-7 col-lg-5 shadow-lg">
             <div class="row g-0 p-2">
-                @if (ViewBag.V_F)
+                @*@if (ViewBag.V_F)
                 {
                     <div class="col-xs-12 col-md-6 p-0">
                         <img src="/Upload/@Model.imagenPerf " class="img-fluid rounded-start h-100 w-100">
@@ -19,7 +19,20 @@
                     <div class="col-xs-12 col-md-6 p-0">
                         <img src="~/Content/CSS/@Model.imagenPerf" class="img-fluid rounded-start h-100 w-100">
                     </div>
-                }
+                }*@
+
+                @if (Model.imagenPerf.EndsWith("png") || Model.imagenPerf.EndsWith("jpg") || Model.imagenPerf.EndsWith("jpeg"))
+                 {
+                     <div class="col-xs-12 col-md-6 p-0">
+                         <img src="/Upload/@Model.imagenPerf " class="img-fluid rounded-start h-100 w-100">
+                     </div>
+                 }
+                 else
+                 {
+                     <div class="col-xs-12 col-md-6 p-0">
+                         <img src="~/Content/CSS/avatar.jpg" class="img-fluid rounded-start h-100 w-100">
+                     </div>
+                 }
 
                 <div class="col-xs-12 col-md-6 p-0">
                     <div class="card-body">
