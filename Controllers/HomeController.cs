@@ -248,7 +248,10 @@ namespace InstaMazz2._0.Controllers
             //obtengo el dato de la barible...
             var usu = Session["busc"];
 
+            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
             string _byteString;
+
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
             bool _ceroImg;
 
             //verifico si la variable existe o si es null..
@@ -334,7 +337,10 @@ namespace InstaMazz2._0.Controllers
         public List<Amigos> ListaAmigosDeAmigo()
         {
             List<Amigos> _lista = new List<Amigos>();
+            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
             string _byteString;
+
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
             bool _ceroImg;
 
             using (SqlConnection cn = new SqlConnection(cadena))

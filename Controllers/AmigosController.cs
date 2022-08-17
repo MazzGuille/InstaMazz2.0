@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls.WebParts;
 using InstaMazz2._0.Models;
 using InstaMazz2._0.Permisos;
 
@@ -140,7 +141,9 @@ namespace InstaMazz2._0.Controllers
         private List<Amigos> ListaAmigos(string IdEmail)
         {
             List<Amigos> _lista = new List<Amigos>();
+            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
             string _byteString;
+
             //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
             bool _ceroImg;
 
