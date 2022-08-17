@@ -29,5 +29,8 @@ namespace InstaMazz2._0.Models
         public string imagenPerf { get; set; }
         public string BioUsuario { get; set; }
 
+        //para verificar si la imagen es cero o no...
+        public bool ceroImg { get; set; }
+
     }
 }

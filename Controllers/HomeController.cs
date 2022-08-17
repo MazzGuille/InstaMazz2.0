@@ -248,6 +248,9 @@ namespace InstaMazz2._0.Controllers
             //obtengo el dato de la barible...
             var usu = Session["busc"];
 
+            string _byteString;
+            bool _ceroImg;
+
             //verifico si la variable existe o si es null..
             if (usu == null)
             {
@@ -269,7 +272,16 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            _ceroImg = true;
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        }
+                        else
+                        {
+                            _ceroImg = false;
+                            _byteString = "avatar.jpg";
+                        }
 
                         oLista.Add(new UsuarioModel
                         {
@@ -277,7 +289,8 @@ namespace InstaMazz2._0.Controllers
                             UserName = dr["UserName"].ToString(),
                             IdUsuario = ((int)dr["IdUsuario"]),
                             Email = dr["Email"].ToString(),
-                            imagenPerf = _byteString
+                            imagenPerf = _byteString,
+                            ceroImg = _ceroImg
                         });
                     }
                 }
