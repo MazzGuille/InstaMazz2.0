@@ -11,7 +11,14 @@
         {
             <div class="card shadow col-xs-12 col-md-3 p-0 me-2 mb-2 ms-2">
                 <div class="p-3" style="height: 280px;">
-                    <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+                    @if (item.ceroImg)
+                    {
+                        <img src="/Upload/@item.imagenPerf" class="card-img-top h-100 w-100">
+                    }
+                    else
+                    {
+                        <img src="~/Content/CSS/@item.imagenPerf" class="card-img-top h-100 w-100">
+                    }
                 </div>
                 <div class="card-body p-2">
                     <h3 class="card-title ms-2">@item.Nombre</h3>

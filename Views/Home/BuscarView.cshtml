@@ -27,7 +27,14 @@
             <div class="card col-xs-12 col-md-7 col-lg-5 shadow-lg">
                 <div class="row g-0 p-0">
                     <div class="col-xs-12 col-md-6 p-2" style="height: 250px;">
-                        <img src="/Upload/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">
+                        @if (item.ceroImg)
+                        {
+                            <img src="/Upload/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">
+                        }
+                        else
+                        {
+                            <img src="~/Content/CSS/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">
+                        }
                     </div>
                     <div class="col-xs-12 col-md-6 p-0">
                         <div class="card-body">

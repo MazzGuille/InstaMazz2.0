@@ -12,7 +12,7 @@
 
 <div class="row p-0 mt-3 mx-2 w-100 d-flex flex-column align-items-center justify-content-center w-100">   
 
-    <div class="card shadow-lg col-xs-12 col-md-6 col-lg-3 p-3" style="margin-top: 12vh; max-height: fit-content;">     
+    <div class="card shadow-lg bg-light col-xs-12 col-md-6 col-lg-3 p-3" style="margin-top: 12vh; max-height: fit-content;">     
 
         <form action="@Url.Action("EditarPerfil", "Acceso")" method="post" enctype="multipart/form-data">
 
@@ -20,8 +20,15 @@
                 <div style="margin-left: auto; margin-right: auto; display: grid; place-content: center;">
                     <h2>Editar Perfil</h2>
                 </div>
-                <div class="shadow-lg">
-                    <img id="imagen" class="img-fluid rounded-start h-100 w-100" src="/Upload/@ViewBag.Img" />
+                <div @*class="shadow-lg"*@>
+                    @if (ViewBag.V_F)
+                    {
+                        <img id="imagen" src="/Upload/@ViewBag.Img" class="img-fluid rounded-start h-100 w-100">
+                    }
+                    else
+                    {
+                        <img id="imagen" src="~/Content/CSS/@ViewBag.Img" class="img-fluid rounded-start h-100 w-100">
+                    }
                 </div>
             </div>
 

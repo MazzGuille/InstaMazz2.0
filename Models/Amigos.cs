@@ -16,5 +16,8 @@ namespace InstaMazz2._0.Models
         public string imagenPerf { get; set; }
         public string Email { get; set; }
 
+        //imagen por defecto...
+        public bool ceroImg { get; set; }
+
     }
 }

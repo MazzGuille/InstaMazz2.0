@@ -54,14 +54,18 @@ namespace InstaMazz2._0.Controllers
         public ActionResult SolicitudesVista()
         {            
             ViewBag.listaSolicitudes = Solicitudes().ToList();
-            ViewBag.V_F = Convert.ToBoolean(Session["ImgAvatar"]);
             return View();
         }
 
         public List<Amigos> Solicitudes()
         {
             List<Amigos> _lista = new List<Amigos>();
+
+            //esta variable es para pasar el nombre de la imagen obtenida desde la bd...
             string _byteString;
+
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
+            bool _ceroImg;
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -75,15 +79,14 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        //string _byteString = System.Text.Encoding.Default.GetString(_byteImg);
                         if (BitConverter.ToInt32(_byteImg, 0) > 0)
                         {
-                            Session["ImgAvatar"] = true;
+                            _ceroImg = true;
                             _byteString = System.Text.Encoding.Default.GetString(_byteImg);
                         }
                         else
                         {
-                            Session["ImgAvatar"] = false;
+                            _ceroImg = false;
                             _byteString = "avatar.jpg";
                         }
                         Amigos oLista = new Amigos();
@@ -96,7 +99,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.Nombre = dr["Nombre"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
-                        //Session["Estado"] = (int)oLista.Activo;
+                        oLista.ceroImg = _ceroImg;
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
@@ -118,8 +121,6 @@ namespace InstaMazz2._0.Controllers
             bool _PermisosPerfil;
             //session de uno mismo...
             string _existe = Session["usuario"].ToString();
-
-            ViewBag.listaSolicitudes = ListaAmigos(IdEmail).ToList();
             ViewBag.IdUsu = _existe;
             if(_existe == IdEmail)
             {
@@ -129,14 +130,19 @@ namespace InstaMazz2._0.Controllers
             {
                 _PermisosPerfil = false;
             }
+
             //activar el btn de eliminar... o de enviar solicitud...
             ViewBag.Activo = _PermisosPerfil;
+            ViewBag.listaSolicitudes = ListaAmigos(IdEmail).ToList();
             return View();
         }
 
         private List<Amigos> ListaAmigos(string IdEmail)
         {
             List<Amigos> _lista = new List<Amigos>();
+            string _byteString;
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
+            bool _ceroImg;
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -150,8 +156,16 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                            _ceroImg = true;
+                        }
+                        else
+                        {
+                            _byteString = "avatar.jpg";
+                            _ceroImg = false;
+                        }
                         Amigos oLista = new Amigos();
 
                         //agregamos al objeto...
@@ -163,6 +177,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
                         oLista.Email = dr["Email"].ToString();
+                        oLista.ceroImg = _ceroImg;
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);

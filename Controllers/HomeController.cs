@@ -321,6 +321,8 @@ namespace InstaMazz2._0.Controllers
         public List<Amigos> ListaAmigosDeAmigo()
         {
             List<Amigos> _lista = new List<Amigos>();
+            string _byteString;
+            bool _ceroImg;
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -334,7 +336,16 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            _ceroImg = true;
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        }
+                        else
+                        {
+                            _ceroImg = false;
+                            _byteString = "avatar.jpg";
+                        }
 
                         Amigos oLista = new Amigos();
 
@@ -347,6 +358,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.UserName = dr["UserName"].ToString();
                         oLista.imagenPerf = _byteString;
                         oLista.Email = dr["Email"].ToString();
+                        oLista.ceroImg = _ceroImg;
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);

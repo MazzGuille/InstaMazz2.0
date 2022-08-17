@@ -212,6 +212,7 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.IdUsuario = IdUsuario;
 
                 UsuarioModel model = new UsuarioModel();
+                string _byteString;
 
                 using (SqlConnection cn = new SqlConnection(cadena))
                 {
@@ -227,7 +228,16 @@ namespace InstaMazz2._0.Controllers
                         {
                             //tratando de mostrar imagen en la vista, desde bytes a img.
                             byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                            var _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                            if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                            {
+                                Session["ImgAvatar"] = true;
+                                _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                            }
+                            else
+                            {
+                                Session["ImgAvatar"] = false;
+                                _byteString = "avatar.jpg";
+                            }
 
                             model.Nombre = dr["Nombre"].ToString();
                             model.Email = dr["Email"].ToString();
@@ -242,6 +252,7 @@ namespace InstaMazz2._0.Controllers
                 ViewBag.NomUs = model.UserName;
                 ViewBag.Celec = model.Email;
                 ViewBag.Bio = model.BioUsuario;
+                ViewBag.V_F = Convert.ToBoolean(Session["ImgAvatar"]);
                 ViewBag.Img = model.imagenPerf;
 
                 return View();

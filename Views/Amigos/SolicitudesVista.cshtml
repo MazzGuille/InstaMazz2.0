@@ -10,13 +10,13 @@
     {
         <div class="card col-xs-12 col-md-4 p-0 me-2 mb-2 ms-2" style="width: 350px;">
             <div class="p-3" style="width: 350px; margin-inline: auto;">
-                @if (ViewBag.V_F)
+                @if (item.ceroImg)
                 {                    
-                        <img src="/Upload/@item.imagenPerf " class="img-fluid rounded-start h-100 w-100">                   
+                    <img src="/Upload/@item.imagenPerf " class="img-fluid rounded-start h-100 w-100">                   
                 }
                 else
-                {                   
-                        <img src="~/Content/CSS/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">                   
+                {
+                    <img src="~/Content/CSS/@item.imagenPerf" class="img-fluid rounded-start h-100 w-100">                   
                 }
             </div>
                 <div class="card-body p-2">
