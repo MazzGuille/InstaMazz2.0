@@ -20,6 +20,22 @@ namespace InstaMazz2._0.Controllers
         // GET: Chat
         public ActionResult Chat()
         {
+            bool verChat = false;
+            //validamos para ver el chat del amigo y poder chatear...
+            string _nomb = (string)Session["Nombre"];
+            string _img = (string)Session["Img"];
+            if (_nomb != null && _img != null)
+            {
+                verChat = true;
+            }
+            else
+            {
+                verChat = false;
+            }
+            ViewBag.MostrarChat = verChat;
+            //Pasamos para la vista, para empezar a chatear con el amigo...
+            ViewBag.NombreUsu = _nomb;
+            ViewBag.Imagen = _img;
             //enviamos la charla del usuario con sus amigos...
             //--- a la vista...
             ViewBag.Chats = GetChats().ToList();
@@ -51,6 +67,8 @@ namespace InstaMazz2._0.Controllers
 
                         //Guardamos en la lista del Modelo...
                         oChat.ID = (int)dr["ID"];
+                        oChat.IdAmigo = (int)dr["IdAmigo"];
+                        oChat.IdUsuEnvio = (int)dr["IdUsuEnvio"];
                         oChat.Mensaje = (string)dr["Mensaje"];
                         oChat.Fecha = (string)dr["Fecha"];
 
@@ -147,6 +165,13 @@ namespace InstaMazz2._0.Controllers
                 return _lista;
 
             }
+        }
+
+        public ActionResult ObtenerData(string nombre, string img)
+        {
+            Session["Nombre"] = nombre;
+            Session["Img"] = img;
+            return RedirectToAction("Chat", "Chat");
         }
 
         private string sessionUsuario()

@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Chat";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var chats = ViewBag.Chats;
     var listaAmigos = ViewBag.listaAmigos;
 }
 
@@ -55,7 +56,7 @@
 
         @foreach (var item in listaAmigos)
         {
-            <a class="text-decoration-none" href="@Url.Action("FeedView","Post")">
+            <a class="text-decoration-none" href="@Url.Action("ObtenerData","Chat", new { nombre = item.Nombre, img = item.imagenPerf})">
                 <div class="bg-light d-flex justify-content-center align-items-center gap-3 p-3" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: fit-content;">
 
                     @if (item.ceroImg)
