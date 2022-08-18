@@ -58,9 +58,10 @@ namespace InstaMazz2._0.Controllers
         [HttpPost]
         public ActionResult Delete(int? IdPost)
         {
+            string _sessionEmail = sessionUsuario();
             int _idPost = Convert.ToInt32(IdPost);
-            DeletePost(_idPost, Session["usuario"].ToString());
-            return RedirectToAction("Index", "Home", new { idE = Session["usuario"] });
+            DeletePost(_idPost, _sessionEmail);
+            return RedirectToAction("Index", "Home", new { idE = _sessionEmail });
         }
 
         private bool DeletePost(int IdPost, string IdUsu)
@@ -99,7 +100,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Listar", cn);
-                cmd.Parameters.AddWithValue("idEmail", Session["usuario"]);
+                cmd.Parameters.AddWithValue("idEmail", sessionUsuario());
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -130,7 +131,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult FeedView()
         {
             ViewBag.Feed = Feed().ToList();
-            ViewBag.Ids = Session["usuario"].ToString();
+            ViewBag.Ids = sessionUsuario();// Session["usuario"].ToString();
             return View();
         }
 
@@ -142,7 +143,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Feed", cn);
-                cmd.Parameters.AddWithValue("Email", Session["usuario"]);
+                cmd.Parameters.AddWithValue("Email", sessionUsuario());
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -228,5 +229,11 @@ namespace InstaMazz2._0.Controllers
                 return _totalEs;
             }
         }
+
+        private string sessionUsuario()
+        {
+            return (string)Session["usuario"];
+        }
+
     }
 }
