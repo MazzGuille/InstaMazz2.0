@@ -12,5 +12,6 @@ namespace InstaMazz2._0.Models
         public int IdUsuEnvio { get; set; }
         public string Mensaje { get; set; }
         public string Fecha { get; set; }
+        public string Email { get; set; }
     }
 }
