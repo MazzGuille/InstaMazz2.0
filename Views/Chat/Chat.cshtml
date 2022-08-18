@@ -56,15 +56,19 @@
         @foreach (var item in listaAmigos)
         {
             <a class="text-decoration-none" href="@Url.Action("FeedView","Post")">
-                <div class="bg-light d-flex justify-content-center align-items-center gap-3 p-3" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: fit-content;">
+                <div class="text-decoration-none bg-light d-flex justify-content-center align-items-center gap-3 p-3" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: fit-content;">
 
                     @if (item.ceroImg)
                     {
-                        <img src="/Upload/@item.imagenPerf" class="img-circle" style="max-width: 45px; max-height: 100%;">
+                        <div style="width: 50px; height: 50px;">
+                            <img src="/Upload/@item.imagenPerf" class="img-circle text-decoration-none h-100 w-100">
+                        </div>                        
                     }
                     else
                     {
-                        <img src="~/Content/CSS/@item.imagenPerf" class="img-circle" style="max-width: 45px; max-height: 100%;">
+                        <div style="width: 50px; height: 50px;">
+                            <img src="~/Content/CSS/@item.imagenPerf" class="img-circle text-decoration-none h-100 w-100">
+                        </div>                        
                     }
                     <p>@item.Nombre</p>
 
