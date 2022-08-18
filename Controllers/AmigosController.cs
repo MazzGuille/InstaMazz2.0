@@ -16,6 +16,7 @@ namespace InstaMazz2._0.Controllers
     public class AmigosController : Controller
     {
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
+
         // GET: Amigos
         public ActionResult AgregarAmigo(int nSolt, string idemail) //Amigos oAmigo
         {
@@ -23,7 +24,7 @@ namespace InstaMazz2._0.Controllers
             //sino el btn va hacer de color rojo...
             Session["activ"] = nSolt;
             //enviamos los datos al metodo de agregar amigos...
-            AgregarAmg(Session["usuario"].ToString(), idemail, nSolt);
+            AgregarAmg(sessionUsuario(), idemail, nSolt);
             //retornamos la vista del usuario...
             return RedirectToAction("Index", "Home", new { idE = idemail });
         }
@@ -68,11 +69,14 @@ namespace InstaMazz2._0.Controllers
             //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
             bool _ceroImg;
 
+            //Obtenemos la Session del Usuario...
+            string _sessionEmail = sessionUsuario();
+
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_SolicitudesPendientes", cn);
-                cmd.Parameters.AddWithValue("email", Session["usuario"]);
+                cmd.Parameters.AddWithValue("email", _sessionEmail);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -121,9 +125,9 @@ namespace InstaMazz2._0.Controllers
             // EL QUE LE PASO A LA LISTA DE AMIGOS...
             bool _PermisosPerfil;
             //session de uno mismo...
-            string _existe = Session["usuario"].ToString();
-            ViewBag.IdUsu = _existe;
-            if(_existe == IdEmail)
+            string _sessionEmail = sessionUsuario();
+            ViewBag.IdUsu = _sessionEmail;
+            if(_sessionEmail == IdEmail)
             {
                 _PermisosPerfil = true;
             }
@@ -197,7 +201,7 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult AceptarSolicitud(int idAcp, int AcpRech)
         {
-            string _Email = Session["usuario"].ToString();
+            string _Email = sessionUsuario();
             UpdateSolicitud(idAcp, AcpRech);
             return RedirectToAction("ListaAmigosVista", "Amigos", new { IdEmail = _Email });
         }
@@ -224,6 +228,11 @@ namespace InstaMazz2._0.Controllers
                     return false;
                 }
             }
+        }
+
+        private string sessionUsuario()
+        {
+            return (string)Session["usuario"];
         }
 
     }
