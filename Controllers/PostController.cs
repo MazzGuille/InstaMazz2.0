@@ -17,6 +17,14 @@ namespace InstaMazz2._0.Controllers
 
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
 
+        public ActionResult ComentarView()
+        {
+            // ViewBag.ListaComentarios = ListaComentarios().ToList();
+            return View();
+        }
+
+
+
         public ActionResult CrearPost()
         {
             var IdUsuario = (int)Session["IdUsuario"];
@@ -179,7 +187,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult MGusta(string IdUsu, int IdPost)
         {
             //aca va el metodo privado de "guardar el megusta".. 
-            MGustaBTN(IdUsu, IdPost);           
+            MGustaBTN(IdUsu, IdPost);
             return RedirectToAction("FeedView", "Post");
         }
 
@@ -195,7 +203,7 @@ namespace InstaMazz2._0.Controllers
                     cmd.Parameters.AddWithValue("IdPost", idpost);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.ExecuteNonQuery();
-                     return true;
+                    return true;
                 }
                 catch
                 {
@@ -203,7 +211,7 @@ namespace InstaMazz2._0.Controllers
                 }
             }
         }
-                
+
         //total de M-Gusta del Post
         private int TMGusta(int idPost)
         {

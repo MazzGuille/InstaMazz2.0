@@ -340,6 +340,7 @@
     <Content Include="Views\Amigos\ListaAmigosVista.cshtml" />
     <Content Include="Views\Home\ListaAmigosDeAmigoVista.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
+    <Content Include="Views\Post\ComentarView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
