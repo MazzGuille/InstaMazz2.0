@@ -227,7 +227,7 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult BuscarView()
         {
-            ViewBag.IdS = Session["usuario"];
+            ViewBag.IdS = sessionUsuario(); //Session["usuario"];
             ViewBag.Buscar = Buscar().ToList();
             ViewBag.nBTN = false;
             return View();
@@ -330,7 +330,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult ListaAmigosDeAmigoVista()
         {
             ViewBag.listaAmigosDeAmigo = ListaAmigosDeAmigo().ToList();
-            ViewBag.IdUsu = Session["usuario"].ToString();
+            ViewBag.IdUsu = sessionUsuario(); //Session["usuario"].ToString();
             return View();
             //return View(Listar());
         }
