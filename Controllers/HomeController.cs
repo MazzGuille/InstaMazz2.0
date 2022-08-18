@@ -22,7 +22,8 @@ namespace InstaMazz2._0.Controllers
         UsuarioModel model = new UsuarioModel();
         public ActionResult Index(string idE)
         {
-            string _SessionUsuario = Session["usuario"].ToString();
+            //Obtenemos la session del usuario...
+            string _SessionUsuario = sessionUsuario(); //Session["usuario"].ToString();
             bool _usu;
             bool _btn;
             bool _serAmigo;
@@ -64,8 +65,8 @@ namespace InstaMazz2._0.Controllers
                     }
                 }
             }
-            string _exiteUsu = Session["usuario"].ToString();
-            if (_exiteUsu == idE)
+            //string _exiteUsu = Session["usuario"].ToString();
+            if (_SessionUsuario == idE)
             {
                 _usu = true;                
             }
@@ -396,6 +397,11 @@ namespace InstaMazz2._0.Controllers
         {
             Session["usuario"] = null;
             return RedirectToAction("Login", "Acceso");
+        }
+
+        private string sessionUsuario()
+        {
+            return (string)Session["usuario"];
         }
 
     }
