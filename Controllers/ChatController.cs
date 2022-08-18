@@ -24,7 +24,7 @@ namespace InstaMazz2._0.Controllers
             //--- a la vista...
             ViewBag.Chats = GetChats().ToList();
             //lista de Amigos...
-            ViewBag.listaSolicitudes = ListaAmigos(sessionUsuario()).ToList();
+            ViewBag.listaAmigos = ListaAmigos(sessionUsuario()).ToList();
             return View();
         }
 
@@ -35,7 +35,7 @@ namespace InstaMazz2._0.Controllers
             //Obtenemos la session del usuario...
             string _sessionEmail = sessionUsuario();
 
-            using (SqlConnection cn = new SqlConnection(cadena)) 
+            using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("SP_Get_ChatsAmig", cn);

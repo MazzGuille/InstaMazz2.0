@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Chat";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var listaAmigos = ViewBag.listaAmigos;
 }
 
 <div class="row flex-md-column" style="height: 95vh; overflow: hidden;">
@@ -52,13 +53,21 @@
 
     <div class="col col-12 col-md-3" style="margin-top: 12vh; display: flex; flex-direction: column; align-items:end; height: 100vh; overflow: scroll;">
 
-        @*@foreach (var item in collection)
+        @foreach (var item in listaAmigos)
         {
              <div class="bg-light d-flex justify-content-center align-items-center gap-3 p-3" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: fit-content;">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
-            <p>Nombre Amigo</p>
-        </div>
-        }*@
+                
+                 @if (item.ceroImg)
+                 {
+                     <img src="/Upload/@item.imagenPerf" class="img-circle" style="max-width: 45px; max-height: 100%;">
+                 }
+                 else
+                 {
+                     <img src="~/Content/CSS/@item.imagenPerf" class="img-circle" style="max-width: 45px; max-height: 100%;">
+                 }
+                 <p>@item.Nombre</p>
+             </div>
+        }
        
         
 
