@@ -33,8 +33,8 @@ namespace InstaMazz2._0.Controllers
             using (SqlConnection cn = new SqlConnection(cadena)) 
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("sp_Listar", cn);
-                cmd.Parameters.AddWithValue("idEmail", _sessionEmail);
+                SqlCommand cmd = new SqlCommand("SP_Get_ChatsAmig", cn);
+                cmd.Parameters.AddWithValue("emailUsu", _sessionEmail);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 //Obtenemos todo la combersaciones del usuario con sus amigos...
