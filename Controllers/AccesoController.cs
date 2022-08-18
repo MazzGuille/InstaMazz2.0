@@ -44,6 +44,8 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
+
+
             oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
 
             using (SqlConnection cn = new SqlConnection(cadena))
@@ -113,6 +115,11 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
+            if (string.IsNullOrEmpty(oUsuario.BioUsuario))
+            {
+                ViewBag.Biografia = "El campo \"Biografia\" es requerido";
+            }
+
 
             //CODIGO REUTILISABLE... PARA PASAR LA IMAGEN A BYTE...
             HttpPostedFileBase ImgPerfil = Request.Files[0];
@@ -157,6 +164,7 @@ namespace InstaMazz2._0.Controllers
                 return View();
             }
 
+
             if (oUsuario.Contraseña == oUsuario.ConfirmarClave)
             {
                 oUsuario.Contraseña = ConvertirSHA256(oUsuario.Contraseña);
@@ -166,6 +174,8 @@ namespace InstaMazz2._0.Controllers
                 ViewData["Mensaje"] = "Las contraseñas no coinciden";
                 return View();
             }
+
+            ViewBag.RegistradoConExito = "Te has registrado con exito";
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -187,12 +197,15 @@ namespace InstaMazz2._0.Controllers
                 registrado = (bool)cmd.Parameters["Registrado"].Value;
                 mensaje = (string)cmd.Parameters["Mensaje"].Value;
                 Session["ImgPerf"] = _byteString;
+                ViewBag.Registro = registrado;
+
             }
 
             ViewData["Mensaje"] = mensaje;
 
             if (registrado)
             {
+                Session["Reg"] = "positivo";
 
                 return RedirectToAction("Login", "Acceso");
             }

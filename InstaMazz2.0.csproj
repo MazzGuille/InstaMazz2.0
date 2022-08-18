@@ -264,6 +264,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\AmigosController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IwebHostEnvironment.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -287,9 +288,11 @@
     <Content Include="Content\CSS\like.css" />
     <Content Include="Content\CSS\Login.css" />
     <Content Include="Content\CSS\register.png" />
+    <Content Include="Content\CSS\Registro.css" />
     <Content Include="Content\CSS\site.css" />
     <Content Include="Content\JS\Input.js" />
     <Content Include="Content\JS\MeGusta.js" />
+    <Content Include="Content\JS\Registro.js" />
     <Content Include="Content\JS\Tooltip.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -334,6 +337,7 @@
     <Content Include="Views\Amigos\SolicitudesVista.cshtml" />
     <Content Include="Views\Amigos\ListaAmigosVista.cshtml" />
     <Content Include="Views\Home\ListaAmigosDeAmigoVista.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
