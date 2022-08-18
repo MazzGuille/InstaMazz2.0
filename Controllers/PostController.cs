@@ -84,7 +84,6 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-
         public ActionResult ListarVista()
         {
             ViewBag.listaPost = Listar().ToList();
