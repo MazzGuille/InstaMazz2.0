@@ -47,7 +47,8 @@
                                                     @data.Mensaje
                                                 </p>
                                             </div>
-                                        </div>
+                                        </div>                                       
+
                                     }
                                     if (data.Email == ViewBag.IdSession)
                                     {
@@ -66,21 +67,11 @@
                             {
                                 <p>Chat Con ...</p>
                             }
-
-                            @*<div class="d-flex flex-row justify-content-end mb-4">
-            <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                <p class="small mb-0">Thank you, I really like your product.</p>
-            </div>
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                 alt="avatar 1" style="width: 45px; height: 100%;">
-        </div>*@
-
-
                         </div>
                         <div class="form-outline p-3 d-flex" style="height: 19vh;">
-                            <textarea class="form-control" id="textAreaExample" rows="4"></textarea>   
+                            <textarea class="form-control" id="textAreaExample" name="textAreaExample" rows="4"></textarea>   
                             <div style="height: 10vh; width: 10vw;">
-                                <a class="nav-item nav-link h-100 w-100 d-flex align-items-center justify-content-center" href="@Url.Action("#","Chat")"><i class="h-100 w-100 bi bi-send-fill fa-4x text-info"></i></a>
+                                <a class="nav-item nav-link h-100 w-100 d-flex align-items-center justify-content-center" href="@Url.Action("Guardar","Chat", new { emailAmigo = ViewBag.IdAmigo,  mensaje = ""})"><i class="h-100 w-100 bi bi-send-fill fa-4x text-info"></i></a>
                             </div>                            
                         </div>
                     </div>

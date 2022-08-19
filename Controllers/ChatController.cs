@@ -32,6 +32,7 @@ namespace InstaMazz2._0.Controllers
                 verChat = true;
                 _ceroImg = Convert.ToBoolean(Session["ceroImg"].ToString());
                 _idAmigo = (string)Session["IdAmigo"];
+                ViewBag.Chats = GetChats(_idAmigo).ToList();
             }
             else
             {
@@ -48,13 +49,13 @@ namespace InstaMazz2._0.Controllers
             ViewBag.IdSession = _idSession;
             //enviamos la charla del usuario con sus amigos...
             //--- a la vista...
-            ViewBag.Chats = GetChats().ToList();
+            //ViewBag.Chats = GetChats(_idAmigo).ToList();
             //lista de Amigos...
             ViewBag.listaAmigos = ListaAmigos(sessionUsuario()).ToList();
             return View();
         }
 
-        private List<MChats> GetChats()
+        private List<MChats> GetChats(string emailAmigo)
         {
             List<MChats> _mChats = new List<MChats>();
 
@@ -66,6 +67,7 @@ namespace InstaMazz2._0.Controllers
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("SP_Get_ChatsAmig", cn);
                 cmd.Parameters.AddWithValue("emailUsu", _sessionEmail);
+                cmd.Parameters.AddWithValue("emailAmigo", emailAmigo);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 //Obtenemos todo la combersaciones del usuario con sus amigos...
@@ -110,7 +112,7 @@ namespace InstaMazz2._0.Controllers
                     cmd.ExecuteNonQuery();
 
                     //reactivamos el metodo de ver el chat...
-                    GetChats();
+                    GetChats(emailAmigo);
 
                     return true;
                 }
