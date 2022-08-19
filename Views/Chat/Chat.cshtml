@@ -82,11 +82,8 @@
                 <div class="card-footer p-3" @*style="height: 19vh;"*@>
                     <form action="@Url.Action("Save", "Chat", new { emailAmigo = ViewBag.IdAmigo })" method="post">
                         <div class="d-flex">
-                            <div class="col-lg-pull-1 flex-fill">
-                                <div class="form-floating bg-secondary">
-                                    <textarea class="form-control" id="textAreaExample" name="Mensaje" style="height: 15vh; width: 25rem"></textarea>
-                                    <label for="textAreaExample">Escribe el Mensaje...</label>
-                                </div>
+                            <div class="col-lg-pull-1 flex-fill bg-secondary">
+                                <textarea class="form-control" id="textAreaExample" name="Mensaje" style="height: 15vh; width: 25rem"></textarea>
                             </div>
                             <div class="col-lg-pull-1 flex-row-reverse mt-auto">
                                 <button type="submit" class="btn border-info"><i class="h-100 w-100 bi bi-send-fill fa-4x text-info"></i></button>
