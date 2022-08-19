@@ -23,14 +23,11 @@ namespace InstaMazz2._0.Controllers
             bool verChat = false;
             //validamos para ver el chat del amigo y poder chatear...
             string _nomb = (string)Session["Nombre"];
-            string _img = (string)Session["Img"];
-            bool _ceroImg;
             string _idAmigo;
             string _idSession = sessionUsuario();
-            if (_nomb != null && _img != null && Session["ceroImg"].ToString() != null && Session["IdAmigo"].ToString() !=null)
+            if (_nomb != null && Session["IdAmigo"].ToString() !=null)
             {
                 verChat = true;
-                _ceroImg = Convert.ToBoolean(Session["ceroImg"].ToString());
                 _idAmigo = (string)Session["IdAmigo"];
                 //enviamos la charla del usuario con sus amigos...
                 //--- a la vista...
@@ -39,14 +36,11 @@ namespace InstaMazz2._0.Controllers
             else
             {
                 verChat = false;
-                _ceroImg = false;
                 _idAmigo = "";
             }
             ViewBag.MostrarChat = verChat;
             //Pasamos para la vista, para empezar a chatear con el amigo...
             ViewBag.NombreUsu = _nomb;
-            //ViewBag.Imagen = _img;
-            //ViewBag.ceroImg = _ceroImg;
             ViewBag.IdAmigo = _idAmigo;
             ViewBag.IdSession = _idSession;
             //lista de Amigos...
@@ -203,11 +197,9 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-        public ActionResult ObtenerData(string nombre, string img, bool ceroImg, string idAmigo)
+        public ActionResult ObtenerData(string nombre, string idAmigo)
         {
             Session["Nombre"] = nombre;
-            Session["Img"] = img;
-            Session["ceroImg"] = ceroImg;
             Session["IdAmigo"] = idAmigo;
             return RedirectToAction("Chat", "Chat");
         }

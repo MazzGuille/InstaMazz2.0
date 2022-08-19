@@ -119,7 +119,7 @@
 
         @foreach (var item in listaAmigos)
         {
-            <a href="@Url.Action("ObtenerData","Chat", new { nombre = item.Nombre, img = item.imagenPerf, ceroImg = item.ceroImg, idAmigo = item.Email})">
+            <a href="@Url.Action("ObtenerData","Chat", new { nombre = item.Nombre, idAmigo = item.Email})">
                 <div class="text-decoration-none bg-light d-flex justify-content-center align-items-center gap-3 p-3" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: fit-content;">
 
                     @if (item.ceroImg)
