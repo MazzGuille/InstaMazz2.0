@@ -32,6 +32,8 @@ namespace InstaMazz2._0.Controllers
                 verChat = true;
                 _ceroImg = Convert.ToBoolean(Session["ceroImg"].ToString());
                 _idAmigo = (string)Session["IdAmigo"];
+                //enviamos la charla del usuario con sus amigos...
+                //--- a la vista...
                 ViewBag.Chats = GetChats(_idAmigo).ToList();
             }
             else
@@ -47,9 +49,6 @@ namespace InstaMazz2._0.Controllers
             ViewBag.ceroImg = _ceroImg;
             ViewBag.IdAmigo = _idAmigo;
             ViewBag.IdSession = _idSession;
-            //enviamos la charla del usuario con sus amigos...
-            //--- a la vista...
-            //ViewBag.Chats = GetChats(_idAmigo).ToList();
             //lista de Amigos...
             ViewBag.listaAmigos = ListaAmigos(sessionUsuario()).ToList();
             return View();
@@ -93,6 +92,13 @@ namespace InstaMazz2._0.Controllers
                 //Retornamos la lista del chat del usuario...
                 return _mChats;
             }
+        }
+
+        [HttpPost]
+        public ActionResult Save(string emailAmigo, MChats chats)
+        {
+            Guardar(emailAmigo, chats.Mensaje);
+            return RedirectToAction("Chat", "Chat");
         }
 
         private bool Guardar(string emailAmigo, string mensaje)
