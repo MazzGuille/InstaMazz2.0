@@ -30,16 +30,16 @@
                             if (data.Email == ViewBag.IdAmigo)
                             {
                                 <div class="d-flex flex-row justify-content-start mb-4">
-                                    @if (@ViewBag.ceroImg)
+                                    @if (data.ceroImg)
                                     {
                                         <div style="width: 50px; height: 50px;">
-                                            <img src="/Upload/@ViewBag.Imagen" class="img-circle h-100 w-100">
+                                            <img src="/Upload/@data.imagenPerf" class="img-circle h-100 w-100">
                                         </div>
                                     }
                                     else
                                     {
                                         <div style="width: 50px; height: 50px;">
-                                            <img src="~/Content/CSS/@ViewBag.Imagen" class="img-circle h-100 w-100">
+                                            <img src="~/Content/CSS/@data.imagenPerf" class="img-circle h-100 w-100">
                                         </div>
                                     }
 
@@ -57,8 +57,18 @@
                                     <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
                                         <p class="small mb-0">@data.Mensaje</p>
                                     </div>
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                                         alt="avatar 1" style="width: 45px; height: 100%;">
+                                    @if (data.ceroImg)
+                                    {
+                                        <div style="width: 50px; height: 50px;">
+                                            <img src="/Upload/@data.imagenPerf" class="img-circle h-100 w-100">
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div style="width: 50px; height: 50px;">
+                                            <img src="~/Content/CSS/@data.imagenPerf" class="img-circle h-100 w-100">
+                                        </div>
+                                    }
                                 </div>
                             }
                         }

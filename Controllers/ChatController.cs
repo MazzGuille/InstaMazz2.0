@@ -45,8 +45,8 @@ namespace InstaMazz2._0.Controllers
             ViewBag.MostrarChat = verChat;
             //Pasamos para la vista, para empezar a chatear con el amigo...
             ViewBag.NombreUsu = _nomb;
-            ViewBag.Imagen = _img;
-            ViewBag.ceroImg = _ceroImg;
+            //ViewBag.Imagen = _img;
+            //ViewBag.ceroImg = _ceroImg;
             ViewBag.IdAmigo = _idAmigo;
             ViewBag.IdSession = _idSession;
             //lista de Amigos...
@@ -60,6 +60,8 @@ namespace InstaMazz2._0.Controllers
 
             //Obtenemos la session del usuario...
             string _sessionEmail = sessionUsuario();
+            string _byteString;
+            bool _ceroImg;
 
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -76,6 +78,19 @@ namespace InstaMazz2._0.Controllers
                     {
                         MChats oChat = new MChats();
 
+                        //Obtenemos la IMAGEN...
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
+                        {
+                            _ceroImg = true;
+                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
+                        }
+                        else
+                        {
+                            _ceroImg = false;
+                            _byteString = "avatar.jpg";
+                        }
+
                         //Guardamos en la lista del Modelo...
                         oChat.ID = (int)dr["ID"];
                         oChat.IdAmigo = (int)dr["IdAmigo"];
@@ -83,6 +98,8 @@ namespace InstaMazz2._0.Controllers
                         oChat.Mensaje = (string)dr["Mensaje"];
                         oChat.Fecha = (string)dr["Fecha"];
                         oChat.Email = (string)dr["Email"];
+                        oChat.imagenPerf = _byteString;
+                        oChat.ceroImg = _ceroImg;
 
                         //Ahora lo Guardamos en la Lista del Chat...
                         _mChats.Add(oChat);
