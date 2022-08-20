@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Windows.UI.Xaml.Documents;
 
 namespace InstaMazz2._0.Controllers
 {
@@ -23,6 +24,10 @@ namespace InstaMazz2._0.Controllers
             ViewBag.Feed = Feed(idPost).ToList();
             //Pasamos los comantarios de los usuarios...
             ViewBag.ListaComentarios = ComentPost(idPost).ToList();
+            //Pasamos la session del usuario que inicio la session...
+            ViewBag.IdSession = sessionUsuario();
+            //Pasamos el id del Post...
+            ViewBag.IdPost = idPost;
             return View();
         }
 
@@ -244,7 +249,7 @@ namespace InstaMazz2._0.Controllers
             using (SqlConnection cn = new SqlConnection(cadena)) 
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("SP_Get_TotalxPost", cn);
+                SqlCommand cmd = new SqlCommand("SP_Get_ComentariosPost", cn);
                 cmd.Parameters.AddWithValue("IdPost", idPost);
                 cmd.CommandType = CommandType.StoredProcedure;
                 using (var dr = cmd.ExecuteReader())
@@ -262,7 +267,7 @@ namespace InstaMazz2._0.Controllers
                         oComent.Coment = (string)dr["Coment"];
                         oComent.Fecha = (string)dr["Fecha"];
                         oComent.Activo = (bool)dr["Activo"];
-                        oComent.ImagenPerf = PasarIMG(_ceroImg, _byteImg);
+                        oComent.imagenPerf = PasarIMG(_ceroImg, _byteImg);
                         oComent.ceroImg = _ceroImg;
 
                         //lo agregamos en la lista de comentario...
@@ -271,6 +276,37 @@ namespace InstaMazz2._0.Controllers
                 }
 
                 return _ListComent;
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SavePost(string email, int id, MPostComent oPostComent)
+        {
+            //Guardamos los datos...
+            GuardarPostComent(id, email, oPostComent.Mensaje);
+            //retornamos la pagina al que estamos cometando...
+            return RedirectToAction("ComentarView", "Post", new { IdPost = id});
+        }
+
+        private bool GuardarPostComent(int idPost, string email, string coment)
+        {
+            using (SqlConnection cn = new SqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    SqlCommand cmd = new SqlCommand("SP_Insert_ComentariosPost", cn);
+                    cmd.Parameters.AddWithValue("idPost", idPost);
+                    cmd.Parameters.AddWithValue("email", email);
+                    cmd.Parameters.AddWithValue("coment", coment);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
             }
         }
 

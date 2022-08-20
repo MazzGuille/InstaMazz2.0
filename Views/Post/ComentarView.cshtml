@@ -1,4 +1,4 @@
-﻿
+﻿@model InstaMazz2._0.Models.MPostComent
 @{
     ViewBag.Title = "ComentarView";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,72 +7,72 @@
 }
 
 <div class="-d-flex flex-sm-column align-items-start justify-content-center flex-md-row row" style="margin-top: 10vh; padding-inline: 5rem;">
-   @foreach (var item in PostComent)
-   {
-    <div class="col col-md-5 bg-light pt-3" style="height: 80vh;">
-        <div class="col" style="height: 65vh;">
-            <img src="@item.UrlImg" class="h-100 w-100 shadow-lg" />
-        </div>
-        <div class="col d-flex justify-content-center" style="height: 14vh; margin-top: 1vh; width: 100%;">
-            <h4 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">@item.Descripcion</h4>
-        </div>
-    </div>   
-   }
-
-<div class="col col-md-3 p-2" style="height: 80vh;">
-    <div class="col col-md-3 py-2" style="height: 10vh; width: 100%; margin-bottom: 1vh;">
-        <div class="bg-light d-flex justify-content-start align-items-center gap-3 p-1" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: 100%;">
-            <div style="width: 50px; height: 50px;">
-                <img src="~/Content/CSS/InstaMazz.jpg" class="img-circle h-100 w-100" />
+    @foreach (var item in PostComent)
+    {
+        <div class="col col-md-5 bg-light pt-3" style="height: 80vh;">
+            <div class="col" style="height: 65vh;">
+                <img src="@item.UrlImg" class="h-100 w-100 shadow-lg" />
             </div>
-            <div>
-                <p class="text-black">Guillermo Mazzari</p>
+            <div class="col d-flex justify-content-center" style="height: 14vh; margin-top: 1vh; width: 100%;">
+                <h4 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">@item.Descripcion</h4>
             </div>
         </div>
-    </div>
-    <!--TODO: FOREACH-->   
+    }
 
-    <div class="text-decoration-none bg-light d-flex flex-column justify-content-start align-items-center gap-3 p-1 bg-light" style="height: 51vh; overflow-y: scroll; overflow-x: hidden; padding-right: 1rem; border-radius: 16px; width: 100%;">
-        @foreach(var coment in ListaComent) 
-        {
-         <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-            <div style="width: 50px; height: 50px;">
-                @if (coment.ceroImg)
-                {
-                    <div style="width: 50px; height: 50px;">
-                        <img src="/Upload/@coment.imagenPerf" class="img-circle h-100 w-100">
-                    </div>
-                }
-                else
-                {
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/@coment.imagenPerf" class="img-circle h-100 w-100">
-                    </div>
-                }
-            </div>
-            <div style="width:100%;">
-                <p class="text-black">@coment.UserName -@coment.Fecha-</p> <!--Nombre del que hace el comentario-->
-                <p>@coment.Coment</p> <!--Comentario-->
-            </div>
-         </div>
-        }
-        
-    </div>
-
-    <div class="col col-md-3 px-1 py-2 d-flex justify-content-center align-items-center" style="height: 15vh; width: 100%; overflow-y: scroll; overflow-x: hidden; margin-top: 1vh; margin-bottom: 0; ">
-        @*<textarea class="h-100 w-100" style="border-radius: 10px;">ACA INSERTAS EL COMENTARIO</textarea>*@ <!--Box para crear el nuevo comentario-->
-        <form action="@Url.Action("Save", "Chat", new { emailAmigo = ViewBag.IdAmigo })" method="post">
-            <div class="d-flex">
-                <div class="col-lg-pull-1 flex-fill bg-secondary">
-                    <textarea class="form-control" id="textAreaExample" name="Mensaje" style="height: 15vh; width: 100%;"></textarea>
+    <div class="col col-md-3 p-2" style="height: 80vh;">
+        <div class="col col-md-3 py-2" style="height: 10vh; width: 100%; margin-bottom: 1vh;">
+            <div class="bg-light d-flex justify-content-start align-items-center gap-3 p-1" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: 100%;">
+                <div style="width: 50px; height: 50px;">
+                    <img src="~/Content/CSS/InstaMazz.jpg" class="img-circle h-100 w-100" />
                 </div>
-                <div class="col-lg-pull-1 flex-row-reverse mt-auto">
-                    <button type="submit" class="btn border-info"><i class="h-100 w-100 bi bi-send-fill fa-4x text-info"></i></button>
+                <div>
+                    <p class="text-black">Guillermo Mazzari</p>
                 </div>
             </div>
-        </form>
+        </div>
+        <!--TODO: FOREACH-->
+
+        <div class="text-decoration-none bg-light d-flex flex-column justify-content-start align-items-center gap-3 p-1 bg-light" style="height: 51vh; overflow-y: scroll; overflow-x: hidden; padding-right: 1rem; border-radius: 16px; width: 100%;">
+            @foreach (var coment in ListaComent)
+            {
+                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+                    <div style="width: 50px; height: 50px;">
+                        @if (coment.ceroImg)
+                        {
+                            <div style="width: 50px; height: 50px;">
+                                <img src="/Upload/@coment.imagenPerf" class="img-circle h-100 w-100">
+                            </div>
+                        }
+                        else
+                        {
+                            <div style="width: 50px; height: 50px;">
+                                <img src="~/Content/CSS/@coment.imagenPerf" class="img-circle h-100 w-100">
+                            </div>
+                        }
+                    </div>
+                    <div style="width:100%;">
+                        <p class="text-black">@coment.UserName -@coment.Fecha-</p> <!--Nombre del que hace el comentario-->
+                        <p>@coment.Coment</p> <!--Comentario-->
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="col col-md-3 px-1 py-2 d-flex justify-content-center align-items-center" style="height: 15vh; width: 100%; overflow-y: scroll; overflow-x: hidden; margin-top: 1vh; margin-bottom: 0; ">
+            @*<textarea class="h-100 w-100" style="border-radius: 10px;">ACA INSERTAS EL COMENTARIO</textarea>*@ <!--Box para crear el nuevo comentario-->
+            <form action="@Url.Action("SavePost", "Post", new { email = ViewBag.IdSession, id = ViewBag.IdPost })" method="post">
+                <div class="d-flex">
+                    <div class="col-lg-pull-1 flex-fill bg-secondary">
+                        <textarea class="form-control" id="textAreaExample" name="Mensaje" style="height: 15vh; width: 100%;"></textarea>
+                    </div>
+                    <div class="col-lg-pull-1 flex-row-reverse mt-auto">
+                        <button type="submit" class="btn border-info"><i class="h-100 w-100 bi bi-send-fill fa-4x text-info"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-</div>    
 </div>
 
 
