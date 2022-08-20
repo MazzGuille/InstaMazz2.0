@@ -21,7 +21,8 @@ namespace InstaMazz2._0.Controllers
         {
             //Psamos el Id del post..
             ViewBag.Feed = Feed(idPost).ToList();
-            // ViewBag.ListaComentarios = ListaComentarios().ToList();
+            //Pasamos los comantarios de los usuarios...
+            ViewBag.ListaComentarios = ComentPost(idPost).ToList();
             return View();
         }
 
@@ -236,7 +237,7 @@ namespace InstaMazz2._0.Controllers
             }
         }
 
-        private List<MPostComent> ComentPost(int idPost)
+        private List<MPostComent> ComentPost(int? idPost)
         {
             List<MPostComent> _ListComent = new List<MPostComent>();
 
@@ -250,10 +251,22 @@ namespace InstaMazz2._0.Controllers
                 {
                     while (dr.Read())
                     {
+                        //pasamos la Imagen del Perfil y comvertimos a string...
+                        byte[] _byteImg = (byte[])dr["ImagenPerfil"];
+
+                        bool _ceroImg = CeroImagen(_byteImg);
+
                         MPostComent oComent = new MPostComent();
 
                         oComent.IdPost = (int)dr["IdPost"];
+                        oComent.Coment = (string)dr["Coment"];
+                        oComent.Fecha = (string)dr["Fecha"];
+                        oComent.Activo = (bool)dr["Activo"];
+                        oComent.ImagenPerf = PasarIMG(_ceroImg, _byteImg);
+                        oComent.ceroImg = _ceroImg;
 
+                        //lo agregamos en la lista de comentario...
+                        _ListComent.Add(oComent);
                     }
                 }
 
@@ -264,6 +277,41 @@ namespace InstaMazz2._0.Controllers
         private string sessionUsuario()
         {
             return (string)Session["usuario"];
+        }
+
+        private bool CeroImagen(Byte[] IMG)
+        {
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
+            bool _ceroImg;
+
+            if (BitConverter.ToInt32(IMG, 0) > 0)
+            {
+                _ceroImg = true;
+            }
+            else
+            {
+                _ceroImg = false;
+            }
+
+            //Retornamos la repuesta...
+            return _ceroImg;
+        }
+
+        private string PasarIMG(bool v_f, byte[] imagen)
+        {
+            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
+            string _byteString;
+            if (v_f)
+            {
+                _byteString = System.Text.Encoding.Default.GetString(imagen);
+            }
+            else
+            {
+                _byteString = "avatar.jpg";
+            }
+
+            //Retornamos la Imagen Correspondiente...
+            return _byteString;
         }
 
     }
