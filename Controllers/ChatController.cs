@@ -138,7 +138,7 @@ namespace InstaMazz2._0.Controllers
             {
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_ListaAmigos", cn);
-                cmd.Parameters.AddWithValue("email", IdEmail); //Session["usuario"]
+                cmd.Parameters.AddWithValue("email", IdEmail);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -153,7 +153,6 @@ namespace InstaMazz2._0.Controllers
 
                         //agregamos al objeto...
                         oLista.Id = (int)dr["Id"];
-                        //oLista.IdUsu = (int)dr["IdUsu"];
                         oLista.IdUsuAmigo = (int)dr["IdUsuAmigo"];
                         oLista.Activo = (int)dr["Activo"];
                         oLista.Nombre = dr["Nombre"].ToString();

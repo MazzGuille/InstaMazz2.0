@@ -17,13 +17,13 @@ namespace InstaMazz2._0.Controllers
 
         string cadena = ConfigurationManager.ConnectionStrings["InstaMaczzDB"].ConnectionString;
 
-        public ActionResult ComentarView()
+        public ActionResult ComentarView(int? idPost)
         {
+            //Psamos el Id del post..
+            ViewBag.Feed = Feed(idPost).ToList();
             // ViewBag.ListaComentarios = ListaComentarios().ToList();
             return View();
         }
-
-
 
         public ActionResult CrearPost()
         {
@@ -45,7 +45,6 @@ namespace InstaMazz2._0.Controllers
                 cmd.Parameters.AddWithValue("UrlImg", oPublicacion.UrlImg);
                 cmd.Parameters.AddWithValue("Descripcion", oPublicacion.Descripcion);
                 cmd.Parameters.AddWithValue("Titulo", oPublicacion.Titulo);
-                //cmd.Parameters.AddWithValue("UserName", Session["UsName"]);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.ExecuteNonQuery();
             }
@@ -122,7 +121,6 @@ namespace InstaMazz2._0.Controllers
                         oLista.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
                         oLista.UrlImg = dr["UrlImg"].ToString();
                         oLista.Descripcion = dr["Descripcion"].ToString();
-                        //oLista.UserName = dr["UserName"].ToString();
 
                         //agregamos a la lista el objeto de list...
                         _lista.Add(oLista);
@@ -138,13 +136,13 @@ namespace InstaMazz2._0.Controllers
 
         public ActionResult FeedView()
         {
-            ViewBag.Feed = Feed().ToList();
-            ViewBag.Ids = sessionUsuario();// Session["usuario"].ToString();
+            ViewBag.Feed = Feed(0).ToList();
+            ViewBag.Ids = sessionUsuario();
             return View();
         }
 
         [HttpPost]
-        public List<PublicacionesModel> Feed()
+        public List<PublicacionesModel> Feed(int? idPosts)
         {
             List<PublicacionesModel> _lista = new List<PublicacionesModel>();
             using (SqlConnection cn = new SqlConnection(cadena))
@@ -152,6 +150,8 @@ namespace InstaMazz2._0.Controllers
                 cn.Open();
                 SqlCommand cmd = new SqlCommand("sp_Feed", cn);
                 cmd.Parameters.AddWithValue("Email", sessionUsuario());
+                //PASAMOS EL ID DEL POST, PERO PRIMERO VALIDAMOS EL ID...
+                cmd.Parameters.AddWithValue("IdPost", idPosts);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (var dr = cmd.ExecuteReader())
@@ -172,8 +172,6 @@ namespace InstaMazz2._0.Controllers
                         int _totals = TMGusta(Convert.ToInt32(dr["IdPost"]));
                         oLista.TotalPost = _totals;
 
-                        //se coloca la manito en verde...
-                        //TotMGusta(Session["usuario"].ToString(), Convert.ToInt32(dr["IdPost"]));
                         _lista.Add(oLista);
                     }
                 }

@@ -2,18 +2,21 @@
 @{
     ViewBag.Title = "ComentarView";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var PostComent = ViewBag.Feed;
 }
 
 <div class="-d-flex flex-sm-column align-items-start justify-content-center flex-md-row row" style="margin-top: 10vh; padding-inline: 5rem;">
+   @foreach (var item in PostComent)
+   {
     <div class="col col-md-5" style="height: 80vh;">
         <div class="col" style="height: 65vh;">
-            <img src="~/Content/CSS/register.png" class="h-100 w-100" />
+            <img src="@item.UrlImg" class="h-100 w-100" />
         </div>
         <div class="col d-flex justify-content-center" style="height: 14vh; margin-top: 1vh; width: 100%;">
-            <h3 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">Descripcion de la publicacion ACA TRAE LA DESCRIPCION 
-            QUE ESTA EN EL FEDD QUE ES LA MISMA QUE COLOCA EL USUARIO CUANDO CREA LA PUBLCIACION. TAMBIEN SE MANEJA CON OVERFLOW</h3>
+            <h3 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">@item.Descripcion</h3>
         </div>
     </div>   
+   }
 
         <div class="col col-md-3 p-2" style="height: 80vh;">
             <div class="col col-md-3 py-2" style="height: 10vh; width: 100%; margin-bottom: 1vh;">
