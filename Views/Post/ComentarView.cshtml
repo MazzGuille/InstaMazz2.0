@@ -8,89 +8,90 @@
 <div class="-d-flex flex-sm-column align-items-start justify-content-center flex-md-row row" style="margin-top: 10vh; padding-inline: 5rem;">
    @foreach (var item in PostComent)
    {
-    <div class="col col-md-5" style="height: 80vh;">
+    <div class="col col-md-5 bg-light pt-3" style="height: 80vh;">
         <div class="col" style="height: 65vh;">
-            <img src="@item.UrlImg" class="h-100 w-100" />
+            <img src="@item.UrlImg" class="h-100 w-100 shadow-lg" />
         </div>
         <div class="col d-flex justify-content-center" style="height: 14vh; margin-top: 1vh; width: 100%;">
-            <h3 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">@item.Descripcion</h3>
+            <h4 class="text-black" style="overflow-y: scroll; overflow-x: hidden;">@item.Descripcion</h4>
         </div>
     </div>   
    }
 
-        <div class="col col-md-3 p-2" style="height: 80vh;">
-            <div class="col col-md-3 py-2" style="height: 10vh; width: 100%; margin-bottom: 1vh;">
-                <div class="bg-light d-flex justify-content-start align-items-center gap-3 p-1" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: 100%;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/InstaMazz.jpg" class="img-circle h-100 w-100" />
-                    </div>
-                    <div>
-                        <p class="text-black">Guillermo Mazzari</p>
-                    </div>
-                </div>
+<div class="col col-md-3 p-2" style="height: 80vh;">
+    <div class="col col-md-3 py-2" style="height: 10vh; width: 100%; margin-bottom: 1vh;">
+        <div class="bg-light d-flex justify-content-start align-items-center gap-3 p-1" style="margin-bottom: 1rem; padding-right: 1rem; border-radius: 16px; width: 100%;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/InstaMazz.jpg" class="img-circle h-100 w-100" />
             </div>
-            <!--TODO: FOREACH-->
-            <div class="text-decoration-none bg-light d-flex flex-column justify-content-start align-items-center gap-3 p-1 bg-light" style="height: 51vh; overflow-y: scroll; overflow-x: hidden; padding-right: 1rem; border-radius: 16px; width: 100%;">
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario</p> <!--Comentario-->
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario</p> <!--Comentario-->
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario</p> <!--Comentario-->
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario</p> <!--Comentario-->
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario mas largo para probar como se veria cuando haya overflow</p> <!--Comentario-->
-                    </div>
-                </div>
-                <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
-                    <div style="width: 50px; height: 50px;">
-                        <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
-                    </div>
-                    <div style="width:100%;">
-                        <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
-                        <p>Hola soy un comentario</p> <!--Comentario-->
-                    </div>
-                </div>
+            <div>
+                <p class="text-black">Guillermo Mazzari</p>
             </div>
+        </div>
+    </div>
+    <!--TODO: FOREACH-->   
 
-            <div class="col col-md-3 px-1 py-2 d-flex justify-content-center align-items-center" style="height: 15vh; width: 100%; overflow-y: scroll; overflow-x: hidden; margin-top: 1vh; margin-bottom: 0; ">
-                <textarea class="h-100 w-100" style="border-radius: 10px;">ACA INSERTAS EL COMENTARIO</textarea> <!--Box para crear el nuevo comentario-->
+    <div class="text-decoration-none bg-light d-flex flex-column justify-content-start align-items-center gap-3 p-1 bg-light" style="height: 51vh; overflow-y: scroll; overflow-x: hidden; padding-right: 1rem; border-radius: 16px; width: 100%;">
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
             </div>
-        </div>    
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario</p> <!--Comentario-->
+            </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
+            </div>
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario</p> <!--Comentario-->
+            </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
+            </div>
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario</p> <!--Comentario-->
+            </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
+            </div>
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario</p> <!--Comentario-->
+            </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
+            </div>
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario mas largo para probar como se veria cuando haya overflow</p> <!--Comentario-->
+            </div>
+        </div>
+        <div class="d-flex justify-content-start align-items-center gap-3 bg-white p-3" style="width: 100%; max-height: fit-content; border-radius: 16px; margin-bottom: 1px;">
+            <div style="width: 50px; height: 50px;">
+                <img src="~/Content/CSS/avatar.jpg" class="img-circle h-100 w-100" /> <!--Imagen de perfil del que hace el comentario-->
+            </div>
+            <div style="width:100%;">
+                <p class="text-black">Lucas Paz</p> <!--Nombre del que hace el comentario-->
+                <p>Hola soy un comentario</p> <!--Comentario-->
+            </div>
+        </div>
+    </div>
+
+    <div class="col col-md-3 px-1 py-2 d-flex justify-content-center align-items-center" style="height: 15vh; width: 100%; overflow-y: scroll; overflow-x: hidden; margin-top: 1vh; margin-bottom: 0; ">
+        <textarea class="h-100 w-100" style="border-radius: 10px;">ACA INSERTAS EL COMENTARIO</textarea> <!--Box para crear el nuevo comentario-->
+    </div>
+</div>    
 </div>
 
 

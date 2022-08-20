@@ -18,25 +18,27 @@
                     <img class="img-responsive card-img-top w-100 h-100" src="@item.UrlImg" />
                 </div>
                 <div class="w-100 d-flex justify-content-start align-items-center gap-3">
-                   
-                    <p>
-                        @*ViewBag.Manito*@
-                        @if (item.Mgusta)
-                        {
-                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1 border-0" })
-                        }
-                        else
-                        {
-                            @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1 border-0" })
-                        }
+                    <div class="d-flex justify-content-between" style="width: 100%;">
+                        <p>
+                            @*ViewBag.Manito*@
+                            @if (item.Mgusta)
+                            {
+                                @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up-fill text-success mt-1 border-0" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink(" ", "MGusta", "Post", new { IdUsu = ViewBag.Ids, IdPost = item.IdPost }, new { @class = "btn btn-lg bi bi-hand-thumbs-up mt-1 border-0" })
+                            }
 
-                        <span class="ml-2">@item.TotalPost</span>
-                    </p>
+                            <span class="ml-2">@item.TotalPost</span>
+                        </p>
+                        <a>@Html.ActionLink(" Comentarios", "ComentarView","Post", new { idPost = item.IdPost }, new {@class = "btn btn-lg bi bi-chat-text-fill border-0 text-success p-3"})</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="card-text">
                         @item.Descripcion
-                        <a class="btn btn-success" href="@Url.Action("ComentarView","Post", new { idPost = item.IdPost })"><i class="bi bi-house-fill text-primary"></i> Añadir comentario</a>
+                        
                     </div>
                 </div>
             </div>
