@@ -185,11 +185,11 @@ namespace InstaMazz2._0.Controllers
         public ActionResult MGusta(string IdUsu, int IdPost)
         {
             //aca va el metodo privado de "guardar el megusta".. 
-            MGustaBTN(IdUsu, IdPost);
+            MGustaGuardar(IdUsu, IdPost);
             return RedirectToAction("FeedView", "Post");
         }
 
-        private bool MGustaBTN(string email, int idpost)
+        private bool MGustaGuardar(string email, int idpost)
         {
             using (SqlConnection cn = new SqlConnection(cadena))
             {
@@ -233,6 +233,31 @@ namespace InstaMazz2._0.Controllers
                     }
                 }
                 return _totalEs;
+            }
+        }
+
+        private List<MPostComent> ComentPost(int idPost)
+        {
+            List<MPostComent> _ListComent = new List<MPostComent>();
+
+            using (SqlConnection cn = new SqlConnection(cadena)) 
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("SP_Get_TotalxPost", cn);
+                cmd.Parameters.AddWithValue("IdPost", idPost);
+                cmd.CommandType = CommandType.StoredProcedure;
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        MPostComent oComent = new MPostComent();
+
+                        oComent.IdPost = (int)dr["IdPost"];
+
+                    }
+                }
+
+                return _ListComent;
             }
         }
 
