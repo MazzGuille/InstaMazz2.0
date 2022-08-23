@@ -23,7 +23,7 @@ namespace InstaMazz2._0.Controllers
         public ActionResult Index(string idE)
         {
             //Obtenemos la session del usuario...
-            string _SessionUsuario = sessionUsuario(); //Session["usuario"].ToString();
+            string _SessionUsuario = sessionUsuario();
             bool _usu;
             bool _btn;
             bool _serAmigo;
@@ -43,24 +43,16 @@ namespace InstaMazz2._0.Controllers
                     {
                         //tratando de mostrar imagen en la vista, desde bytes a img.
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        string _byteString;
-                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
-                        {
-                            _existeImg = true;
-                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-                        }
-                        else
-                        {
-                            _existeImg = false;
-                            _byteString = "avatar.jpg";
-                        }
+
+                        //Verificar SI EXISTE LA IMAGEN...
+                        _existeImg = CeroImagen(_byteImg);
 
                         model.IdUsuario = (int)dr["IdUsuario"];
                         model.Nombre = dr["Nombre"].ToString();
                         model.Email = dr["Email"].ToString();
                         model.UserName = dr["UserName"].ToString();
                         //mandamos la imagen a la vista de perfil...
-                        model.imagenPerf = _byteString;
+                        model.imagenPerf = PasarIMG(_existeImg, _byteImg);
                         model.BioUsuario = dr["BioUsuario"].ToString();
                     }
                 }
@@ -249,12 +241,6 @@ namespace InstaMazz2._0.Controllers
             //obtengo el dato de la barible...
             var usu = Session["busc"];
 
-            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
-            string _byteString;
-
-            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
-            bool _ceroImg;
-
             //verifico si la variable existe o si es null..
             if (usu == null)
             {
@@ -276,16 +262,8 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
-                        {
-                            _ceroImg = true;
-                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-                        }
-                        else
-                        {
-                            _ceroImg = false;
-                            _byteString = "avatar.jpg";
-                        }
+
+                        bool _ceroImg = CeroImagen(_byteImg);
 
                         oLista.Add(new UsuarioModel
                         {
@@ -293,7 +271,7 @@ namespace InstaMazz2._0.Controllers
                             UserName = dr["UserName"].ToString(),
                             IdUsuario = ((int)dr["IdUsuario"]),
                             Email = dr["Email"].ToString(),
-                            imagenPerf = _byteString,
+                            imagenPerf = PasarIMG(_ceroImg, _byteImg),
                             ceroImg = _ceroImg
                         });
                     }
@@ -330,20 +308,14 @@ namespace InstaMazz2._0.Controllers
         public ActionResult ListaAmigosDeAmigoVista()
         {
             ViewBag.listaAmigosDeAmigo = ListaAmigosDeAmigo().ToList();
-            ViewBag.IdUsu = sessionUsuario(); //Session["usuario"].ToString();
+            ViewBag.IdUsu = sessionUsuario();
             return View();
-            //return View(Listar());
         }
 
         public List<Amigos> ListaAmigosDeAmigo()
         {
             List<Amigos> _lista = new List<Amigos>();
-            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
-            string _byteString;
-
-            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
-            bool _ceroImg;
-
+            
             using (SqlConnection cn = new SqlConnection(cadena))
             {
                 cn.Open();
@@ -356,16 +328,8 @@ namespace InstaMazz2._0.Controllers
                     while (dr.Read())
                     {
                         byte[] _byteImg = (byte[])dr["ImagenPerfil"];
-                        if (BitConverter.ToInt32(_byteImg, 0) > 0)
-                        {
-                            _ceroImg = true;
-                            _byteString = System.Text.Encoding.Default.GetString(_byteImg);
-                        }
-                        else
-                        {
-                            _ceroImg = false;
-                            _byteString = "avatar.jpg";
-                        }
+
+                        bool _ceroImg = CeroImagen(_byteImg);
 
                         Amigos oLista = new Amigos();
 
@@ -376,7 +340,7 @@ namespace InstaMazz2._0.Controllers
                         oLista.Activo = (int)dr["Activo"];
                         oLista.Nombre = dr["Nombre"].ToString();
                         oLista.UserName = dr["UserName"].ToString();
-                        oLista.imagenPerf = _byteString;
+                        oLista.imagenPerf = PasarIMG(_ceroImg, _byteImg);
                         oLista.Email = dr["Email"].ToString();
                         oLista.ceroImg = _ceroImg;
 
@@ -402,6 +366,41 @@ namespace InstaMazz2._0.Controllers
         private string sessionUsuario()
         {
             return (string)Session["usuario"];
+        }
+
+        private bool CeroImagen(Byte[] IMG)
+        {
+            //esta variable cirbe para determinar, si el usuario tiene una foto de perfil o no...
+            bool _ceroImg;
+
+            if (BitConverter.ToInt32(IMG, 0) > 0)
+            {
+                _ceroImg = true;
+            }
+            else
+            {
+                _ceroImg = false;
+            }
+
+            //Retornamos la repuesta...
+            return _ceroImg;
+        }
+
+        private string PasarIMG(bool v_f, byte[] imagen)
+        {
+            // esta variable es para pasar el nombre de la imagen obtenida desde la bd...
+            string _byteString;
+            if (v_f)
+            {
+                _byteString = System.Text.Encoding.Default.GetString(imagen);
+            }
+            else
+            {
+                _byteString = "avatar.jpg";
+            }
+
+            //Retornamos la Imagen Correspondiente...
+            return _byteString;
         }
 
     }
